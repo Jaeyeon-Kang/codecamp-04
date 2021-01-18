@@ -40,7 +40,7 @@ export default function SignUpContainer() {
         alert("이메일을 정확히 입력해주세요");
       } else {
         alert("회원가입에 성공하셨습니다. 로그인을 진행해주세요.");
-        router.push(`/boards/login`);
+        router.push(`/login`);
       }
     } catch (error) {
       alert(error.message);

@@ -20,12 +20,17 @@ export default function Header() {
     router.push(`/market/list`);
   };
 
+  const onClickMain = () => {
+    router.push(`/`)
+  }
+
   return (
     <HeaderUI
       onClickSubmit={onClickSubmit}
       onClickBoard={onClickBoard}
       onClickMyPage={onClickMyPage}
       onClickMarket={onClickMarket}
+      onClickMain={onClickMain}
     />
   );
 }

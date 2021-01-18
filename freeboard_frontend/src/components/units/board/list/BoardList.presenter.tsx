@@ -25,10 +25,14 @@ export default function BoardListUI(props) {
                 ))}
             </S.BestCommentTitle>
             <S.BestCommentImageIcon></S.BestCommentImageIcon>
-            <S.BestCommentWriter>{el.writer}</S.BestCommentWriter>
-            <S.BestCommentDate>{getDate(el.createdAt)}</S.BestCommentDate>
-            <S.BestCommentLikeIcon src="/images/board/list/like.png" />
+            {/* <S.BestWriterToDate> */}
+            {/* <S.BestCommentWriter>{el.writer}</S.BestCommentWriter> */}
+            {/* <S.BestCommentDate>{getDate(el.createdAt)}</S.BestCommentDate> */}
+            {/* </S.BestWriterToDate> */}
+            <S.BestIconToCount>
+            <S.BestCommentLikeIcon src="/images/boardComment/list/like.png" />
             <S.BestCommentLikeCount>{el.likeCount}</S.BestCommentLikeCount>
+            </S.BestIconToCount>
           </S.BestCommentWrapper>
         ))}
       </S.BestCommentWrapperTop>

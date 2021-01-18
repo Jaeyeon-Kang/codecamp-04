@@ -24,24 +24,44 @@ export const BestCommentWrapper = styled.div`
   padding: 0px 0px 0px 0px;
   margin: 0px 10px 0px 10px;
   overflow: hidden;
+  
 `;
 
 export const BestCommentTitle = styled.div`
-  font-size: 24px;
+font-size: 17px;
+font-weight: 600;
   cursor: pointer;
+  padding: 5px 0px 0px 10px;
 `;
 
 export const BestCommentImage = styled.img`
   cursor: pointer;
 `;
 
+// export const BestWriterToDate = styled.div`
+// /* background: red; */
+// display: flex;
+// justify-content: flex-start;
+// padding-left: 10px;
+// font-size: 6px;
+// `
 export const BestCommentWriter = styled.div``;
 
+export const BestIconToCount = styled.div`
+display: flex;
+padding-left: 10px;
+align-items: center;
+`
 export const BestCommentDate = styled.div``;
 
-export const BestCommentLikeIcon = styled.img``;
+export const BestCommentLikeIcon = styled.img`
+width: 15px;
+height: 15px;
+`;
 
-export const BestCommentLikeCount = styled.div``;
+export const BestCommentLikeCount = styled.div`
+padding-left: 10px;
+`;
 
 export const BestCommentImageIcon = styled.div``;
 

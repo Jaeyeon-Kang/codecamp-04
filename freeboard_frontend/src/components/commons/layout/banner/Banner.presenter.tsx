@@ -15,7 +15,7 @@ import "slick-carousel/slick/slick-theme.css";
 
 export default function BannerUI() {
   const settings = {
-    dots: false,
+    dots: true,
     infinite: true,
     speed: 1200,
     slidesToShow: 1,
@@ -40,7 +40,6 @@ export default function BannerUI() {
                 mollit nulla consequat velit magna.
               </LineFour>
             </Box>
-
             <ImgBanner></ImgBanner>
           </ImageWrapper>
           {/* <ImgBanner src="/images/ArticleImage2.png" /> */}
