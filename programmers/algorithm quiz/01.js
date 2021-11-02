@@ -92,3 +92,5 @@ arr
 //(3) ['01', '123', '567']
 arr=[number.slice(0,3),number.slice(3,7),number.slice(7,11)]
 //(3) ['010', '1234', '5678']
+
+// edit
