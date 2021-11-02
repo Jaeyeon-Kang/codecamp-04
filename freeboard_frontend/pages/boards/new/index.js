@@ -17,7 +17,7 @@ export default function EmotionPage(){
                 <MyInput type="text" placeholder="이름을 적어주세요."  /> <br/>
                 </WrapperOneDiv>
                 <WrapperOneDiv style={{ 'marginLeft' : '20px' }}>
-                비밀번호<br/>실험
+                비밀번호<br/>
                 <MyInput type="text" placeholder="비밀번호를 입력해주세요."/><br/>
                 </WrapperOneDiv>
             </WrapperOne>
