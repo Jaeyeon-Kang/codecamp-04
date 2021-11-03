@@ -1,63 +1,107 @@
-import {WrapperHead,WrapperOne,WrapperOneDiv,
-    WrapperTwo, WrapperTwoTitle, WrapperTwoContext, MyDiv,MyInput, 
-    MyInputTitle, MyInputContext, WrapperThree, WrapperThreeTitle,
-    InputTitle, InputSearch, WrapperFour, WrapperFive, WrapperPhoto, InputPhotos, divA
-     } from '../../../styles/emotion'
-
-export default function EmotionPage(){
+import {
+    Address,
+    ButtonWrapper,
+    Contents,
+    ImageWrapper,
+    InputWrapper,
+    Label,
+    DivError,
+    OptionWrapper,
+    Password,
+    RadioButton,
+    RadioLabel,
+    SearchButton,
+    Subject,
+    SubmitButton,
+    Title,
+    Wrapper,
+    Writer,
+    WriterWrapper,
+    Youtube,
+    Zipcode,
+    ZipcodeWrapper,
+    UploadButton
+  } from "../../../styles/emotion"
   
+  export default function BoardsNewPage() {
+   
+    const [emailError, setEmailError] = useState("")
+    const [email, setEmail] = useState("")
 
-    return (   
-    <>       
-        <WrapperHead>
-            <MyDiv>게시물 수정</MyDiv><br/>
-            <WrapperOne>   
-                <WrapperOneDiv>
-                작성자<br/> 
-                <MyInput type="text" placeholder="이름을 적어주세요."  /> <br/>
-                </WrapperOneDiv>
-                <WrapperOneDiv style={{ 'marginLeft' : '20px' }}>
-                비밀번호<br/>
-                <MyInput type="text" placeholder="비밀번호를 입력해주세요."/><br/>
-                </WrapperOneDiv>
-            </WrapperOne>
 
-            <WrapperTwo>
-                <WrapperTwoTitle>제목<br/>
-                <MyInputTitle type="text" placeholder="제목을 작성해주세요."/>
-                </WrapperTwoTitle>
-                <WrapperTwoContext>내용<br/>
-                <MyInputContext type="text" placeholder="내용을 작성해주세요." />
-                </WrapperTwoContext>
-            </WrapperTwo>
+    function aaa(event){
+      setEmail(event.target.value)
 
-            <WrapperThree>
-                <WrapperThreeTitle>
-                주소<br/>
-                <InputTitle type ="text" placeholder="07250" /> 
-                <InputSearch type="onclick" placeholder="우편번호검색"/><br/><br/>
-                <MyInputTitle  type="text"></MyInputTitle><br/><br/>
-                <MyInputTitle  type="text"></MyInputTitle>
-                </WrapperThreeTitle>
-            </WrapperThree>
+      if(email.includes("@") === false){
+      setEmailError("이메일을 다시 확인해주세요")}
+    
+    }
 
-            <WrapperFour>
-            <WrapperTwoTitle>유튜브<br/>
-                <MyInputTitle type="text" placeholder="링크를 복사해주세요."/>
-                </WrapperTwoTitle>
-            </WrapperFour>
 
-            <WrapperFive>
-            <WrapperPhoto>사진 첨부 
-                <divA>
-                <InputPhotos type="text" Placeholder="+ Upload" />
-                <InputPhotos type="text" Placeholder="+ Upload" />
-                <InputPhotos type="text" Placeholder="+ Upload" />
-                </divA>
-            </WrapperPhoto>
-            </WrapperFive>
-    </WrapperHead>
-    </>
-    ) 
-}
 
+
+
+
+    return (
+      <Wrapper>
+        <Title>게시판 등록</Title>
+        <WriterWrapper>
+          <InputWrapper>
+            <Label>작성자</Label>
+            <Writer type="text" onChange={aaa} placeholder="이름을 적어주세요." />
+            <DivError>{emailError}</DivError>
+          </InputWrapper>
+          <InputWrapper>
+            <Label>비밀번호</Label>
+            <Password type="password" />
+          </InputWrapper>
+        </WriterWrapper>
+        <InputWrapper>
+          <Label>제목</Label>
+          <Subject type="text" placeholder="제목을 작성해주세요." />
+        </InputWrapper>
+        <InputWrapper>
+          <Label>내용</Label>
+          <Contents placeholder="내용을 작성해주세요." />
+        </InputWrapper>
+        <InputWrapper>
+          <Label>주소</Label>
+          <ZipcodeWrapper>
+            <Zipcode placeholder="07250" readOnly />
+            <SearchButton>우편번호 검색</SearchButton>
+          </ZipcodeWrapper>
+          <Address readOnly />
+          <Address />
+        </InputWrapper>
+        <InputWrapper>
+          <Label>유튜브</Label>
+          <Youtube placeholder="링크를 복사해주세요." />
+        </InputWrapper>
+        <ImageWrapper>
+          <Label>사진첨부</Label>
+          <UploadButton>
+            <>+</>
+            <>Upload</>
+          </UploadButton>
+          <UploadButton>
+            <>+</>
+            <>Upload</>
+          </UploadButton>
+          <UploadButton>
+            <>+</>
+            <>Upload</>
+          </UploadButton>
+        </ImageWrapper>
+        <OptionWrapper>
+          <Label>메인설정</Label>
+          <RadioButton type="radio" id="youtube" name="radio-button" />
+          <RadioLabel htmlFor="youtube">유튜브</RadioLabel>
+          <RadioButton type="radio" id="image" name="radio-button" />
+          <RadioLabel htmlFor="image">사진</RadioLabel>
+        </OptionWrapper>
+        <ButtonWrapper>
+          <SubmitButton>등록하기</SubmitButton>
+        </ButtonWrapper>
+      </Wrapper>
+    );
+  }
