@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import {
     Address,
     ButtonWrapper,
@@ -23,22 +24,56 @@ import {
     UploadButton
   } from "../../../styles/emotion"
   
+import { useMutation, gql } from '@apollo/client'
+const CREATE_BOARD = gql`
+    mutation createBoard($createBoardInput:CreateBoardInput!){
+        createBoard(createBoardInput:$createBoardInput) {
+            _id
+            writer
+            title
+            contents
+        }}
+    `
+
+
+
   export default function BoardsNewPage() {
-   
-    const [emailError, setEmailError] = useState("")
-    const [email, setEmail] = useState("")
+
+    const [createBoard] = useMutation(CREATE_BOARD)
+    const [writer, setWriter] = useState("")
+    const [password, setPassword] = useState("")
+    const [title, setTitle] = useState("")
+    const [contents, setContents] = useState("")
 
 
-    function aaa(event){
-      setEmail(event.target.value)
-
-      if(email.includes("@") === false){
-      setEmailError("이메일을 다시 확인해주세요")}
-    
+    function onChangeWriter(event){
+      setWriter(event.target.value)
     }
+    function onChangePassword(event){
+      setPassword(event.target.value)
+    }
+    function onChangeTitle(event){
+      setTitle(event.target.value)
+    }
+    function onChangeContents(event){
+      setContents(event.target.value)
+    }
+  
 
-
-
+    async function onClickSubmitButton() {
+      const result = await createBoard(
+          {variables:{
+              createBoardInput: {
+                  writer: writer,
+                  password: password,
+                  title: title,
+                  contents: contents
+            
+              }
+          }
+      })
+      console.log(result)
+  }
 
 
 
@@ -48,21 +83,21 @@ import {
         <WriterWrapper>
           <InputWrapper>
             <Label>작성자</Label>
-            <Writer type="text" onChange={aaa} placeholder="이름을 적어주세요." />
-            <DivError>{emailError}</DivError>
+            <Writer type="text" onChange={onChangeWriter} placeholder="이름을 적어주세요." />
+      
           </InputWrapper>
           <InputWrapper>
             <Label>비밀번호</Label>
-            <Password type="password" />
+            <Password type="password" onChange={onChangePassword}/>
           </InputWrapper>
         </WriterWrapper>
         <InputWrapper>
           <Label>제목</Label>
-          <Subject type="text" placeholder="제목을 작성해주세요." />
+          <Subject type="text" onChange={onChangeTitle} placeholder="제목을 작성해주세요." />
         </InputWrapper>
         <InputWrapper>
           <Label>내용</Label>
-          <Contents placeholder="내용을 작성해주세요." />
+          <Contents onChange={onChangeContents} placeholder="내용을 작성해주세요." />
         </InputWrapper>
         <InputWrapper>
           <Label>주소</Label>
@@ -70,7 +105,7 @@ import {
             <Zipcode placeholder="07250" readOnly />
             <SearchButton>우편번호 검색</SearchButton>
           </ZipcodeWrapper>
-          <Address readOnly />
+          <Address  readOnly />
           <Address />
         </InputWrapper>
         <InputWrapper>
@@ -100,7 +135,7 @@ import {
           <RadioLabel htmlFor="image">사진</RadioLabel>
         </OptionWrapper>
         <ButtonWrapper>
-          <SubmitButton>등록하기</SubmitButton>
+          <SubmitButton onClick={onClickSubmitButton}>등록하기</SubmitButton>
         </ButtonWrapper>
       </Wrapper>
     );
