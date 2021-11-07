@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useRouter } from 'next/router'
 import {
     Address,
     ButtonWrapper,
@@ -32,13 +33,14 @@ const CREATE_BOARD = gql`
             writer
             title
             contents
+            updatedAt
         }}
     `
 
 
 
   export default function BoardsNewPage() {
-
+    const router = useRouter()
     const [createBoard] = useMutation(CREATE_BOARD)
     const [writer, setWriter] = useState("")
     const [password, setPassword] = useState("")
@@ -52,7 +54,7 @@ const CREATE_BOARD = gql`
     function onChangePassword(event){
       setPassword(event.target.value)
     }
-    function onChangeTitle(event){
+    function onChangeTitle(event){   
       setTitle(event.target.value)
     }
     function onChangeContents(event){
@@ -61,22 +63,23 @@ const CREATE_BOARD = gql`
   
 
     async function onClickSubmitButton() {
-      const result = await createBoard(
-          {variables:{
-              createBoardInput: {
-                  writer: writer,
-                  password: password,
-                  title: title,
-                  contents: contents
-            
-              }
-          }
-      })
-      console.log(result)
-  }
-
-
-
+        try {
+        const result = await createBoard(
+            { variables:{
+                createBoardInput: {
+                    writer: writer,
+                    title: title,
+                    contents: contents,
+                    password: password
+                }
+         }}
+        )
+        
+       router.push(`/boards/new2/${result.data.createBoard._id}`) }
+       catch(error){
+       console.log(error.message)
+      }
+    }
     return (
       <Wrapper>
         <Title>게시판 등록</Title>

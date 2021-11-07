@@ -1,5 +1,5 @@
 import{ useMutation, gql} from '@apollo/client'
-import { useRouter } from 'next/router'
+        import { useRouter } from 'next/router'
 import { useState } from 'react'
 //아래 조건들은 복붙하는것이 좋을것
 const CREATE_PRODUCT = gql`
@@ -28,7 +28,7 @@ export default function GraphqlMUtationProductPage(){
     function onChangeMyWriter(event){
         setMySeller(event.target.value)
     }
-    function onChangeMyTitle(event){
+    function onChangeMyTitle(event){             
         setMyName(event.target.value)
     }
     function onChangeMyContents(event){
@@ -40,8 +40,8 @@ export default function GraphqlMUtationProductPage(){
     
     async function zzz (){
         try {
-            const result = await createProduct({
-                variables: {
+            const result = await createProduct(
+                { variables: {
                     seller : mySeller,
                     createProductInput:{
                         name: myName,
@@ -58,7 +58,7 @@ export default function GraphqlMUtationProductPage(){
             console.log(error.message)
         }
     }
-    return(
+    return(                   
         <>
             판매자:<input type="text" onChange={onChangeMyWriter}/>
             상품명:<input type="text" onChange={onChangeMyTitle}/>
