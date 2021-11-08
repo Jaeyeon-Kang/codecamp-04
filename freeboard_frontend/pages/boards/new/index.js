@@ -33,7 +33,7 @@ const CREATE_BOARD = gql`
             writer
             title
             contents
-            updatedAt
+            createdAt
         }}
     `
 
@@ -71,6 +71,7 @@ const CREATE_BOARD = gql`
                     title: title,
                     contents: contents,
                     password: password
+                    
                 }
          }}
         )

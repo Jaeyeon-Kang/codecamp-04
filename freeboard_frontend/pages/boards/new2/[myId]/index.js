@@ -7,6 +7,8 @@ import {
   WriterWrapper,
   ProfileImage,
   IconImage,
+  Link,
+  Location,
   ProfileData,
   Writer,
   WriteDate,
@@ -26,7 +28,8 @@ const FETCH_BOARD = gql`
         _id
         writer
         title
-        contents }
+        contents 
+        createdAt}
   }
 `
 
@@ -49,7 +52,7 @@ const FETCH_BOARD = gql`
 
     return (
       <>
-      {/* {data?.fetchBoard && */}
+      {data?.fetchBoard &&
         <>
         <Wrapper> 
           <ProfileWrapper>
@@ -59,12 +62,12 @@ const FETCH_BOARD = gql`
                 </ProfileImage>
                 <ProfileData>
                   <Writer>{data.fetchBoard.writer}</Writer>
-                  <WriteDate>{data.fetchBoard.updatedAt}</WriteDate>
+                  <WriteDate>{data.fetchBoard.createdAt}</WriteDate>
                 </ProfileData>
               </WriterWrapper>
               <IconImage>
-                <img src="/images/link.png"/>
-                <img src="/images/location.png"/>
+                <Link><img src="/images/link.png"/></Link>
+                <Location><img src="/images/location.png"/></Location>
                 </IconImage>
           </ProfileWrapper>
           <LabelWrapper>
@@ -77,11 +80,10 @@ const FETCH_BOARD = gql`
             <Contents>
               {data.fetchBoard.contents}
               </Contents>
-          {/* 이거 칸 나눠서 정리하고싶은데 띄어쓰기처리 안되게 하는 법 없나?*/}
           </ContentsWrapper>
         </Wrapper>
          </>
-       {/* } */}
+       }
       </>
     )
   }

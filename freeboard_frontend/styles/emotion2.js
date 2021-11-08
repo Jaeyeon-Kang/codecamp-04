@@ -40,6 +40,7 @@ export const ProfileImage = styled.div`
 
 export const IconImage = styled.div`
     background-color: lightgreen;
+    display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
@@ -47,6 +48,21 @@ export const IconImage = styled.div`
     height: 32px;
 `;
 
+export const Link = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+   
+`;
+
+export const Location = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+   
+`;
 
 export const ProfileData = styled.div`
     display: flex;
@@ -105,13 +121,25 @@ export const ImageBox = styled.div`
 `;
 
 export const ContentsWrapper = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
     padding-top: 40px;
+    width: 100%;
+    background-color: burlywood;
+   
+    
+
 
 `;
 
 export const Contents = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
     font-size: 16px;
     font-weight: 400;
     line-height: 23.68px;
+    
 
 `;
