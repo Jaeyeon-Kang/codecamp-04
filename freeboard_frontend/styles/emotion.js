@@ -171,4 +171,7 @@ export const SubmitButton = styled.button`
   font-weight: 500;
   margin-left: 12px;
   margin-right: 12px;
+  background-color: ${(props) => props.hhh === true ? "yellow" : "whitegrey"};
+    // 함수가 아니기에 props를 못받아서 강제로 함수를 만든 것
+  
 `;

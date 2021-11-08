@@ -1,5 +1,4 @@
 import { MyInput, MyButton } from "./BoardWrite.styles"
-import { myQqq } from "./BoardWrite.container"
 export default function BoardWriteUI(props){
     return(
         <>

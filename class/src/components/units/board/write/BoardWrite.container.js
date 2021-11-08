@@ -30,8 +30,8 @@ export default function BoardWrite(){
         setMyContents(event.target.value)
         // if(myWriter !== "" && myTitle !== "" && myContents !== ""){
         //     setMyQqq(true)
-            if(myWriter !== "" && myTitle !== "" && event.target.value !== ""){
-            setMyQqq(true)
+        if(myWriter !== "" && myTitle !== "" && event.target.value !== ""){
+        setMyQqq(true)
         } else { setMyQqq(false)}   
     }
    
