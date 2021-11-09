@@ -21,7 +21,7 @@ import {
     Zipcode,
     ZipcodeWrapper,
     UploadButton
-  } from "../../../../../../../styles/emotion"
+  } from "../../../../../styles/createboardemotion"
 
   
 
@@ -88,7 +88,7 @@ export default function BoardWriteUI(props){
           <RadioLabel htmlFor="image">사진</RadioLabel>
         </OptionWrapper>
         <ButtonWrapper>
-          <SubmitButton onClick={props.ocsb} hhh={props.hhh}> 등록하기</SubmitButton>
+          <SubmitButton onClick={props.ocsb} changeButton={props.changeButton}> 등록하기</SubmitButton>
         </ButtonWrapper>
       </Wrapper>
     </>

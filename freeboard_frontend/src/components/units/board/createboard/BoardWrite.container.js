@@ -22,36 +22,36 @@ export default function BoardWritePage(){
     const [password, setPassword] = useState("")
     const [title, setTitle] = useState("")
     const [contents, setContents] = useState("")
-    const [hhh, setHhh] = useState(false) 
+    const [changeButton, setChangeButton] = useState(false) 
 
 
     function onChangeWriter(event){
       setWriter(event.target.value)
          if(event.target.value !== "" && password !== "" && title !== "" && contents !==""){
-        setHhh(true) 
-        } else { setHhh(false)}
+        setChangeButton(true) 
+        } else { setChangeButton(false)}
     }
     
     
     function onChangePassword(event){
         setPassword(event.target.value)
            if(writer !== "" && event.target.value !== "" && title !== "" && contents !==""){
-          setHhh(true) 
-          } else { setHhh(false)}
+          setChangeButton(true) 
+          } else { setChangeButton(false)}
       }
 
       function onChangeTitle(event){
         setTitle(event.target.value)
            if(writer !== "" && password !== "" && event.target.value !== "" && contents !==""){
-          setHhh(true) 
-          } else { setHhh(false)}
+          setChangeButton(true) 
+          } else { setChangeButton(false)}
       }
 
       function onChangeContents(event){
         setContents(event.target.value)
            if(writer !== "" && password !== "" && title !== "" && event !==""){
-          setHhh(true) 
-          } else { setHhh(false)}
+          setChangeButton(true) 
+          } else { setChangeButton(false)}
       }
   
 
@@ -69,7 +69,7 @@ export default function BoardWritePage(){
          }}
         )
         
-       router.push(`/boards/new2/${result.data.createBoard._id}`) }
+       router.push(`/portfolioboard/detailboard/${result.data.createBoard._id}`) }
        catch(error){
        console.log(error.message)
       }
@@ -83,7 +83,7 @@ export default function BoardWritePage(){
             oct={onChangeTitle}
             occ={onChangeContents}
             ocsb={abc}
-            hhh={hhh}
+            changeButton={changeButton}
             
             />
         </>
