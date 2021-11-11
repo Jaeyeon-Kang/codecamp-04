@@ -1,3 +1,4 @@
+import {getDate} from '../../../../commons/libraries/utils'
 import {
  Row,
  Column,
@@ -8,8 +9,11 @@ import {
  BestContentsBox,
  OrdinaryContentsTable,
  TableWrapper,
+ HeadRow,
+ MyTdButton,
  MyTr,
- MyTd
+ MyTd,
+
      
     } from "../../../../../styles/listboardemotion"
 
@@ -22,16 +26,18 @@ export default function ListBoardUI(props){
             <BestContents>
               <BestContentsText>베스트게시글</BestContentsText>
                 <BestContentsBox>
-                    {props.bestdata?.fetchBoardsOfTheBest.map((el, index) => 
-                    (<Row key={el._id}>
                 
-                    <Column><input type="checkbox"/></Column>
-                    <Column>{index+1}</Column>
-                    <Column>{el.writer}</Column>    
-                    <Column>{el.title}</Column>
-                    <Column>{el.createdAt}</Column>
-                    <Column><button id={el._id} onClick={props.onClickDelete}>삭제하기</button></Column>
-                    </Row>))}
+                        {props.bestdata?.fetchBoardsOfTheBest.map((el, index) => 
+                        (<Row key={el._id}>
+                       
+                        <Column><input type="checkbox"/></Column>
+                        <Column>{index+1}</Column>
+                        <Column>{el.writer}</Column>    
+                        <Column>{el.title}</Column>
+                        <Column>{el.createdAt}</Column>
+                        <Column><button id={el._id} onClick={props.onClickDelete}>삭제하기</button></Column>
+                        </Row>))}
+                           
                 </BestContentsBox>
             </BestContents>
         
@@ -39,18 +45,17 @@ export default function ListBoardUI(props){
             <OrdinaryContentsTable>
              <TableWrapper>
      
-                 <tr>
-                  <th> 
+            
+                  <HeadRow> 
                   <input type="checkbox"/>
-                 </th>
-                 <th> 번호 </th>
-                 <th> 제목 </th>
-                 <th> 작성자 </th>
-                 <th> 날짜 </th>
-                 <th> 삭제 </th>
-                 </tr>
-                
-           
+                 </HeadRow>
+                 <HeadRow> 번호 </HeadRow>
+                 <HeadRow> 작성자 </HeadRow>
+                 <HeadRow> 제목 </HeadRow>
+                 <HeadRow> 날짜 </HeadRow>
+                 <HeadRow> 삭제 </HeadRow>
+               
+     
             {props.data?.fetchBoards.map((el, index) => 
             (<MyTr key={el._id}>
                 <MyTd>
@@ -58,11 +63,11 @@ export default function ListBoardUI(props){
                 </MyTd>
                 <MyTd>{index+1}</MyTd>
                 <MyTd>{el.writer}</MyTd>    
-                <MyTd>{el.title}</MyTd>
-                <MyTd>{el.createdAt}</MyTd>
+                <MyTd><MyTdButton id={el._id} onClick={props.gotodetail}>{el.title}</MyTdButton></MyTd>
+                <MyTd>{getDate(el.createdAt)}</MyTd>
                 <MyTd><button id={el._id} onClick={props.onClickDelete}>삭제하기</button></MyTd>
             </MyTr>))}
-
+               
              </TableWrapper>
             </OrdinaryContentsTable>
          </InnerWrapper>

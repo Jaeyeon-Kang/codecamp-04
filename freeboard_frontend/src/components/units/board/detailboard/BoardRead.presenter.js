@@ -63,7 +63,7 @@ import {
                 </Wrapper>
                   <RouterBox>
                     <GoListBox onClick = {props.listbox}> 목록으로</GoListBox>
-                    <DoCorrectBox > 수정하기</DoCorrectBox>
+                    <DoCorrectBox onClick={props.updatebox}> 수정하기 </DoCorrectBox>
                     <DoDeleteBox onClick={props.deletebox}>삭제하기</DoDeleteBox>
                   </RouterBox>
               </FullBox>

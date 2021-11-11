@@ -3,6 +3,6 @@ import BoardWritePage from "../../../src/components/units/board/createboard/Boar
   export default function CreateBoardPage() {
     
     return (
-      <BoardWritePage />
+      <BoardWritePage isEdit={false}/>
     )
   }

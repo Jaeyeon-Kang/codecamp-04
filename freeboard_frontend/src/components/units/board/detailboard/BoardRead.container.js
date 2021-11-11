@@ -61,6 +61,10 @@ export default function BoardReadPage(){
           router.push("/portfolioboard/listboard")
         }
         // "/05-06-dynamic-board-read/$[id]"
+
+        function onClickUpdateBox(){
+          router.push(`/portfolioboard/recreateboard/${router.query.myId}/edit`)
+        }
     
     return( 
         <BoardReadUI
@@ -70,6 +74,8 @@ export default function BoardReadPage(){
         ddd= {data?.fetchBoard.contents}
         deletebox={onClickDeleteBox}
         listbox={onClickListBox}
+        updatebox={onClickUpdateBox}
+
 
         />
     )

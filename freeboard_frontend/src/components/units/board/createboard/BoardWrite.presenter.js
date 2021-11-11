@@ -32,11 +32,11 @@ export default function BoardWriteUI(props){
         <>
     
         <Wrapper>
-        <Title>게시판 등록</Title>
+        <Title>게시판 {props.isedit? "수정":"등록"}</Title>
         <WriterWrapper>
           <InputWrapper>
             <Label>작성자</Label>
-            <Writer type="text" onChange={props.ocw} placeholder="이름을 적어주세요." />
+            <Writer type="text" onChange={props.ocw} defaultValue={props.data?.fetchBoard.writer} placeholder="이름을 적어주세요." />
       
           </InputWrapper>
           <InputWrapper>
@@ -46,11 +46,11 @@ export default function BoardWriteUI(props){
         </WriterWrapper>
         <InputWrapper>
           <Label>제목</Label>
-          <Subject type="text" onChange={props.oct} placeholder="제목을 작성해주세요." />
+          <Subject type="text" onChange={props.oct} defaultValue={props.data?.fetchBoard.title} placeholder="제목을 작성해주세요." />
         </InputWrapper>
         <InputWrapper>
           <Label>내용</Label>
-          <Contents onChange={props.occ} placeholder="내용을 작성해주세요." />
+          <Contents onChange={props.occ} defaultValue={props.data?.fetchBoard.contents} placeholder="내용을 작성해주세요." />
         </InputWrapper>
         <InputWrapper>
           <Label>주소</Label>
@@ -88,7 +88,7 @@ export default function BoardWriteUI(props){
           <RadioLabel htmlFor="image">사진</RadioLabel>
         </OptionWrapper>
         <ButtonWrapper>
-          <SubmitButton onClick={props.ocsb} changeButton={props.changeButton}> 등록하기</SubmitButton>
+          <SubmitButton onClick={props.isedit? props.ocub:props.ocsb} changeButton={props.changeButton}> {props.isedit? "수정":"등록"}하기</SubmitButton>
         </ButtonWrapper>
       </Wrapper>
     </>
