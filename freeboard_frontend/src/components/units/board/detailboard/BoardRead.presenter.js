@@ -22,8 +22,11 @@ import {
   DoDeleteBox,
   CommentBoxWrapper,
   CreateBoardComment,
-  CreateBoardCommentButton,
 } from "../../../../../styles/detailboardemotion";
+import { Rate } from "antd";
+import { Comment, Tooltip, Avatar } from "antd";
+import moment from "moment";
+import { Button } from "antd";
 
 export default function BoardReadUI(props) {
   return (
@@ -65,15 +68,33 @@ export default function BoardReadUI(props) {
           <DoDeleteBox onClick={props.deletebox}>삭제하기</DoDeleteBox>
         </RouterBox>
         <CommentBoxWrapper>
+          {/* 댓글 ANTD */}
+          <Rate disabled defaultValue={2} />
+          <Comment
+            actions={props.actions}
+            author={<a>Han Solo</a>}
+            avatar={
+              <Avatar src="https://joeschmoe.io/api/v1/random" alt="Han Solo" />
+            }
+            content={<p>{props.putcomments}</p>}
+            datetime={
+              <Tooltip title={moment().format("YYYY-MM-DD HH:mm:ss")}>
+                <span>{moment().fromNow()}</span>
+              </Tooltip>
+            }
+          />
+
+          {/* 댓글 ANTD */}
+          <Rate allowHalf defaultValue={2.5} />
           <CreateBoardComment
             type="text"
-            placeholder="댓글을 작성해주세요"
+            placeholder="개인정보를 공유 및 요청하거나, 명예 훼손, 무단 광고, 불법 정보 유포시 모니터링 후 삭제될 수 있으며, 이에 대한 민형사상 책임은 게시자에게 있습니다."
             onChange={props.commentContents}
           ></CreateBoardComment>
-          <CreateBoardCommentButton onClick={props.commentButton}>
+
+          <Button type="primary" onClick={props.commentButton}>
             등록하기
-          </CreateBoardCommentButton>
-          {props.contentscomments}
+          </Button>
         </CommentBoxWrapper>
       </FullBox>
     </>

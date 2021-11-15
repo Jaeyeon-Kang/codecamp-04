@@ -1,7 +1,15 @@
+import React from "react";
 import BoardReadUI from "./BoardRead.presenter";
 import { useRouter } from "next/router";
 import { useMutation, useQuery, gql } from "@apollo/client";
-import { useState } from "react";
+import { createElement, useState } from "react";
+import {
+  DislikeOutlined,
+  LikeOutlined,
+  DislikeFilled,
+  LikeFilled,
+} from "@ant-design/icons";
+import { Tooltip } from "antd";
 
 const FETCH_BOARD = gql`
   query fetchBoard($boardId: ID!) {
@@ -40,8 +48,8 @@ const CREATE_BOARD_COMMENT = gql`
 `;
 
 const FETCH_BOARD_COMMENTS = gql`
-  query fetchBoardComment($page: Int, $boardId: ID!) {
-    fetchBoardComment(page: $page, boardID: $boardID) {
+  query fetchBoardComments($page: Int, $boardId: ID!) {
+    fetchBoardComments(page: $page, boardId: $boardId) {
       _id
       writer
       contents
@@ -56,17 +64,16 @@ export default function BoardReadPage() {
   const [commentContents, setCommentContents] = useState("");
   const [deleteBoard] = useMutation(DELETE_BOARD);
   const [createBoardComment] = useMutation(CREATE_BOARD_COMMENT);
-  const { CreateBoardComments } = useMutation(CREATE_BOARD_COMMENT, {
-    variables: { boardId: "61912523b739c9002a0fd55e" },
-  });
-  const { contentscomments } = useQuery(FETCH_BOARD_COMMENTS, {
-    variables: { boardId: "61912523b739c9002a0fd55e" },
-  });
+
+  console.log(router.query.myId);
   const { data } = useQuery(FETCH_BOARD, {
     variables: { boardId: router.query.myId },
   });
+  const { data: putcomments } = useQuery(FETCH_BOARD_COMMENTS, {
+    variables: { boardId: router.query.myId },
+  });
 
-  console.log(data);
+  console.log(putcomments);
 
   async function onClickDeleteBox() {
     try {
@@ -111,13 +118,54 @@ export default function BoardReadPage() {
             contents: commentContents,
             rating: 1,
           },
-          boardId: router.query.myId,
+          boardId: String(router.query.myId),
         },
+        refetchQueries: [
+          {
+            query: FETCH_BOARD_COMMENTS,
+            variables: { boardId: router.query.myId },
+          },
+        ],
       });
     } catch (error) {
       alert(error.message);
     }
   }
+  //댓글창
+
+  const [likes, setLikes] = useState(0);
+  const [dislikes, setDislikes] = useState(0);
+  const [action, setAction] = useState(null);
+
+  const like = () => {
+    setLikes(1);
+    setDislikes(0);
+    setAction("liked");
+  };
+
+  const dislike = () => {
+    setLikes(0);
+    setDislikes(1);
+    setAction("disliked");
+  };
+
+  const actions = [
+    <Tooltip key="comment-basic-like" title="Like">
+      <span onClick={like}>
+        {createElement(action === "liked" ? LikeFilled : LikeOutlined)}
+        <span className="comment-action">{likes}</span>
+      </span>
+    </Tooltip>,
+    <Tooltip key="comment-basic-dislike" title="Dislike">
+      <span onClick={dislike}>
+        {React.createElement(
+          action === "disliked" ? DislikeFilled : DislikeOutlined
+        )}
+        <span className="comment-action">{dislikes}</span>
+      </span>
+    </Tooltip>,
+    <span key="comment-basic-reply-to">Reply to</span>,
+  ];
 
   return (
     <BoardReadUI
@@ -128,10 +176,10 @@ export default function BoardReadPage() {
       deletebox={onClickDeleteBox}
       listbox={onClickListBox}
       updatebox={onClickUpdateBox}
-      createboardcomment={CreateBoardComments}
-      contentscomments={contentscomments}
       commentButton={onClickCommentButton}
       commentContents={onChangeCommentContents}
+      actions={actions}
+      putcomments={putcomments}
     />
   );
 }

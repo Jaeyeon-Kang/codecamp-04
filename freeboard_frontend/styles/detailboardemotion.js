@@ -203,9 +203,8 @@ export const CommentBoxWrapper = styled.div`
   height: 700px;
   padding-top: 213px;
   display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
+  justify-content: flex-start;
   /* background-color: darksalmon; */
 `;
 
@@ -214,5 +213,3 @@ export const CreateBoardComment = styled.input`
   height: 161px;
   border: 1px solid gray;
 `;
-
-export const CreateBoardCommentButton = styled.button``;
