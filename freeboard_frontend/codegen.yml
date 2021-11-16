@@ -1,7 +1,7 @@
-schema: http://backend04.codebootcamp.co.kr/graphql
-generates: 
-    ./src/commons/types/generated/types.d.ts:
-      plugins:
-        - typescript
-      config:
-        typesPrefix: I
+schema: http://backend03.codebootcamp.co.kr/graphql
+generates:
+  ./src/commons/types/generated/types.d.ts:
+    plugins:
+      - typescript
+    config:
+      typesPrefix: I
