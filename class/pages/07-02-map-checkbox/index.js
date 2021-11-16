@@ -1,12 +1,13 @@
-import { gql, useMutation, useQuery } from '@apollo/client'
+import {gql, useQuery, useMutation} from "@apollo/client"
 import styled from '@emotion/styled'
 
 const FETCH_BOARDS = gql`
-    query {
+    query{
         fetchBoards {
             number
             writer
             title
+            contents
             createdAt
         }
     }
@@ -20,48 +21,52 @@ const DELETE_BOARD = gql`
     }
 `
 
-
-
 const Row = styled.div`
-        display: flex;
-        flex-direction: row;
-        `
+    display: flex;
+    flex-direction: row;
+`
 
 const Column = styled.div`
-        width: 20%;
-
-        `
-
+    width: 20%;
+`
 
 
-export default function MapCheckboxPage(){
-    const [] = useMutation(DELETE_BOARD)
-    const { data } = useQuery(FETCH_BOARDS) 
 
-async function onClickDelete(event){
-     try{ await deleteBoard({
-            variables: {number: Number(event.target.id)},
-            refetchQueries: [{query: FETCH_BOARDS}]    
-        })
-    } catch(error){
-        alert(errormessage)}
+export default function MapCheckboxPgae(){
+    const { data } = useQuery(FETCH_BOARDS)
+    const [deleteBoard] = useMutation(DELETE_BOARD)
+
+    async function onClickDelete(event){
+        try {
+            await deleteBoard({
+                variables: { number: Number(event.target.id) },
+                refetchQueries: [{ query: FETCH_BOARDS }] // 새로고침격 , variables가 잇다면 이런식으로 뒤에 더 붙여야함 {variables: {id: 123}}
+            })
+
+        } catch(error){
+            alert(error.message)
+        }
     }
 
-    return (
+    return(
+        <>
         <div>
-            {data?.fetchBoards.map((el, index) => 
-            (<Row key={el.number}>
-                   {/* unique한 키값을 넣어주고 체크박스를 체크한 후 삭제하면 체크박스 체크 해제됨 */}
-                <Column><input type="checkbox"/></Column>
-                <Column>{index+1}</Column>
-                <Column>{el.writer}</Column>    
-                <Column>{el.title}</Column>
-                <Column>{el.createdAt}</Column>
-                <Column><button id={el.number} onClick={onClickDelete}>삭제하기</button></Column>
-           </Row>))}
+            {/* number가 없다면 자체에 index를 줄 수 있다 */}
+            {data?.fetchBoards.map((el, index) => (
+                <Row key={el.number}>
+                    {/* unique한 키값을 넣어주고 체크박스를 체크한 후 삭제하면 체크박스 체크 해제됨 */}
+                    <Column><input type="checkbox" /></Column>
+                    <Column>{index+1}</Column>
+                    <Column>{el.title}</Column>
+                    <Column>{el.writer}</Column>
+                    <Column>{el.contents}</Column>
+                    <Column>{el.createdAt}</Column>
+                    <Column>
+                        <button id={el.number} onClick={onClickDelete}>삭제하기</button>
+                    </Column>
+                </Row>
+            ))}
         </div>
-        
-
+        </>
     )
-
 }

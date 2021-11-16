@@ -64,6 +64,8 @@ export default function BoardReadPage() {
   const [commentContents, setCommentContents] = useState("");
   const [deleteBoard] = useMutation(DELETE_BOARD);
   const [createBoardComment] = useMutation(CREATE_BOARD_COMMENT);
+  //carousel
+  const [rating, setRating] = useState(0);
 
   console.log(router.query.myId);
   const { data } = useQuery(FETCH_BOARD, {
@@ -73,8 +75,6 @@ export default function BoardReadPage() {
     variables: { boardId: router.query.myId },
   });
 
-  console.log(putcomments);
-
   async function onClickDeleteBox() {
     try {
       await deleteBoard({
@@ -82,8 +82,12 @@ export default function BoardReadPage() {
         refetchQueries: [{ query: FETCH_BOARD }],
       });
     } catch (error) {
-      alert("에러ㅜㅜㅜㅜㅜㅜㅜㅜㅜㅜ흑흑흐구ㅜㅜㅜㅜㅜㅜㅎ그흑");
+      alert(error);
     }
+  }
+
+  function saveRating(rate) {
+    setRating(rate);
   }
 
   let bbb = String(data?.fetchBoard.createdAt);
@@ -116,7 +120,7 @@ export default function BoardReadPage() {
             writer: "작성자자",
             password: "1234",
             contents: commentContents,
-            rating: 1,
+            rating: rating,
           },
           boardId: String(router.query.myId),
         },
@@ -180,6 +184,7 @@ export default function BoardReadPage() {
       commentContents={onChangeCommentContents}
       actions={actions}
       putcomments={putcomments}
+      saveRating={saveRating}
     />
   );
 }

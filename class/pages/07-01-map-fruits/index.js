@@ -9,24 +9,21 @@ const FRUITS = [
     { number: 8, title: "천혜향" },
     { number: 9, title: "과일선물세트" },
     { number: 10, title: "귤" },
-  ];
+];
 
-  export default function MapFruitsPage(){
+export default function MapFruitsPage(){
+    
+    // const aaa = [<div>1 레드향</div>, <div>2 샤인머스켓</div>, <div>3 산청딸기</div>]
+    
+    const bbb = FRUITS.map((el) => (
+        <div>{el.number} {el.title}</div>
+    ))
 
-   // const aaa = [<div>1 레드향</div>, <div>2 샤인머스켓</div>, <div>3 산청딸기</div>]
-    //   const bbb = FRUITS.map((el) => (
-    //     <div>{el.number}{el.title}</div>
-    //   ))
-
-    return (
-     //   <div>{aaa}</div>
-        // <div>{bbb}</div>
-        <div>
-            {FRUITS.map((el) => <div>{el.number} {el.title}</div>)}
-
-        </div>       
-        
+    return(
+        <>
+            <div>
+                {FRUITS.map((el) => (<div>{el.number} {el.title}</div>))}
+            </div>
+        </>
     )
-
-
-  }
+}

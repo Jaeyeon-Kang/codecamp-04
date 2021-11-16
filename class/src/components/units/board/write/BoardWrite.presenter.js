@@ -1,4 +1,5 @@
 import { MyInput, MyButton } from "./BoardWrite.styles"
+
 export default function BoardWriteUI(props){
     return(
         <>
@@ -8,4 +9,4 @@ export default function BoardWriteUI(props){
         <MyButton onClick={props.zzz} qqq={props.qqq}>게시물 등록하기</MyButton>
         </>
     )
-} 
+}

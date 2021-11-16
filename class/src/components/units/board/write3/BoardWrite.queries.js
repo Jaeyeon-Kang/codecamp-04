@@ -1,8 +1,8 @@
-import { gql } from '@apollo/client'
+import {gql} from "@apollo/client"
 
 export const CREATE_BOARD = gql`
-    mutation createBoard($writer: String , $title: String, $contents: String){
-        createBoard(writer: $writer, title:$title, contents:$contents) {
+    mutation createBoard($writer: String, $title: String, $contents: String){
+        createBoard(writer: $writer, title: $title, contents: $contents){
             _id
             number
             message
@@ -10,11 +10,9 @@ export const CREATE_BOARD = gql`
     }
 `
 
-
 export const UPDATE_BOARD = gql`
     mutation updateBoard($number: Int, $writer: String, $title: String, $contents: String){
         updateBoard(number: $number, writer: $writer, title: $title, contents: $contents){
-
             _id
             number
             message
