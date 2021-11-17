@@ -12,6 +12,7 @@ export interface IMyUpdateBoardInput {
 }
 
 export interface IBoardWriteUIProps {
+  postcode: MouseEventHandler<HTMLButtonElement> | undefined;
   myWriterError: string;
   myPasswordError: string;
   myTitleError: string;

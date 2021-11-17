@@ -5,6 +5,8 @@ import { useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
 import { IBoardWriteProps, IMyUpdateBoardInput } from "./BoardWrite.types";
 
+import DaumPostcode from "react-daum-postcode";
+
 export default function BoardWrite(props: IBoardWriteProps) {
   const router = useRouter();
 
@@ -153,6 +155,12 @@ export default function BoardWrite(props: IBoardWriteProps) {
       alert(error.message);
     }
   }
+  // 다음 주소
+  function Postcode() {
+    const handleComplete = (data: any) => {};
+
+    return <DaumPostcode onComplete={handleComplete} />;
+  }
 
   return (
     <BoardWriteUI
@@ -170,6 +178,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
       isActive={isActive}
       isEdit={props.isEdit}
       data={props.data}
+      postcode={Postcode}
     />
   );
 }
