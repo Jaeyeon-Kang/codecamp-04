@@ -4,18 +4,18 @@ import Header from "./header/Header.container";
 import Banner from "./banner/Banner.container";
 import Navigation from "./navigation/Navigation.container";
 import Footer from "./footer/Footer.container";
-import { useRouter } from "next/router"
+import { useRouter } from "next/router";
 
 const Wrapper = styled.div``;
 const Body = styled.div``;
 const BodyWrapper = styled.div`
   display: flex;
 `;
-const Sidebar = styled.div`
-  width: 200px;
-  height: 700px;
-  background-color: turquoise;
-`;
+// const Sidebar = styled.div`
+//   width: 200px;
+//   /* height: 700px; */
+//   background-color: turquoise;
+// `;
 
 const HIDDEN_HEADERS = ["/12_05_modal_address_state_prev"];
 
@@ -36,7 +36,7 @@ export default function Layout(props: ILayoutProps) {
       <Banner />
       <Navigation />
       <BodyWrapper>
-        <Sidebar>sidebar!!</Sidebar>
+        {/* <Sidebar>sidebar!!</Sidebar> */}
         <Body>{props.children}</Body>
       </BodyWrapper>
       <Footer />

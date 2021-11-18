@@ -5,8 +5,6 @@ import { useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
 import { IBoardWriteProps, IMyUpdateBoardInput } from "./BoardWrite.types";
 
-import DaumPostcode from "react-daum-postcode";
-
 export default function BoardWrite(props: IBoardWriteProps) {
   const router = useRouter();
 
@@ -14,7 +12,11 @@ export default function BoardWrite(props: IBoardWriteProps) {
   const [myPassword, setMyPassword] = useState("");
   const [myTitle, setMyTitle] = useState("");
   const [myContents, setMyContents] = useState("");
+
   const [youtubeUrl, setYoutubeUrl] = useState("");
+  const [zipcode, setZipcode] = useState("");
+  const [address, setAddress] = useState("");
+  const [addressDetail, setAddressDetail] = useState("");
 
   const [myWriterError, setMyWriterError] = useState("");
   const [myPasswordError, setMyPasswordError] = useState("");
@@ -22,6 +24,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
   const [myContentsError, setMyContentsError] = useState("");
 
   const [isActive, setIsActive] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   const [createBoard] = useMutation(CREATE_BOARD);
   const [updateBoard] = useMutation(UPDATE_BOARD);
@@ -102,6 +105,20 @@ export default function BoardWrite(props: IBoardWriteProps) {
     setYoutubeUrl(event.target.value);
   }
 
+  function onChangeAddressDetail(event: ChangeEvent<HTMLInputElement>) {
+    setAddressDetail(event.target.value);
+  }
+
+  function onClickAddressSearch() {
+    setIsOpen(true);
+  }
+
+  function onCompleteAddressSearch(data: any) {
+    setAddress(data.address);
+    setZipcode(data.zonecode);
+    setIsOpen(false);
+  }
+
   async function onClickSubmit() {
     if (!myWriter) {
       setMyWriterError("작성자를 입력해주세요.");
@@ -124,6 +141,11 @@ export default function BoardWrite(props: IBoardWriteProps) {
             title: myTitle,
             contents: myContents,
             youtubeUrl: youtubeUrl,
+            boardAddress: {
+              zipcode: zipcode,
+              address: address,
+              addressDetail: addressDetail,
+            },
           },
         },
       });
@@ -132,7 +154,14 @@ export default function BoardWrite(props: IBoardWriteProps) {
   }
 
   async function onClickUpdate() {
-    if (!myTitle && !myContents && !youtubeUrl) {
+    if (
+      !myTitle &&
+      !myContents &&
+      !youtubeUrl &&
+      !address &&
+      !addressDetail &&
+      !zipcode
+    ) {
       alert("수정된 내용이 없습니다.");
       return;
     }
@@ -141,6 +170,13 @@ export default function BoardWrite(props: IBoardWriteProps) {
     if (myTitle) myUpdateboardInput.title = myTitle;
     if (myContents) myUpdateboardInput.contents = myContents;
     if (youtubeUrl) myUpdateboardInput.youtubeUrl = youtubeUrl;
+    if (zipcode || address || addressDetail) {
+      myUpdateboardInput.boardAddress = {};
+      if (zipcode) myUpdateboardInput.boardAddress.zipcode = zipcode;
+      if (address) myUpdateboardInput.boardAddress.address = address;
+      if (addressDetail)
+        myUpdateboardInput.boardAddress.addressDetail = addressDetail;
+    }
 
     try {
       await updateBoard({
@@ -155,12 +191,6 @@ export default function BoardWrite(props: IBoardWriteProps) {
       alert(error.message);
     }
   }
-  // 다음 주소
-  function Postcode() {
-    const handleComplete = (data: any) => {};
-
-    return <DaumPostcode onComplete={handleComplete} />;
-  }
 
   return (
     <BoardWriteUI
@@ -173,12 +203,18 @@ export default function BoardWrite(props: IBoardWriteProps) {
       onChangeMyTitle={onChangeMyTitle}
       onChangeMyContents={onChangeMyContents}
       onChangeMyYoutubeUrl={onChangeMyYoutubeUrl}
+      onChangeAddressDetail={onChangeAddressDetail}
       onClickSubmit={onClickSubmit}
       onClickUpdate={onClickUpdate}
+      onClickAddressSearch={onClickAddressSearch}
+      onCompleteAddressSearch={onCompleteAddressSearch}
       isActive={isActive}
       isEdit={props.isEdit}
+      isOpen={isOpen}
       data={props.data}
-      postcode={Postcode}
+      zipcode={zipcode}
+      address={address}
+      addressDetail={addressDetail}
     />
   );
 }

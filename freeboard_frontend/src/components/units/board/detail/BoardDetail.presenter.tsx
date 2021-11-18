@@ -1,3 +1,4 @@
+import { Tooltip } from "antd";
 import * as S from "./BoardDetail.styles";
 import { IBoardDetailUIProps } from "./BoardDetail.types";
 
@@ -13,6 +14,14 @@ export default function BoardDetailUI(props: IBoardDetailUIProps) {
               <S.CreatedAt>{props.data?.fetchBoard.createdAt}</S.CreatedAt>
             </S.Info>
           </S.AvatarWrapper>
+
+          <S.IconWrapper>
+            <S.LinkIcon src="/images/board/detail/link.png" />
+            <Tooltip
+              placement="topRight"
+              title={`${props.data?.fetchBoard.boardAddress?.address}${props.data?.fetchBoard.boardAddress?.addressDetail}`}
+            ></Tooltip>
+          </S.IconWrapper>
         </S.Header>
         <S.Body>
           <S.Title>{props.data?.fetchBoard.title}</S.Title>

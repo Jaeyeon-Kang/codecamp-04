@@ -1,9 +1,10 @@
 import ExampleUI from "./Example.presenter";
 
-export default function Example(props){
+export default function Example(props) {
 
-    return(
+    return (
+
         <ExampleUI isEdit={props.isEdit}/>
-
     )
+
 }

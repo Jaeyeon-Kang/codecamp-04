@@ -8,5 +8,5 @@ export default function BoardCommentListUI(props: IBoardCommentListUIProps) {
         <BoardCommentListUIItem key={el._id} el={el} />
       ))}
     </>
-  );   
+  );
 }
