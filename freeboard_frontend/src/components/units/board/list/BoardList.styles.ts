@@ -5,6 +5,35 @@ export const Wrapper = styled.div`
   margin: 100px;
 `;
 
+export const BestCommentWrapperTop = styled.div`
+  width: 100%;
+  background-color: blue;
+  display: flex;
+  flex-direction: row;
+`;
+
+export const BestCommentWrapper = styled.div`
+  width: 282px;
+  height: 257px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  margin: 50px;
+`;
+
+export const BestCommentTitle = styled.div``;
+
+export const BestCommentWriter = styled.div``;
+
+export const BestCommentDate = styled.div``;
+
+export const BestCommentLikeIcon = styled.div``;
+
+export const BestCommentLikeCount = styled.div``;
+
+export const BestCommentImageIcon = styled.div``;
+
 export const TableTop = styled.div`
   border-top: 2px solid gray;
   margin-top: 20px;

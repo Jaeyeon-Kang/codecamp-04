@@ -12,6 +12,14 @@ import {
   PencilIcon,
   Button,
   PageNation,
+  BestCommentWrapper,
+  BestCommentTitle,
+  BestCommentWriter,
+  BestCommentDate,
+  BestCommentLikeIcon,
+  BestCommentLikeCount,
+  BestCommentImageIcon,
+  BestCommentWrapperTop,
 } from "./BoardList.styles";
 import { FETCH_BOARDS, FETCH_BOARDS_COUNTS } from "./BoardList.queries";
 import { useState, MouseEvent } from "react";
@@ -48,6 +56,18 @@ export default function BoardListUI(props) {
   }
   return (
     <Wrapper>
+      <BestCommentWrapperTop>
+        {props.bestData?.fetchBoardsOfTheBest.map((el) => (
+          <BestCommentWrapper key={el._id} id={el._id}>
+            <BestCommentTitle> {el.title}</BestCommentTitle>
+            <BestCommentImageIcon></BestCommentImageIcon>
+            <BestCommentWriter>{el.writer}</BestCommentWriter>
+            <BestCommentDate>{getDate(el.createdAt)}</BestCommentDate>
+            <BestCommentLikeIcon src="/images/board/list/like.png" />
+            <BestCommentLikeCount>{el.likeCount}</BestCommentLikeCount>
+          </BestCommentWrapper>
+        ))}
+      </BestCommentWrapperTop>
       <TableTop />
       <Row>
         <ColumnHeaderBasic>번호</ColumnHeaderBasic>
@@ -84,7 +104,6 @@ export default function BoardListUI(props) {
         )}
         <span onClick={onClickNextPage}>다음페이지</span>
       </PageNation>
-
       <Footer>
         <Button onClick={props.onClickMoveToBoardNew}>
           <PencilIcon src="/images/board/list/write.png" />
