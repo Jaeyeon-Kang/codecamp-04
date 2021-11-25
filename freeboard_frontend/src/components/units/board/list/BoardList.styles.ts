@@ -7,7 +7,7 @@ export const Wrapper = styled.div`
 
 export const BestCommentWrapperTop = styled.div`
   width: 100%;
-  background-color: blue;
+  /* background-color: blue; */
   display: flex;
   flex-direction: row;
 `;
@@ -16,19 +16,27 @@ export const BestCommentWrapper = styled.div`
   width: 282px;
   height: 257px;
   background-color: white;
+  box-shadow: 5px 5px 10px gray;
+  border: 0px solid gray;
+  border-radius: 30px;
   display: flex;
   flex-direction: column;
-  padding: 20px;
-  margin: 50px;
+  padding: 0px 0px 0px 0px;
+  margin: 0px 10px 0px 10px;
+  overflow: hidden;
 `;
 
-export const BestCommentTitle = styled.div``;
+export const BestCommentTitle = styled.div`
+  font-size: 24px;
+`;
+
+export const BestCommentImage = styled.img``;
 
 export const BestCommentWriter = styled.div``;
 
 export const BestCommentDate = styled.div``;
 
-export const BestCommentLikeIcon = styled.div``;
+export const BestCommentLikeIcon = styled.img``;
 
 export const BestCommentLikeCount = styled.div``;
 
@@ -113,4 +121,16 @@ export const PageNation = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  /* :hover {
+    color: blueviolet;
+  } */
+`;
+
+export const NextPage = styled.div`
+  cursor: pointer;
+  /* :hover {
+    color: blueviolet;
+  } */
 `;

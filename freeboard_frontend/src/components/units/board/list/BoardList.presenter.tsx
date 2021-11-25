@@ -20,6 +20,8 @@ import {
   BestCommentLikeCount,
   BestCommentImageIcon,
   BestCommentWrapperTop,
+  NextPage,
+  BestCommentImage,
 } from "./BoardList.styles";
 import { FETCH_BOARDS, FETCH_BOARDS_COUNTS } from "./BoardList.queries";
 import { useState, MouseEvent } from "react";
@@ -59,6 +61,7 @@ export default function BoardListUI(props) {
       <BestCommentWrapperTop>
         {props.bestData?.fetchBoardsOfTheBest.map((el) => (
           <BestCommentWrapper key={el._id} id={el._id}>
+            <BestCommentImage src="/images/carousel_1.jpg" />
             <BestCommentTitle> {el.title}</BestCommentTitle>
             <BestCommentImageIcon></BestCommentImageIcon>
             <BestCommentWriter>{el.writer}</BestCommentWriter>
@@ -87,7 +90,7 @@ export default function BoardListUI(props) {
       ))}
       <TableBottom />
       <PageNation>
-        <span onClick={onClickPrevPage}>이전페이지</span>
+        <NextPage onClick={onClickPrevPage}>이전페이지</NextPage>
 
         {new Array(10).fill(1).map(
           (_, index) =>
@@ -102,7 +105,7 @@ export default function BoardListUI(props) {
               </span>
             )
         )}
-        <span onClick={onClickNextPage}>다음페이지</span>
+        <NextPage onClick={onClickNextPage}>다음페이지</NextPage>
       </PageNation>
       <Footer>
         <Button onClick={props.onClickMoveToBoardNew}>

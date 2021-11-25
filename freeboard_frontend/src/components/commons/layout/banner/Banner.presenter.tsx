@@ -1,4 +1,4 @@
-import { Banner } from "./Banner.styles";
+import { Banner, ImgBanner, ImgWrapper } from "./Banner.styles";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -6,32 +6,20 @@ import { fixControlledValue } from "antd/lib/input/Input";
 
 export default function BannerUI() {
   const settings = {
-    dots: true,
+    dots: false,
     infinite: true,
     speed: 500,
-    slidesToShow: 2,
+    slidesToShow: 1,
     slidesToScroll: 1,
-    variableWidth: true,
-    display: true,
-    position: fixControlledValue,
-    appendDots: (dots) => (
-      <div
-        style={{
-          borderRadius: "10px",
-          padding: "0px",
-        }}
-      >
-        <ul style={{ margin: "5px" }}> {dots} </ul>
-      </div>
-    ),
+    // variableWidth: true,
+    autoplay: true,
+    //position: fixControlledValue,
   };
 
   return (
     <Banner>
-      <div>
-        <h2> </h2>
-        <Slider {...settings}>
-          <div>
+      <Slider {...settings}>
+        {/* <div>
             <img src="/images/carousel_1.jpg" style={{ width: "750px" }} />
           </div>
           <div>
@@ -42,9 +30,21 @@ export default function BannerUI() {
           </div>
           <div>
             <img src="/images/carousel_2.jpg" style={{ width: "752px" }} />
-          </div>
-        </Slider>
-      </div>
+          </div> */}
+
+        <ImgWrapper>
+          <ImgBanner src="/images/carousel_1.jpg" />
+        </ImgWrapper>
+        <ImgWrapper>
+          <ImgBanner src="/images/carousel_2.jpg" />
+        </ImgWrapper>
+        <div>
+          <ImgBanner src="/images/carousel_1.jpg" />
+        </div>
+        <div>
+          <ImgBanner src="/images/carousel_2.jpg" />
+        </div>
+      </Slider>
     </Banner>
   );
 }

@@ -21,16 +21,14 @@ export default function BoardCommentWrite(props: IBoardCommentWriteProps) {
   const [myContents, setMyContents] = useState("");
   const [myStar, setMyStar] = useState(0);
 
-  const [createBoardComment] =
-    useMutation<
-      Pick<IMutation, "createBoardComment">,
-      IMutationCreateBoardCommentArgs
-    >(CREATE_BOARD_COMMENT);
-  const [updateBoardComment] =
-    useMutation<
-      Pick<IMutation, "updateBoardComment">,
-      IMutationUpdateBoardCommentArgs
-    >(UPDATE_BOARD_COMMENT);
+  const [createBoardComment] = useMutation<
+    Pick<IMutation, "createBoardComment">,
+    IMutationCreateBoardCommentArgs
+  >(CREATE_BOARD_COMMENT);
+  const [updateBoardComment] = useMutation<
+    Pick<IMutation, "updateBoardComment">,
+    IMutationUpdateBoardCommentArgs
+  >(UPDATE_BOARD_COMMENT);
 
   function onChangeMyWriter(event: ChangeEvent<HTMLInputElement>) {
     setMyWriter(event.target.value);

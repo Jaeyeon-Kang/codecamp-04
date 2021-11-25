@@ -10,6 +10,8 @@ const Wrapper = styled.div``;
 const Body = styled.div``;
 const BodyWrapper = styled.div`
   display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 // const Sidebar = styled.div`
 //   width: 200px;
