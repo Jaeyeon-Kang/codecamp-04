@@ -88,6 +88,8 @@ export const Youtube = styled(ReactPlayer)`
   margin: auto;
 `;
 
+export const Images = styled.img``;
+
 export const LikeWrapper = styled.div`
   padding-top: 160px;
   display: flex;

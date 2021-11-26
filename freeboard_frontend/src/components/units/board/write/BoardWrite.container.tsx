@@ -1,13 +1,13 @@
 import BoardWriteUI from "./BoardWrite.presenter";
-import { CREATE_BOARD, UPDATE_BOARD } from "./BoardWrite.queries";
-import { ChangeEvent, useState } from "react";
+import { CREATE_BOARD, UPDATE_BOARD, UPLOAD_FILE } from "./BoardWrite.queries";
+import { ChangeEvent, useState, useRef } from "react";
 import { useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
 import { IBoardWriteProps, IMyUpdateBoardInput } from "./BoardWrite.types";
 
 export default function BoardWrite(props: IBoardWriteProps) {
   const router = useRouter();
-
+  const fileRef = useRef<HTMLInputElement>(null);
   const [myWriter, setMyWriter] = useState("");
   const [myPassword, setMyPassword] = useState("");
   const [myTitle, setMyTitle] = useState("");
@@ -28,6 +28,21 @@ export default function BoardWrite(props: IBoardWriteProps) {
 
   const [createBoard] = useMutation(CREATE_BOARD);
   const [updateBoard] = useMutation(UPDATE_BOARD);
+  const [uploadFile] = useMutation(UPLOAD_FILE);
+
+  const [myImages, setmyImages] = useState<string[]>([]);
+
+  async function onChangeFile(event: ChangeEvent<HTMLInputElement>) {
+    const myFile = event.target.files?.[0];
+    console.log(myFile);
+    const result = await uploadFile({
+      variables: {
+        file: myFile,
+      },
+    });
+    console.log(result.data.uploadFile.url);
+    setmyImages([result.data.uploadFile.url]);
+  }
 
   function onChangeMyWriter(event: ChangeEvent<HTMLInputElement>) {
     setMyWriter(event.target.value);
@@ -141,6 +156,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
             title: myTitle,
             contents: myContents,
             youtubeUrl: youtubeUrl,
+            images: myImages,
             boardAddress: {
               zipcode: zipcode,
               address: address,
@@ -149,6 +165,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
           },
         },
       });
+      console.log(result.data.createBoard);
       router.push(`/boards/${result.data.createBoard._id}`);
     }
   }
@@ -192,6 +209,10 @@ export default function BoardWrite(props: IBoardWriteProps) {
     }
   }
 
+  function onClickMyimage() {
+    fileRef.current?.click();
+  }
+  console.log(isActive);
   return (
     <BoardWriteUI
       myWriterError={myWriterError}
@@ -215,6 +236,10 @@ export default function BoardWrite(props: IBoardWriteProps) {
       zipcode={zipcode}
       address={address}
       addressDetail={addressDetail}
+      onClickMyImage={onClickMyimage}
+      onChangeFile={onChangeFile}
+      fileRef={fileRef}
+      myImages={myImages}
     />
   );
 }

@@ -29,6 +29,13 @@ export default function BoardDetailUI(props: IBoardDetailUIProps) {
           {props.data?.fetchBoard.youtubeUrl && (
             <S.Youtube
               url={props.data?.fetchBoard.youtubeUrl}
+              width="1200px"
+              height="720px"
+            />
+          )}
+          {props.data?.fetchBoard.images && (
+            <S.Images
+              src={`https://storage.googleapis.com/${props.data?.fetchBoard.images[0]}`}
               width="486px"
               height="240px"
             />

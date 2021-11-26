@@ -27,11 +27,22 @@ import { Modal } from "antd";
 import { DaumPostcode } from "react-daum-postcode";
 import { FETCH_BOARD } from "../detail/BoardDetail.queries";
 
+import { gql, useMutation } from "@apollo/client";
+import { ChangeEvent, useRef, useState } from "react";
+
 export default function BoardWriteUI(props: IBoardWriteUIProps) {
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const handleOk = () => {
+    setIsModalVisible(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
   return (
     <>
-      {props.isOpen && (
-        <Modal visible={true}>
+      {isModalVisible && (
+        <Modal visible={true} onOk={handleOk} onCancel={handleCancel}>
           <DaumPostcode onComplete={props.onCompleteAddressSearch} />
         </Modal>
       )}
@@ -87,7 +98,8 @@ export default function BoardWriteUI(props: IBoardWriteUIProps) {
                 ""
               }
             />
-            <SearchButton onClick={props.onClickAddressSearch}>
+            {/* <SearchButton onClick={props.onClickAddressSearch}> */}
+            <SearchButton onClick={() => setIsModalVisible(true)}>
               우편번호 검색
             </SearchButton>
           </ZipcodeWrapper>
@@ -117,16 +129,49 @@ export default function BoardWriteUI(props: IBoardWriteUIProps) {
         <ImageWrapper>
           <Label>사진첨부</Label>
           <UploadButton>
-            <>+</>
-            <>Upload</>
+            <>
+              <div onClick={props.onClickMyImage}>
+                이미지 <br />
+                선택
+              </div>
+
+              <input
+                style={{ display: "none" }}
+                type="file"
+                ref={props.fileRef}
+                onChange={props.onChangeFile}
+              />
+            </>
           </UploadButton>
           <UploadButton>
-            <>+</>
-            <>Upload</>
+            <>
+              <div onClick={props.onClickMyImage}>
+                이미지 <br />
+                선택
+              </div>
+
+              <input
+                style={{ display: "none" }}
+                type="file"
+                ref={props.fileRef}
+                onChange={props.onChangeFile}
+              />
+            </>
           </UploadButton>
           <UploadButton>
-            <>+</>
-            <>Upload</>
+            <>
+              <div onClick={props.onClickMyImage}>
+                이미지 <br />
+                선택
+              </div>
+
+              <input
+                style={{ display: "none" }}
+                type="file"
+                ref={props.fileRef}
+                onChange={props.onChangeFile}
+              />
+            </>
           </UploadButton>
         </ImageWrapper>
         <OptionWrapper>
@@ -139,7 +184,7 @@ export default function BoardWriteUI(props: IBoardWriteUIProps) {
         <ButtonWrapper>
           <SubmitButton
             onClick={props.isEdit ? props.onClickUpdate : props.onClickSubmit}
-            isActive={props.isEdit ? true : !props.isActive}
+            isActive={props.isActive}
           >
             {props.isEdit ? "수정하기" : "등록하기"}
           </SubmitButton>

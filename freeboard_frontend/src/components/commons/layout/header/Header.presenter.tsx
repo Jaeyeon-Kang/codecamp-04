@@ -1,5 +1,14 @@
-import { Header } from "./Header.styles";
+import { RectangleOutlined } from "@mui/icons-material";
+import { HeaderNu, HeaderTium, Rectangle, LogoWrapper } from "./Header.styles";
 
 export default function HeaderUI() {
-  return <Header>여기는 헤더영역입니다.</Header>;
+  return (
+    <>
+      <LogoWrapper>
+        <Rectangle></Rectangle>
+        <HeaderNu>nu</HeaderNu>
+        <HeaderTium>tium</HeaderTium>
+      </LogoWrapper>
+    </>
+  );
 }

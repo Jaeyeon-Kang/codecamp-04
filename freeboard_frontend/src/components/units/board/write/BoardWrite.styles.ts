@@ -115,7 +115,7 @@ export const UploadButton = styled.button`
   width: 78px;
   height: 78px;
   background-color: #bdbdbd;
-  margin-right: 24px;
+  margin-right: 15px;
   outline: none;
   border: none;
   cursor: pointer;
