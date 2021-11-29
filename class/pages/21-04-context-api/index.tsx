@@ -13,11 +13,6 @@ export default function ContextAPIPage() {
   <MyContext.Provider value={myValue}>  
                     <MyBoardWrite  />
 
-
-
-
-
-
   </MyContext.Provider>;
     )
 }

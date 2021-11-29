@@ -34,3 +34,11 @@ export const LineOne = styled.div`
   color: #1c1c1c;
   opacity: 50%;
 `;
+
+export const Login = styled.div`
+  background-color: white;
+  font-family: "Libre-Baskerville";
+  font-weight: 500;
+  display: flex;
+  flex-direction: row;
+`;

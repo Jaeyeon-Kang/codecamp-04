@@ -25,8 +25,9 @@ import {
 import { IBoardWriteUIProps } from "./BoardWrite.types";
 import { Modal } from "antd";
 import { DaumPostcode } from "react-daum-postcode";
-import { FETCH_BOARD } from "../detail/BoardDetail.queries";
 
+import Uploads01 from "../../../commons/uploads/01/Uploads01.container";
+import { v4 as uuidv4 } from "uuid";
 import { gql, useMutation } from "@apollo/client";
 import { ChangeEvent, useRef, useState } from "react";
 
@@ -128,6 +129,15 @@ export default function BoardWriteUI(props: IBoardWriteUIProps) {
         </InputWrapper>
         <ImageWrapper>
           <Label>사진첨부</Label>
+          {props.fileUrls.map((el, index) => (
+            <Uploads01
+              key={uuidv4()}
+              index={index}
+              fileUrl={el}
+              defaultFileUrl={props.data?.fetchBoard.images?.[index]}
+              onChangeFileUrls={props.onChangeFileUrls}
+            />
+          ))}
         </ImageWrapper>
         <OptionWrapper>
           <Label>메인설정</Label>
