@@ -1,13 +1,13 @@
 import BoardWriteUI from "./BoardWrite.presenter";
-import { CREATE_BOARD, UPDATE_BOARD, UPLOAD_FILE } from "./BoardWrite.queries";
-import { ChangeEvent, useState, useRef } from "react";
+import { CREATE_BOARD, UPDATE_BOARD } from "./BoardWrite.queries";
+import { ChangeEvent, useState } from "react";
 import { useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
 import { IBoardWriteProps, IMyUpdateBoardInput } from "./BoardWrite.types";
 
 export default function BoardWrite(props: IBoardWriteProps) {
   const router = useRouter();
-  const fileRef = useRef<HTMLInputElement>(null);
+
   const [myWriter, setMyWriter] = useState("");
   const [myPassword, setMyPassword] = useState("");
   const [myTitle, setMyTitle] = useState("");
@@ -17,6 +17,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
   const [zipcode, setZipcode] = useState("");
   const [address, setAddress] = useState("");
   const [addressDetail, setAddressDetail] = useState("");
+  const [fileUrls, setFileUrls] = useState(["", "", ""]);
 
   const [myWriterError, setMyWriterError] = useState("");
   const [myPasswordError, setMyPasswordError] = useState("");
@@ -28,21 +29,6 @@ export default function BoardWrite(props: IBoardWriteProps) {
 
   const [createBoard] = useMutation(CREATE_BOARD);
   const [updateBoard] = useMutation(UPDATE_BOARD);
-  const [uploadFile] = useMutation(UPLOAD_FILE);
-
-  const [myImages, setmyImages] = useState<string[]>([]);
-
-  async function onChangeFile(event: ChangeEvent<HTMLInputElement>) {
-    const myFile = event.target.files?.[0];
-    console.log(myFile);
-    const result = await uploadFile({
-      variables: {
-        file: myFile,
-      },
-    });
-    console.log(result.data.uploadFile.url);
-    setmyImages([result.data.uploadFile.url]);
-  }
 
   function onChangeMyWriter(event: ChangeEvent<HTMLInputElement>) {
     setMyWriter(event.target.value);
@@ -156,12 +142,13 @@ export default function BoardWrite(props: IBoardWriteProps) {
             title: myTitle,
             contents: myContents,
             youtubeUrl: youtubeUrl,
-            images: myImages,
+
             boardAddress: {
               zipcode: zipcode,
               address: address,
               addressDetail: addressDetail,
             },
+            images: fileUrls,
           },
         },
       });
@@ -183,7 +170,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
       return;
     }
 
-    const myUpdateboardInput: IMyUpdateBoardInput = {};
+    const myUpdateboardInput: IMyUpdateBoardInput = { images: fileUrls };
     if (myTitle) myUpdateboardInput.title = myTitle;
     if (myContents) myUpdateboardInput.contents = myContents;
     if (youtubeUrl) myUpdateboardInput.youtubeUrl = youtubeUrl;
@@ -209,10 +196,18 @@ export default function BoardWrite(props: IBoardWriteProps) {
     }
   }
 
-  function onClickMyimage() {
-    fileRef.current?.click();
+  function onChangeFileUrls(fileUrl: string, index: number) {
+    const newFileUrls = [...fileUrls];
+    newFileUrls[index] = fileUrl;
+    setFileUrls(newFileUrls);
   }
-  console.log(isActive);
+
+  useEffect(() => {
+    if (props.data?.fetchBoard.images?.length) {
+      setFileUrls([...props.data?.fetchBoard.images]);
+    }
+  }, [props.data]);
+
   return (
     <BoardWriteUI
       myWriterError={myWriterError}
@@ -229,6 +224,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
       onClickUpdate={onClickUpdate}
       onClickAddressSearch={onClickAddressSearch}
       onCompleteAddressSearch={onCompleteAddressSearch}
+      onChangeFileUrls={onChangeFileUrls}
       isActive={isActive}
       isEdit={props.isEdit}
       isOpen={isOpen}
@@ -236,10 +232,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
       zipcode={zipcode}
       address={address}
       addressDetail={addressDetail}
-      onClickMyImage={onClickMyimage}
-      onChangeFile={onChangeFile}
-      fileRef={fileRef}
-      myImages={myImages}
+      fileUrls={fileUrls}
     />
   );
 }

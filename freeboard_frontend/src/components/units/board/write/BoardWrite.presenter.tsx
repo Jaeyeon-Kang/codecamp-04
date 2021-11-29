@@ -34,7 +34,7 @@ export default function BoardWriteUI(props: IBoardWriteUIProps) {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const handleOk = () => {
     setIsModalVisible(false);
-  };
+  }; //
 
   const handleCancel = () => {
     setIsModalVisible(false);
@@ -128,51 +128,6 @@ export default function BoardWriteUI(props: IBoardWriteUIProps) {
         </InputWrapper>
         <ImageWrapper>
           <Label>사진첨부</Label>
-          <UploadButton>
-            <>
-              <div onClick={props.onClickMyImage}>
-                이미지 <br />
-                선택
-              </div>
-
-              <input
-                style={{ display: "none" }}
-                type="file"
-                ref={props.fileRef}
-                onChange={props.onChangeFile}
-              />
-            </>
-          </UploadButton>
-          <UploadButton>
-            <>
-              <div onClick={props.onClickMyImage}>
-                이미지 <br />
-                선택
-              </div>
-
-              <input
-                style={{ display: "none" }}
-                type="file"
-                ref={props.fileRef}
-                onChange={props.onChangeFile}
-              />
-            </>
-          </UploadButton>
-          <UploadButton>
-            <>
-              <div onClick={props.onClickMyImage}>
-                이미지 <br />
-                선택
-              </div>
-
-              <input
-                style={{ display: "none" }}
-                type="file"
-                ref={props.fileRef}
-                onChange={props.onChangeFile}
-              />
-            </>
-          </UploadButton>
         </ImageWrapper>
         <OptionWrapper>
           <Label>메인설정</Label>

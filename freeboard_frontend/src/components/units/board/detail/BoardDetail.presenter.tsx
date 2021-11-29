@@ -1,6 +1,7 @@
 import { Tooltip } from "antd";
 import * as S from "./BoardDetail.styles";
 import { IBoardDetailUIProps } from "./BoardDetail.types";
+import { v4 as uuidv4 } from "uuid";
 
 export default function BoardDetailUI(props: IBoardDetailUIProps) {
   return (
@@ -33,13 +34,15 @@ export default function BoardDetailUI(props: IBoardDetailUIProps) {
               height="720px"
             />
           )}
-          {props.data?.fetchBoard.images && (
+          {props.data?.fetchBoard.images?.map((_, index) => (
             <S.Images
-              src={`https://storage.googleapis.com/${props.data?.fetchBoard.images[0]}`}
+              key={uuidv4()}
+              src={`https://storage.googleapis.com/${props.data?.fetchBoard.images?.[index]}`}
               width="486px"
               height="240px"
             />
-          )}
+          ))}
+
           <S.LikeWrapper>
             <S.IconWrapper>
               <S.LikeIcon onClick={props.onClickLike} />

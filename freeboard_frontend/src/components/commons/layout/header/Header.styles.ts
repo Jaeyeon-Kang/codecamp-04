@@ -7,26 +7,24 @@ export const LogoWrapper = styled.div`
 export const Rectangle = styled.div`
   width: 58px;
   height: 57px;
-  margin-left: 24px;
-  margin-top: 31px;
-  background-color: black;
-`;
-
-export const HeaderNu = styled.div`
-  /* height: 100px; */
+  color: white;
   font-family: "Libre Baskerville", serif;
   font-size: 30px;
-  color: pink;
   font-weight: bold;
-  margin-left: 0px;
-  padding-top: 31px;
+  padding-left: 16px;
+  padding-top: 10px;
+  margin-left: 26px;
+  margin-top: 21px;
+  background-color: black;
 `;
 
 export const HeaderTium = styled.div`
   height: 100px;
   font-family: "Libre Baskerville", serif;
+  color: #1c1c1c;
   font-size: 30px;
   font-weight: bold;
   /* padding-left: 24px; */
   padding-top: 31px;
+  margin-left: 1px;
 `;
