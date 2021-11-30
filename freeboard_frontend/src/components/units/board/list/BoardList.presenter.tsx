@@ -30,6 +30,7 @@ import {
   IQueryFetchBoardsArgs,
   IQuery,
 } from "../../../../commons/types/generated/types";
+import Searchbars01 from "../../../commons/searchbars/01/Searchbars01.container";
 
 export default function BoardListUI(props) {
   const [startPage, setStartPage] = useState(1);
@@ -58,6 +59,11 @@ export default function BoardListUI(props) {
   }
   return (
     <Wrapper>
+      <Searchbars01
+        refetch={props.refetch}
+        refetchBoardsCount={props.refetchBoardsCount}
+        onChangeKeyword={props.onChangeKeyword}
+      />
       <BestCommentWrapperTop>
         {props.bestData?.fetchBoardsOfTheBest.map((el) => (
           <BestCommentWrapper key={el._id} id={el._id}>

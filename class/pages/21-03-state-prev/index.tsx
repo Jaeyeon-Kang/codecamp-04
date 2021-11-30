@@ -18,6 +18,7 @@ export default function StatePrevPage() {
   return (
     <>
       <div>현재카운트: {count}</div>
+
       <button onClick={onClickCount}>카운트 증가!!!</button>
     </>
   );

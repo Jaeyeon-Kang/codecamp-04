@@ -20,6 +20,9 @@ export default function MyPageContainer() {
   };
 
   const onClickSubmit = async () => {
+    if (!/\w+@\w+\.\w+/.test(userInfo.email)) {
+      alert("이메일을 정확히 입력하세요");
+    }
     await addDoc(user, {
       ...userInfo,
     });

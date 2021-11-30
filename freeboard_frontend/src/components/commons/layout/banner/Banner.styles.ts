@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 
 export const Banner = styled.section`
   height: 600px;
-  margin: 25px;
+  margin: 20px;
   background-color: skyblue;
   overflow: hidden;
 `;
@@ -33,12 +33,4 @@ export const LineOne = styled.div`
   font-weight: lighter;
   color: #1c1c1c;
   opacity: 50%;
-`;
-
-export const Login = styled.div`
-  background-color: white;
-  font-family: "Libre-Baskerville";
-  font-weight: 500;
-  display: flex;
-  flex-direction: row;
 `;
