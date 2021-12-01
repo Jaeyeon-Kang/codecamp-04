@@ -1,5 +1,55 @@
+import { ChangeEvent, useContext, useState } from "react";
+import { useMutation } from "@apollo/client";
+import { GlobalContext } from "../../../../../pages/_app";
 import LoginPresenter from "../login/Login.presenter";
+import { useRouter } from "next/router";
+import {
+  IMutation,
+  IMutationLoginUserArgs,
+} from "../../../../commons/types/generated/types";
+import { LOGIN_USER } from "./Login.queries";
 
 export default function LoginContainer() {
-  return <LoginPresenter />;
+  const router = useRouter();
+  const [myEmail, setMyEmail] = useState("");
+  const [myPassword, setMyPassword] = useState("");
+  const [loginUser] = useMutation<
+    Pick<IMutation, "loginUser">,
+    IMutationLoginUserArgs
+  >(LOGIN_USER);
+
+  const { setAccessToken } = useContext(GlobalContext);
+
+  function onChangeMyEmail(event: ChangeEvent<HTMLInputElement>) {
+    setMyEmail(event.target.value);
+  }
+
+  function onChangeMyPassword(event: ChangeEvent<HTMLInputElement>) {
+    setMyPassword(event.target.value);
+  }
+
+  function MoveToSignUpPage() {
+    router.push(`/boards/signup`);
+  }
+
+  async function onClickLogin() {
+    // const { setAccessToken } = useContext(GlobalContext);
+    const result = await loginUser({
+      variables: {
+        email: myEmail,
+        password: myPassword,
+      },
+    });
+    setAccessToken(result.data?.loginUser.accessToken);
+
+    router.push("/boards");
+  }
+  return (
+    <LoginPresenter
+      MoveToSignUpPage={MoveToSignUpPage}
+      onChangeMyEmail={onChangeMyEmail}
+      onChangeMyPassword={onChangeMyPassword}
+      onClickLogin={onClickLogin}
+    />
+  );
 }

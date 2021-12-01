@@ -54,36 +54,17 @@ export const MessageWrapper = styled.div`
 export const RememberMessage = styled.div`
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: flex-start;
+  /* justify-content: baseline; */
+  padding-top: 5px;
 `;
 
 export const RadioLabel = styled.div`
   font-size: 12px;
-`;
-
-export const ForgetMessage = styled.div`
-  font-size: 12px;
-  padding-right: 10px;
+  margin-top: 9px;
 `;
 
 export const Login = styled.div`
-  background-color: white;
-  width: 323px;
-  height: 58px;
-  font-family: "Libre Baskerville";
-  font-weight: 500;
-  font-size: 20px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  border: 2px solid #1c1c1c;
-  border-radius: 0.5rem;
-  cursor: pointer;
-  margin-top: 13px;
-`;
-
-export const SignUpWrapper = styled.div`
   background-color: white;
   width: 323px;
   height: 58px;

@@ -1,28 +1,31 @@
 import {
   WelcomeWrapper,
   Wrapper,
-  MessageText,
   Username,
   Password,
   RememberMessage,
   RadioLabel,
-  ForgetMessage,
   MessageWrapper,
   Login,
-  SignUpWrapper,
-} from "./Login.styles";
+} from "./SignUp.styles";
 import Checkbox from "@mui/material/Checkbox";
 
-export default function LoginPresenter(props) {
+export default function SignUpPresenter(props) {
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
+
   return (
     <>
       <Wrapper>
-        <WelcomeWrapper>Welcome back!</WelcomeWrapper>
-        <MessageText>Sign in to get the most out of nuntium</MessageText>
+        <WelcomeWrapper>Sign Up</WelcomeWrapper>
+
         <Username
           type="text"
-          placeholder="Email"
+          placeholder="name"
+          onChange={props.onChangeMyName}
+        />
+        <Username
+          type="text"
+          placeholder="email"
           onChange={props.onChangeMyEmail}
         />
         <Password
@@ -33,12 +36,13 @@ export default function LoginPresenter(props) {
         <MessageWrapper>
           <RememberMessage>
             <Checkbox {...label} />
-            <RadioLabel>Remember me</RadioLabel>
+            <RadioLabel>
+              Creating an account means you're okay with our Terms of Service
+              and Privacy Policy.
+            </RadioLabel>
           </RememberMessage>
-          <ForgetMessage>Forgot Password?</ForgetMessage>
         </MessageWrapper>
-        <Login onClick={props.onClickLogin}>Login</Login>
-        <SignUpWrapper onClick={props.MoveToSignUpPage}>SignUp</SignUpWrapper>
+        <Login onClick={props.onClickSignUp}>Register</Login>
       </Wrapper>
     </>
   );
