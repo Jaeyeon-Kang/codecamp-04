@@ -13,6 +13,7 @@ export const ImgBanner = styled.figure`
   background-image: url("/images/ArticleImage.png");
   background-size: cover;
   background-position: center center;
+  position: relative;
 `;
 
 export const Box = styled.div`
@@ -22,6 +23,7 @@ export const Box = styled.div`
   padding-left: 29px;
   background-color: white;
   position: absolute;
+  z-index: 1;
   left: 60px;
   opacity: 93%;
 `;
