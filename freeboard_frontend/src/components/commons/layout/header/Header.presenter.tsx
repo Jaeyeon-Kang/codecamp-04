@@ -23,7 +23,7 @@ export default function HeaderUI(props) {
           </LogoWrapper>
           <MenuWrapper>
             <MenuOne onClick={props.onClickBoard}>Freeboard</MenuOne>
-            <MenuTwo>Market</MenuTwo>
+            <MenuTwo onClick={props.onClickMarket}>Market</MenuTwo>
             <MenuThree onClick={props.onClickMyPage}>MyPage</MenuThree>
           </MenuWrapper>
         </LeftWrapper>

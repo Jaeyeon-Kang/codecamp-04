@@ -16,11 +16,16 @@ export default function Header() {
     router.push(`/boards/mypage`);
   };
 
+  const onClickMarket = () => {
+    router.push(`/boards/market`);
+  };
+
   return (
     <HeaderUI
       onClickSubmit={onClickSubmit}
       onClickBoard={onClickBoard}
       onClickMyPage={onClickMyPage}
+      onClickMarket={onClickMarket}
     />
   );
 }
