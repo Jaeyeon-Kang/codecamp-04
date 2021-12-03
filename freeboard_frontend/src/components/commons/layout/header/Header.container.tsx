@@ -12,9 +12,10 @@ export default function Header() {
     router.push(`/boards`);
   }
 
-  function onClickMyPage() {
+  const onClickMyPage = () => {
     router.push(`/boards/mypage`);
-  }
+  };
+
   return (
     <HeaderUI
       onClickSubmit={onClickSubmit}

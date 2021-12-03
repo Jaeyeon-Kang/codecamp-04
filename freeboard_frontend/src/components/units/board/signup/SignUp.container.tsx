@@ -26,22 +26,27 @@ export default function SignUpContainer() {
   async function onClickSignUp() {
     // const { setAccessToken } = useContext(GlobalContext);
 
-    const result = await createUser({
-      variables: {
-        createUserInput: {
-          email: myEmail,
-          password: myPassword,
-          name: myName,
+    try {
+      const result = await createUser({
+        variables: {
+          createUserInput: {
+            email: myEmail,
+            password: myPassword,
+            name: myName,
+          },
         },
-      },
-    });
-    if (!/\w+@\w+\.\w+/.test(myEmail)) {
-      alert("이메일을 정확히 입력해주세요");
-    } else {
-      alert("회원가입에 성공하셨습니다. 로그인을 진행해주세요.");
-      router.push(`/boards/login`);
+      });
+      if (!/\w+@\w+\.\w+/.test(myEmail)) {
+        alert("이메일을 정확히 입력해주세요");
+      } else {
+        alert("회원가입에 성공하셨습니다. 로그인을 진행해주세요.");
+        router.push(`/boards/login`);
+      }
+    } catch (error) {
+      alert(error.message);
     }
   }
+
   return (
     <SignUpPresenter
       onChangeMyName={onChangeMyName}

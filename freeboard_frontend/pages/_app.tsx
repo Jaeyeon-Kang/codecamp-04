@@ -10,7 +10,7 @@ import { Global } from "@emotion/react";
 import { AppProps } from "next/dist/shared/lib/router/router";
 import { globalStyles } from "../src/commons/styles/globalStyles";
 import { createUploadLink } from "apollo-upload-client";
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 
 import Layout from "../src/components/commons/layout/index";
 
@@ -51,6 +51,11 @@ function MyApp({ Component, pageProps }: AppProps) {
     uri: "http://backend04.codebootcamp.co.kr/graphql",
     link: ApolloLink.from([uploadLink as any]),
     cache: new InMemoryCache(),
+  });
+
+  useEffect(() => {
+    const accessToken = localStorage.getItem("accessToken") || "";
+    if (accessToken) setMyAccessToken(accessToken);
   });
 
   return (

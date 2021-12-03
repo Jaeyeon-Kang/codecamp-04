@@ -22,10 +22,12 @@ import {
   BestCommentWrapperTop,
   NextPage,
   BestCommentImage,
+  TextToken,
 } from "./BoardList.styles";
 import { FETCH_BOARDS, FETCH_BOARDS_COUNTS } from "./BoardList.queries";
 import { useState, MouseEvent } from "react";
 import { useQuery } from "@apollo/client";
+import { v4 as uuidv4 } from "uuid";
 import {
   IQueryFetchBoardsArgs,
   IQuery,
@@ -66,9 +68,21 @@ export default function BoardListUI(props) {
       />
       <BestCommentWrapperTop>
         {props.bestData?.fetchBoardsOfTheBest.map((el) => (
-          <BestCommentWrapper key={el._id} id={el._id}>
+          <BestCommentWrapper key={el._id}>
             <BestCommentImage src="/images/carousel_1.jpg" />
-            <BestCommentTitle> {el.title}</BestCommentTitle>
+            <BestCommentTitle
+              id={el._id}
+              onClick={props.onClickMoveToBoardDetail}
+            >
+              {el.title
+                .replaceAll(props.keyword, `@#$%{props.keyword}@#$%`)
+                .split("@#$%")
+                .map((el) => (
+                  <TextToken key={uuidv4()} isMatched={props.keyword === el}>
+                    {el}
+                  </TextToken>
+                ))}
+            </BestCommentTitle>
             <BestCommentImageIcon></BestCommentImageIcon>
             <BestCommentWriter>{el.writer}</BestCommentWriter>
             <BestCommentDate>{getDate(el.createdAt)}</BestCommentDate>
@@ -88,7 +102,7 @@ export default function BoardListUI(props) {
         <Row key={el._id}>
           <ColumnBasic>{index + 1}</ColumnBasic>
           <ColumnTitle id={el._id} onClick={props.onClickMoveToBoardDetail}>
-            {el.title}부
+            {el.title}
           </ColumnTitle>
           <ColumnBasic>{el.writer}</ColumnBasic>
           <ColumnBasic>{getDate(el.createdAt)}</ColumnBasic>

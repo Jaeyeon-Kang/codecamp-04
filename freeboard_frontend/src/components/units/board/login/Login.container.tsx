@@ -32,18 +32,24 @@ export default function LoginContainer() {
     router.push(`/boards/signup`);
   }
 
-  async function onClickLogin() {
-    // const { setAccessToken } = useContext(GlobalContext);
-    const result = await loginUser({
-      variables: {
-        email: myEmail,
-        password: myPassword,
-      },
-    });
-    setAccessToken(result.data?.loginUser.accessToken);
-
-    router.push("/boards");
-  }
+  const onClickLogin = async () => {
+    try {
+      const result = await loginUser({
+        variables: {
+          email: myEmail,
+          password: myPassword,
+        },
+      });
+      localStorage.setItem(
+        "accessToken",
+        result.data?.loginUser.accessToken || ""
+      );
+      setAccessToken(result.data?.loginUser.accessToken || "");
+      router.push("/boards");
+    } catch (error) {
+      alert(error.message);
+    }
+  };
   return (
     <LoginPresenter
       MoveToSignUpPage={MoveToSignUpPage}

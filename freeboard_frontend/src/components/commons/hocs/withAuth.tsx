@@ -8,8 +8,8 @@ export const withAuth = (Component) => (props) => {
 
   useEffect(() => {
     if (!accessToken) {
-      alert("로그인한 사람만 입장가능합니다!! 로그인을 먼저해주세요!!");
-      router.push("/23-04-login");
+      alert("로그인을 먼저 진행해주세요.");
+      router.push("/boards/login");
     }
   });
 

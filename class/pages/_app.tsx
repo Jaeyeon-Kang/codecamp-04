@@ -10,7 +10,13 @@ import { AppProps } from "next/dist/shared/lib/router/router";
 import { globalStyles } from "../src/commons/styles/globalStyles";
 import Layout from "../src/components/commons/layout/index";
 import { createUploadLink } from "apollo-upload-client";
-import { createContext, useState, useEffect } from "react";
+import {
+  createContext,
+  useState,
+  useEffect,
+  Dispatch,
+  SetStateAction,
+} from "react";
 import { initializeApp } from "firebase/app";
 
 const firebaseConfig = {
@@ -25,34 +31,44 @@ const firebaseConfig = {
 // Initialize Firebase
 export const firebaseApp = initializeApp(firebaseConfig);
 
-export const GlobalContext = createContext(null);
+interface IGlobalContext {
+  accessToken?: string;
+  setAccessToken?: Dispatch<SetStateAction<string>>;
+  userInfo?: {
+    name?: string;
+    email?: string;
+    picture?: string;
+  };
+  setMyUserInfo?: Dispatch<SetStateAction<{}>>;
+}
+
+export const GlobalContext = createContext<IGlobalContext>({});
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const [myAccesToken, setMyAccesToken] = useState("");
+  const [myAccessToken, setMyAccessToken] = useState("");
   const [myUserInfo, setMyUserInfo] = useState({});
   const myValue = {
-    accessToken: myAccesToken,
-    setMyAccesToken: setMyAccesToken,
-    // userInfo: myUserInfo,
-    // setMyUserInfo: setMyUserInfo,
+    accessToken: myAccessToken,
+    setMyAccessToken: setMyAccessToken,
+    userInfo: myUserInfo,
+    setMyUserInfo: setMyUserInfo,
   };
-
-  useEffect(() => {
-    const accessToken = localStorage.getItem("accessToken");
-    if (accessToken) setMyAccesToken(accessToken);
-  }, []);
 
   const uploadLink = createUploadLink({
     uri: "http://backend04.codebootcamp.co.kr/graphql",
     headers: {
-      authorization: `Bearer ${myAccesToken}`,
+      authorization: `Bearer ${myAccessToken}`,
     },
   });
 
   const client = new ApolloClient({
     link: ApolloLink.from([uploadLink as any]),
-
     cache: new InMemoryCache(),
+  });
+
+  useEffect(() => {
+    const accessToken = localStorage.getItem("accessToken") || "";
+    if (accessToken) setMyAccessToken(accessToken);
   });
 
   return (

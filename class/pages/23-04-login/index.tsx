@@ -16,23 +16,23 @@ const LOGIN_USER = gql`
 `;
 
 export default function LoginPage() {
-  const router = useRouter();
   const { setAccessToken } = useContext(GlobalContext);
-
+  const router = useRouter();
   const [myEmail, setMyEmail] = useState("");
   const [myPassword, setMyPassword] = useState("");
+
   const [loginUser] = useMutation<
     Pick<IMutation, "loginUser">,
     IMutationLoginUserArgs
   >(LOGIN_USER);
 
-  function onChangeMyEmail(event: ChangeEvent<HTMLElement>) {
+  const onChangeMyEmail = (event: ChangeEvent<HTMLInputElement>) => {
     setMyEmail(event.target.value);
-  }
+  };
 
-  function onChangeMyPassword(event: ChangeEvent<HTMLElement>) {
+  const onChangeMyPassword = (event: ChangeEvent<HTMLInputElement>) => {
     setMyPassword(event.target.value);
-  }
+  };
 
   async function onClickLogin() {
     const result = await loginUser({
@@ -45,19 +45,30 @@ export default function LoginPage() {
       "accessToken",
       result.data?.loginUser.accessToken || ""
     );
-    setAccessToken?.(result.data?.loginUser.accessToken || ""); // 여기서 setAccesToken 필요! (글로벌 스테이트에...)
-
-    // 로그인 성공된 페이지로 이동시키기!!
-    router.push("/23-05-login-success");
+    setAccessToken?.(result.data?.loginUser.accessToken || "");
+    // 여기서 글로벌 스테이트에 넣을 setAccessToken 필요
+    // const result = fetchUserLoggedIn()
+    // setUserInfo(result.data?.fetchUserLoggedIn)
+    router.push(`/23-05-login-success`);
   }
 
   return (
     <>
-      이메일:
-      <input type="text" onChange={onChangeMyEmail} />
-      비밀번호:
-      <input type="password" onChange={onChangeMyPassword} />
-      <button onClick={onClickLogin}>로그인하기!!</button>
+      이메일:{" "}
+      <input
+        type="text"
+        onChange={onChangeMyEmail}
+        placeholder="이메일을 입력하세요"
+      />{" "}
+      <br />
+      비밀번호:{" "}
+      <input
+        type="password"
+        onChange={onChangeMyPassword}
+        placeholder="비밀번호를 입력하세요"
+      />
+      <br />
+      <button onClick={onClickLogin}>로그인</button>
     </>
   );
 }

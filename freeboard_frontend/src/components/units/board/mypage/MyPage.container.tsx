@@ -2,8 +2,9 @@ import MyPagePresenter from "../mypage/MyPage.presenter";
 import { collection, getFirestore, addDoc } from "firebase/firestore/lite";
 import { firebaseApp } from "../../../../../pages/_app";
 import { ChangeEvent, useState } from "react";
+import { withAuth } from "../../../commons/hocs/withAuth";
 
-export default function MyPageContainer() {
+function MyPageContainer() {
   const user = collection(getFirestore(firebaseApp), "user");
 
   const [userInfo, setUserInfo] = useState({
@@ -36,3 +37,5 @@ export default function MyPageContainer() {
     />
   );
 }
+
+export default withAuth(MyPageContainer);
