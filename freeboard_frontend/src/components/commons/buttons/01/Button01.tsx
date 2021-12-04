@@ -7,6 +7,8 @@ interface IMyButtonProps {
 const MyButton = styled.button`
   background-color: ${(props: IMyButtonProps) =>
     props.isValid ? "yellow" : ""};
+  width: 180px;
+  height: 30px;
 `;
 
 export default function Button01(props) {
