@@ -19,7 +19,6 @@ import {
   Youtube,
   Zipcode,
   ZipcodeWrapper,
-  UploadButton,
   Error,
 } from "./BoardWrite.styles";
 import { IBoardWriteUIProps } from "./BoardWrite.types";
@@ -28,8 +27,7 @@ import { DaumPostcode } from "react-daum-postcode";
 
 import Uploads01 from "../../../commons/uploads/01/Uploads01.container";
 import { v4 as uuidv4 } from "uuid";
-import { gql, useMutation } from "@apollo/client";
-import { ChangeEvent, useRef, useState } from "react";
+import { useState } from "react";
 
 export default function BoardWriteUI(props: IBoardWriteUIProps) {
   const [isModalVisible, setIsModalVisible] = useState(false);

@@ -1,13 +1,13 @@
 import { useMutation } from "@apollo/client";
-import MarketPresenter from "./Market.presenter"
-import {CREATE_USED_ITEM} from "./Market.queries"
-import { FormValues } from "./Market.types";
+import MarketWritePresenter from "./MarketWrite.presenter"
+import {CREATE_USED_ITEM} from "./MarketWrite.queries"
+import { FormValues } from "./MarketWrite.types";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup/dist/yup";
-import { schema } from "./Market.validations";
+import { schema } from "./MarketWrite.validations";
 
 
-export default function MarketContainer() {
+export default function MarketWriteContainer() {
 
   const [createUseditem] = useMutation(CREATE_USED_ITEM)
   const { handleSubmit, register, formState } = useForm({
@@ -33,7 +33,7 @@ export default function MarketContainer() {
   
   
 
-  return <MarketPresenter 
+  return <MarketWritePresenter 
   handleSubmit={handleSubmit}
   register={register}
   formState={formState}
