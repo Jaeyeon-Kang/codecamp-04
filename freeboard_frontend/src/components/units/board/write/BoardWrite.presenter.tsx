@@ -30,18 +30,27 @@ import { v4 as uuidv4 } from "uuid";
 import { useState } from "react";
 
 export default function BoardWriteUI(props: IBoardWriteUIProps) {
-  const [isModalVisible, setIsModalVisible] = useState(false);
-  const handleOk = () => {
-    setIsModalVisible(false);
-  }; //
-
-  const handleCancel = () => {
-    setIsModalVisible(false);
-  };
+  // const [isModalVisible, setIsModalVisible] = useState(false);
+  // const handleOk = () => {
+  //   setIsModalVisible(false);
+  // };
+  // const handleCancel = () => {
+  //   setIsModalVisible(false);
+  // };
   return (
     <>
-      {isModalVisible && (
-        <Modal visible={true} onOk={handleOk} onCancel={handleCancel}>
+      {/* {props.isOpen && (
+        <Modal visible={true}>
+          <DaumPostcode onComplete={props.onCompleteAddressSearch} />
+        </Modal>
+      )} */}
+
+      {props.isModalVisible && (
+        <Modal
+          visible={true}
+          onOk={props.handleOk}
+          onCancel={props.handleCancel}
+        >
           <DaumPostcode onComplete={props.onCompleteAddressSearch} />
         </Modal>
       )}
@@ -97,8 +106,9 @@ export default function BoardWriteUI(props: IBoardWriteUIProps) {
                 ""
               }
             />
+
             {/* <SearchButton onClick={props.onClickAddressSearch}> */}
-            <SearchButton onClick={() => setIsModalVisible(true)}>
+            <SearchButton onClick={() => props.setIsModalVisible(true)}>
               우편번호 검색
             </SearchButton>
           </ZipcodeWrapper>

@@ -14,6 +14,7 @@ export const ImgBanner = styled.figure`
   background-size: cover;
   background-position: center center;
   position: relative;
+  /* top: 50px; */
 `;
 
 export const Box = styled.div`
@@ -26,6 +27,7 @@ export const Box = styled.div`
   z-index: 2;
   left: 60px;
   opacity: 93%;
+  top: 100px;
 `;
 
 export const Box2 = styled.div`
@@ -35,7 +37,7 @@ export const Box2 = styled.div`
   padding-left: 29px;
   background-color: pink;
   position: absolute;
-  z-index: 1;
+  z-index: 3;
   left: 180px;
   opacity: 93%;
 `;

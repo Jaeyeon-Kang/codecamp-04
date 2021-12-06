@@ -11,5 +11,10 @@ export default function MarketDetailContainer() {
     },
   });
 
-  return <MarketDetailPresenter data={data} />;
+  function onClickMarketList() {
+    router.push("/boards/market/list");
+  }
+  return (
+    <MarketDetailPresenter data={data} onClickMarketList={onClickMarketList} />
+  );
 }

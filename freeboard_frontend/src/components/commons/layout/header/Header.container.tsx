@@ -17,7 +17,7 @@ export default function Header() {
   };
 
   const onClickMarket = () => {
-    router.push(`/boards/market`);
+    router.push(`/boards/market/list`);
   };
 
   return (

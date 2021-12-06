@@ -8,6 +8,8 @@ import { IBoardWriteProps, IMyUpdateBoardInput } from "./BoardWrite.types";
 export default function BoardWrite(props: IBoardWriteProps) {
   const router = useRouter();
 
+  const [isModalVisible, setIsModalVisible] = useState(false);
+
   const [myWriter, setMyWriter] = useState("");
   const [myPassword, setMyPassword] = useState("");
   const [myTitle, setMyTitle] = useState("");
@@ -118,6 +120,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
     setAddress(data.address);
     setZipcode(data.zonecode);
     setIsOpen(false);
+    setIsModalVisible(false);
   }
 
   async function onClickSubmit() {
@@ -207,6 +210,13 @@ export default function BoardWrite(props: IBoardWriteProps) {
     }
   }, [props.data]);
 
+  const handleOk = () => {
+    setIsModalVisible(false);
+  };
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
+
   return (
     <BoardWriteUI
       myWriterError={myWriterError}
@@ -232,6 +242,10 @@ export default function BoardWrite(props: IBoardWriteProps) {
       address={address}
       addressDetail={addressDetail}
       fileUrls={fileUrls}
+      handleOk={handleOk}
+      handleCancel={handleCancel}
+      isModalVisible={isModalVisible}
+      setIsModalVisible={setIsModalVisible}
     />
   );
 }
