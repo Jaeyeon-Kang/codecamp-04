@@ -7,12 +7,20 @@ import {
   IQueryFetchBoardsArgs,
   IQuery,
 } from "../../../../commons/types/generated/types";
+import { useState } from "react";
 
-export default function BoardList() {
+export default function BoardList(props) {
   const router = useRouter();
+  const [search, setSearch] = useState("");
   const { data } = useQuery<Pick<IQuery, "fetchBoards">, IQueryFetchBoardsArgs>(
     FETCH_BOARDS
   );
+  const { data: searchData } = useQuery(FETCH_BOARDS, {
+    variables: {
+      search: router.query.myId,
+      page: 1,
+    },
+  });
   const { data: bestData } = useQuery<
     Pick<IQuery, "fetchBoardsOfTheBest">,
     IQueryFetchBoardsArgs
@@ -28,12 +36,28 @@ export default function BoardList() {
     router.push(`/boards/${event.target.id}`);
   }
 
+  const onChangeSearchInput = (event) => {
+    setSearch(event.target.value);
+  };
+
+  const onClickSearch = () => {
+    try {
+      router.push(`/boards/search/${search}`);
+    } catch (error) {
+      alert("에러!!!");
+    }
+  };
+
   return (
     <BoardListUI
       data={data}
+      searchData={searchData}
       onClickMoveToBoardNew={onClickMoveToBoardNew}
       onClickMoveToBoardDetail={onClickMoveToBoardDetail}
       bestData={bestData}
+      onChangeSearchInput={onChangeSearchInput}
+      onClickSearch={onClickSearch}
+      isSearch={props.isSearch}
     />
   );
 }

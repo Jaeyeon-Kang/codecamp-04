@@ -1,4 +1,4 @@
-import styled from "@emotion/styled"
+import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
   width: 1200px;
@@ -14,13 +14,13 @@ export const Wrapper = styled.div`
   align-items: center;
   border: none;
   box-shadow: 0px 0px 10px gray;
-`
+`;
 
 export const Title = styled.div`
   font-family: Arial, Helvetica, sans-serif;
   font-size: 36px;
   font-weight: bold;
-  color: blue
+  color: blue;
 `;
 
 export const ProductName = styled.input`
@@ -28,39 +28,38 @@ export const ProductName = styled.input`
   height: 52px;
   padding-left: 16px;
   border: 1px solid #bdbdbd;
-`
+`;
 
 export const ProductRemark = styled.input`
   width: 486px;
   height: 52px;
   padding-left: 16px;
   border: 1px solid #bdbdbd;
-`
+`;
 
-export const ProductContents= styled.input`
+export const ProductContents = styled.input`
   width: 486px;
   height: 52px;
   padding-left: 16px;
   border: 1px solid #bdbdbd;
-`
-export const ProductPrice= styled.input`
+`;
+export const ProductPrice = styled.input`
   width: 486px;
   height: 52px;
   padding-left: 16px;
   border: 1px solid #bdbdbd;
-`
+`;
 
-
-export const ErrorMessage= styled.div`
+export const ErrorMessage = styled.div`
   width: 486px;
   height: 52px;
   padding-left: 16px;
   color: red;
-`
+`;
 
 export const InputWrapper = styled.div`
-padding-top: 40px;
-`
+  padding-top: 40px;
+`;
 
 export const Label = styled.div`
   padding-bottom: 16px;

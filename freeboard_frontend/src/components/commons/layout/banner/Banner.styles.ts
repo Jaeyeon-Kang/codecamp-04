@@ -23,8 +23,20 @@ export const Box = styled.div`
   padding-left: 29px;
   background-color: white;
   position: absolute;
-  z-index: 1;
+  z-index: 2;
   left: 60px;
+  opacity: 93%;
+`;
+
+export const Box2 = styled.div`
+  width: 509px;
+  height: 483px;
+  padding-top: 100px;
+  padding-left: 29px;
+  background-color: pink;
+  position: absolute;
+  z-index: 1;
+  left: 180px;
   opacity: 93%;
 `;
 

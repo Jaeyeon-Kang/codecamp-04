@@ -1,6 +1,5 @@
-import MarketListPresenter from "./MarketList.presenter"
+import MarketListPresenter from "./MarketList.presenter";
 
-export default function MarketListContainer(){
-
-    return <MarketListPresenter />
+export default function MarketListContainer() {
+  return <MarketListPresenter />;
 }

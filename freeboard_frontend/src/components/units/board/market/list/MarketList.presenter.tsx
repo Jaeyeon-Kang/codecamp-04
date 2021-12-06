@@ -1,8 +1,3 @@
-// import {} from "./MarketList.styles"
-
-
-export default function MarketListPresenter(){
-
-
-    return()
+export default function MarketListPresenter() {
+  return;
 }

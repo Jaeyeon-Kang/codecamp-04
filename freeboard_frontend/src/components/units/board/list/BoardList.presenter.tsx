@@ -61,11 +61,13 @@ export default function BoardListUI(props) {
   }
   return (
     <Wrapper>
-      <Searchbars01
+      {/* <Searchbars01
         refetch={props.refetch}
         refetchBoardsCount={props.refetchBoardsCount}
         onChangeKeyword={props.onChangeKeyword}
-      />
+      /> */}
+      <input type="text" onChange={props.onChangeSearchInput} />
+      <button onClick={props.onClickSearch}>검색</button>
       <BestCommentWrapperTop>
         {props.bestData?.fetchBoardsOfTheBest.map((el) => (
           <BestCommentWrapper key={el._id}>
@@ -98,16 +100,36 @@ export default function BoardListUI(props) {
         <ColumnHeaderBasic>작성자</ColumnHeaderBasic>
         <ColumnHeaderBasic>날짜</ColumnHeaderBasic>
       </Row>
-      {data?.fetchBoards.map((el, index) => (
-        <Row key={el._id}>
-          <ColumnBasic>{index + 1}</ColumnBasic>
-          <ColumnTitle id={el._id} onClick={props.onClickMoveToBoardDetail}>
-            {el.title}
-          </ColumnTitle>
-          <ColumnBasic>{el.writer}</ColumnBasic>
-          <ColumnBasic>{getDate(el.createdAt)}</ColumnBasic>
-        </Row>
-      ))}
+
+      {!props.isSearch && (
+        <>
+          {data?.fetchBoards.map((el, index) => (
+            <Row key={el._id}>
+              <ColumnBasic>{index + 1}</ColumnBasic>
+              <ColumnTitle id={el._id} onClick={props.onClickMoveToBoardDetail}>
+                {el.title}
+              </ColumnTitle>
+              <ColumnBasic>{el.writer}</ColumnBasic>
+              <ColumnBasic>{getDate(el.createdAt)}</ColumnBasic>
+            </Row>
+          ))}
+        </>
+      )}
+      {props.isSearch && (
+        <>
+          {props.searchData?.fetchBoards?.map((el, index) => (
+            <Row key={el._id}>
+              <ColumnBasic>{index + 1}</ColumnBasic>
+              <ColumnTitle id={el._id} onClick={props.onClickMoveToBoardDetail}>
+                {el.title}
+              </ColumnTitle>
+              <ColumnBasic>{el.writer}</ColumnBasic>
+              <ColumnBasic>{getDate(el.createdAt)}</ColumnBasic>
+            </Row>
+          ))}
+        </>
+      )}
+
       <TableBottom />
       <PageNation>
         <NextPage onClick={onClickPrevPage}>이전페이지</NextPage>

@@ -18,6 +18,12 @@ import {
 
 export default function BoardDetail() {
   const router = useRouter();
+  const { data } = useQuery<Pick<IQuery, "fetchBoard">, IQueryFetchBoardArgs>(
+    FETCH_BOARD,
+    { variables: { boardId: String(router.query.boardId) } }
+  );
+  console.log(data);
+
   const [deleteBoard] = useMutation<
     Pick<IMutation, "deleteBoard">,
     IMutationDeleteBoardArgs
@@ -30,12 +36,6 @@ export default function BoardDetail() {
     Pick<IMutation, "dislikeBoard">,
     IMutationDislikeBoardArgs
   >(DISLIKE_BOARD);
-
-  const { data } = useQuery<Pick<IQuery, "fetchBoard">, IQueryFetchBoardArgs>(
-    FETCH_BOARD,
-    { variables: { boardId: String(router.query.boardId) } }
-  );
-  console.log(data);
 
   function onClickMoveToList() {
     router.push("/boards");
