@@ -2,7 +2,10 @@ import MarketListPresenter from "./MarketList.presenter";
 import { FETCH_USED_ITEMS } from "./MarketList.queries";
 import { useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
-import { IBoard } from "../../../../../commons/types/generated/types";
+import {
+  IBoard,
+  IUseditem,
+} from "../../../../../commons/types/generated/types";
 
 export default function MarketListContainer() {
   const router = useRouter();
@@ -14,19 +17,24 @@ export default function MarketListContainer() {
     router.push(`/boards/market/${event.target.id}`);
   }
 
-  const onClickBasket = (el: IBoard) => {
+  function onClickMarketWrite() {
+    router.push(`/boards/market/write`);
+  }
+
+  const onClickBasket = (el: IUseditem) => () => {
     const baskets = JSON.parse(localStorage.getItem("basket") || "[]");
 
-    let isExists = false;
-    baskets.forEach((basketEl: IBoard) => {
-      if (el._id === basketEl._id) isExists = true;
-    });
-    if (isExists) {
-      alert("이미 장바구니에 담으셨습니다");
-      return;
-    }
-    const { __typename, ...newEl } = el;
-    baskets.push(newEl);
+    // let isExists = false;
+    // baskets.forEach((basketEl: IUseditem) => {
+    //   if (el._id === basketEl._id) isExists = true;
+    // });
+    // if (isExists) {
+    //   alert("이미 장바구니에 담으셨습니다");
+    //   return;
+    // }
+    // const { __typename, ...newEl } = el;
+    // baskets.push(newEl);
+    baskets.push(el);
     localStorage.setItem("basket", JSON.stringify(baskets));
     router.push(`/boards/market/basket`);
   };
@@ -36,6 +44,7 @@ export default function MarketListContainer() {
       data={data}
       onClickMarketDetail={onClickMarketDetail}
       onClickBasket={onClickBasket}
+      onClickMarketWrite={onClickMarketWrite}
     />
   );
 }

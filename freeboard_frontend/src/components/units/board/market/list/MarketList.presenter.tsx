@@ -7,6 +7,9 @@ import {
   ColumnBasic,
   ColumnName,
   Basket,
+  Footer,
+  Button,
+  PencilIcon,
 } from "./MarketList.styles";
 
 export default function MarketListPresenter(props) {
@@ -29,10 +32,16 @@ export default function MarketListPresenter(props) {
             <ColumnBasic>{el.price}</ColumnBasic>
             <ColumnBasic>{getDate(el.createdAt)}</ColumnBasic>
             <ColumnBasic>
-              <Basket onClick={props.onClickBasket}>추가하기</Basket>
+              <Basket onClick={props.onClickBasket(el)}>추가하기</Basket>
             </ColumnBasic>
           </Row>
         ))}
+        <Footer>
+          <Button onClick={props.onClickMarketWrite}>
+            <PencilIcon src="/images/board/list/write.png" />
+            게시물 등록하기
+          </Button>
+        </Footer>
       </Wrapper>
     </>
   );
