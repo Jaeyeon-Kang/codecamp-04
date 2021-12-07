@@ -29,8 +29,8 @@ export const InputWrapper = styled.div`
 
 export const Label = styled.div`
   padding-bottom: 16px;
-  font-size: 16px;
-  font-weight: 500;
+  font-size: 18px;
+  font-weight: 800;
 `;
 
 export const ProductName = styled.div`

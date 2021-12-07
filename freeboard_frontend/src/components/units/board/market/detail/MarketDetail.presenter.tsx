@@ -9,6 +9,7 @@ import {
   ProductPrice,
   Button,
 } from "./MarketDetail.styles";
+import Dompurify from "dompurify";
 
 export default function MarketDetailPresenter(props) {
   return (
@@ -28,7 +29,17 @@ export default function MarketDetailPresenter(props) {
       </InputWrapper>
       <InputWrapper>
         <Label>상품설명</Label>
-        <ProductContents>{props.data?.fetchUseditem?.contents}</ProductContents>
+        {process.browser ? (
+          <ProductContents
+            dangerouslySetInnerHTML={{
+              __html: Dompurify.sanitize(
+                String(props.data?.fetchUseditem?.contents)
+              ),
+            }}
+          />
+        ) : (
+          <ProductContents />
+        )}
       </InputWrapper>
 
       <Button onClick={props.onClickMarketList}>목록으로</Button>
