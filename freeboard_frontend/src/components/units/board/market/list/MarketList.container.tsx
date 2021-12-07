@@ -3,14 +3,17 @@ import { FETCH_USED_ITEMS } from "./MarketList.queries";
 import { useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 import {
-  IBoard,
+  IQuery,
+  IQueryFetchUseditemArgs,
   IUseditem,
 } from "../../../../../commons/types/generated/types";
 
 export default function MarketListContainer() {
   const router = useRouter();
-  const { data } = useQuery(FETCH_USED_ITEMS);
-
+  const { data, fetchMore } = useQuery<
+    Pick<IQuery, "fetchUseditems">,
+    IQueryFetchUseditemArgs
+  >(FETCH_USED_ITEMS);
   console.log(data);
 
   function onClickMarketDetail(event) {
@@ -19,6 +22,26 @@ export default function MarketListContainer() {
 
   function onClickMarketWrite() {
     router.push(`/boards/market/write`);
+  }
+
+  function onLoadMore() {
+    if (!data) return;
+
+    fetchMore({
+      variables: { page: Math.ceil(data?.fetchUseditems.length / 10) + 1 },
+      updateQuery: (prev, { fetchMoreResult }) => {
+        if (!fetchMoreResult?.fetchUseditems)
+          return {
+            fetchUseditems: [...prev.fetchUseditems],
+          };
+        return {
+          fetchUseditems: [
+            ...prev.fetchUseditems,
+            ...fetchMoreResult?.fetchUseditems,
+          ],
+        };
+      },
+    });
   }
 
   const onClickBasket = (el: IUseditem) => () => {
@@ -45,6 +68,7 @@ export default function MarketListContainer() {
       onClickMarketDetail={onClickMarketDetail}
       onClickBasket={onClickBasket}
       onClickMarketWrite={onClickMarketWrite}
+      onLoadMore={onLoadMore}
     />
   );
 }

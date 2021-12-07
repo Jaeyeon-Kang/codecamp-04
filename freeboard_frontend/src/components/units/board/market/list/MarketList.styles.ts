@@ -5,6 +5,15 @@ export const Wrapper = styled.div`
   margin: 100px;
 `;
 
+export const Title = styled.div`
+  font-size: 40px;
+  font-weight: 700;
+  color: blue;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 50px;
+`;
+
 export const Row = styled.div`
   display: flex;
   flex-direction: row;
