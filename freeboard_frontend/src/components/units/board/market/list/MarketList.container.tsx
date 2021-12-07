@@ -24,17 +24,17 @@ export default function MarketListContainer() {
   const onClickBasket = (el: IUseditem) => () => {
     const baskets = JSON.parse(localStorage.getItem("basket") || "[]");
 
-    // let isExists = false;
-    // baskets.forEach((basketEl: IUseditem) => {
-    //   if (el._id === basketEl._id) isExists = true;
-    // });
-    // if (isExists) {
-    //   alert("이미 장바구니에 담으셨습니다");
-    //   return;
-    // }
-    // const { __typename, ...newEl } = el;
-    // baskets.push(newEl);
-    baskets.push(el);
+    let isExists = false;
+    baskets.forEach((basketEl: IUseditem) => {
+      if (el._id === basketEl._id) isExists = true;
+    });
+    if (isExists) {
+      alert("이미 장바구니에 담으셨습니다");
+      return;
+    }
+    const { __typename, ...newEl } = el;
+    baskets.push(newEl);
+    // baskets.push(el);
     localStorage.setItem("basket", JSON.stringify(baskets));
     router.push(`/boards/market/basket`);
   };

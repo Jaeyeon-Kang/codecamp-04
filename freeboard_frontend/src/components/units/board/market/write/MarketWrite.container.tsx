@@ -15,12 +15,13 @@ export default function MarketWriteContainer() {
     resolver: yupResolver(schema),
   });
   const onClickRegister = async (data: FormValues) => {
+    console.log(data);
     try {
       const result = await createUseditem({
         variables: {
           createUseditemInput: {
             name: data.productName,
-            contents: data.productContents,
+            contents: data.contents,
             price: data.productPrice,
             remarks: data.productRemark,
           },

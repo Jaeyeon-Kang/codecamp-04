@@ -37,7 +37,7 @@ export const Box2 = styled.div`
   padding-left: 29px;
   background-color: pink;
   position: absolute;
-  z-index: 3;
+  z-index: 1;
   left: 180px;
   opacity: 93%;
 `;
