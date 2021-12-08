@@ -1,6 +1,7 @@
 
 import Head from "next/head";
 import {Wrapper,
+  LoginInfo,
   PointButton,
   Row,
   ColumnHeaderBasic,
@@ -16,6 +17,11 @@ export default function MyPagePresenter(props) {
   return (
     
     <Wrapper>
+      <LoginInfo>
+        <Label>내 정보</Label>
+       <div> 이메일: {props.loginData?.fetchUserLoggedIn?.email}</div>
+       <div> 포인트: {props.loginData?.fetchUserLoggedIn?.userPoint?.amount}</div>
+      </LoginInfo>
            <Head>
          <script
           type="text/javascript"
