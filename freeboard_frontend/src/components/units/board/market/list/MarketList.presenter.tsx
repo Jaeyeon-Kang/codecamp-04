@@ -19,6 +19,10 @@ export default function MarketListPresenter(props) {
     <>
       <Wrapper>
         <Title>상품목록</Title>
+        <Button onClick={props.onClickMarketWrite}>
+          <PencilIcon src="/images/board/list/write.png" />
+          게시물 등록하기
+        </Button>
         <Row>
           <ColumnHeaderBasic>번호</ColumnHeaderBasic>
           <ColumnHeaderName>상품명</ColumnHeaderName>
@@ -45,12 +49,7 @@ export default function MarketListPresenter(props) {
               </ColumnBasic>
             </Row>
           ))}
-          <Footer>
-            <Button onClick={props.onClickMarketWrite}>
-              <PencilIcon src="/images/board/list/write.png" />
-              게시물 등록하기
-            </Button>
-          </Footer>
+          <Footer></Footer>
         </InfiniteScroll>
       </Wrapper>
     </>
