@@ -1,11 +1,14 @@
 import { useMutation, useQuery } from "@apollo/client";
 import MyPagePresenter from "../mypage/MyPage.presenter";
-import { CREATE_POINT_TRANSACTION_OF_LOADING, FETCH_USED_ITEMS_I_BOUGHT } from "./MyPage.queries";
+import { CREATE_POINT_TRANSACTION_OF_LOADING, FETCH_USED_ITEMS_I_BOUGHT,
+  FETCH_USER_LOGGED_IN } from "./MyPage.queries";
 
 export default function MyPageContainer() {
   const [createPointTransactionOfLoading]=useMutation(CREATE_POINT_TRANSACTION_OF_LOADING)
   const {data}=useQuery(FETCH_USED_ITEMS_I_BOUGHT)
+  const {data: loginData}=useQuery(FETCH_USER_LOGGED_IN)
 
+  console.log(loginData)
 
   function onClickPointButton() {
     const IMP = window.IMP; // 생략 가능
@@ -53,6 +56,7 @@ export default function MyPageContainer() {
     <MyPagePresenter
     onClickPointButton={onClickPointButton}
     data={data}
+    loginData={loginData}
     />
   );
   

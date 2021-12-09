@@ -22,3 +22,13 @@ export const FETCH_USED_ITEMS_I_BOUGHT=gql`
  }
 }
 `
+
+export const FETCH_USER_LOGGED_IN=gql`
+ query fetchUserLoggedIn{
+   fetchUserLoggedIn{
+       _id
+      email
+      userPoint{amount}
+ }
+}
+`

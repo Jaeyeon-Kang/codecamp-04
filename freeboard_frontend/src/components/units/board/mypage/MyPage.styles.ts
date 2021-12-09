@@ -9,6 +9,16 @@ export const Wrapper = styled.div`
   align-items: center;
 `;
 
+
+export const LoginInfo= styled.div`
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+margin-bottom: 100px;
+
+`
+
 export const PointButton = styled.button`
 width: 300px;
 height: 100px;
@@ -17,11 +27,11 @@ color: steelblue;
 font-family: Arial, Helvetica, sans-serif;
 font-weight: 700;
 margin-bottom: 100px;
-
-
 `
 
+
 export const FetchBoughtItem = styled.div`
+
 display: flex;
 flex-direction: center;
 `

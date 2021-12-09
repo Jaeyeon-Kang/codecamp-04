@@ -235,9 +235,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
       onCompleteAddressSearch={onCompleteAddressSearch}
       onChangeFileUrls={onChangeFileUrls}
       isActive={isActive}
-      isEdit={props.isEdit}
       isOpen={isOpen}
-      data={props.data}
       zipcode={zipcode}
       address={address}
       addressDetail={addressDetail}
@@ -246,6 +244,8 @@ export default function BoardWrite(props: IBoardWriteProps) {
       handleCancel={handleCancel}
       isModalVisible={isModalVisible}
       setIsModalVisible={setIsModalVisible}
+      isEdit={props.isEdit}
+      data={props.data}
     />
   );
 }

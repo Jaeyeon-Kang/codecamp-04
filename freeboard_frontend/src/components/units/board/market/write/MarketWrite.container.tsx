@@ -1,15 +1,18 @@
  import { useMutation } from "@apollo/client";
 import MarketWritePresenter from "./MarketWrite.presenter";
-import { CREATE_USED_ITEM } from "./MarketWrite.queries";
+import { CREATE_USED_ITEM, UPDATE_USED_ITEM } from "./MarketWrite.queries";
 import { FormValues } from "./MarketWrite.types";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup/dist/yup";
 import { schema } from "./MarketWrite.validations";
 import { useRouter } from "next/router";
 
-export default function MarketWriteContainer() {
+export default function MarketWriteContainer(props) {
   const router = useRouter();
   const [createUseditem] = useMutation(CREATE_USED_ITEM);
+  const [updateUseditem] = useMutation(UPDATE_USED_ITEM);
+
+
   const { handleSubmit, register, formState } = useForm({
     mode: "onChange",
     resolver: yupResolver(schema),
@@ -33,12 +36,32 @@ export default function MarketWriteContainer() {
     }
   };
 
+  
+
+  async function onClickUpdate() {
+    if (
+      !data.productNam &&
+      !data.contents &&
+      !data.productPrice &&
+      !data.productRemark
+    ) {
+      alert("수정된 내용이 없습니다.");
+      return;
+    }
+
+  }
+
+
   return (
     <MarketWritePresenter
       handleSubmit={handleSubmit}
       register={register}
       formState={formState}
       onClickRegister={onClickRegister}
+      onClickUpdate={onClickUpdate}
+      updateData={props.updateData}
+      isEdit={props.isEdit}
+
     />
   );
 }

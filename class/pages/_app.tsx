@@ -18,6 +18,7 @@ import {
   SetStateAction,
 } from "react";
 import { initializeApp } from "firebase/app";
+// import Head from "next/head";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBWyb0jr4zoqZ3Z2nly7PIyLo1Wji4NHq4",
@@ -72,14 +73,23 @@ function MyApp({ Component, pageProps }: AppProps) {
   });
 
   return (
-    <GlobalContext.Provider value={myValue}>
-      <ApolloProvider client={client}>
-        <Global styles={globalStyles} />
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
-      </ApolloProvider>
-    </GlobalContext.Provider>
+    <>
+    {/* 모든 페이지에서 카카오맵을 다운로드 받으므로 비효율적임 */}
+      {/* <Head>
+        <script
+          type="text/javascript"
+          src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c1573b07307af25f6bb7415ff47e92fc"
+        ></script>
+      </Head> */}
+      <GlobalContext.Provider value={myValue}>
+        <ApolloProvider client={client}>
+          <Global styles={globalStyles} />
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </ApolloProvider>
+      </GlobalContext.Provider>
+    </>
   );
 }
 

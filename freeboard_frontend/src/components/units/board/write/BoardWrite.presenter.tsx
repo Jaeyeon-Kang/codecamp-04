@@ -27,23 +27,12 @@ import { DaumPostcode } from "react-daum-postcode";
 
 import Uploads01 from "../../../commons/uploads/01/Uploads01.container";
 import { v4 as uuidv4 } from "uuid";
-import { useState } from "react";
+
 
 export default function BoardWriteUI(props: IBoardWriteUIProps) {
-  // const [isModalVisible, setIsModalVisible] = useState(false);
-  // const handleOk = () => {
-  //   setIsModalVisible(false);
-  // };
-  // const handleCancel = () => {
-  //   setIsModalVisible(false);
-  // };
+
   return (
     <>
-      {/* {props.isOpen && (
-        <Modal visible={true}>
-          <DaumPostcode onComplete={props.onCompleteAddressSearch} />
-        </Modal>
-      )} */}
 
       {props.isModalVisible && (
         <Modal
@@ -106,8 +95,6 @@ export default function BoardWriteUI(props: IBoardWriteUIProps) {
                 ""
               }
             />
-
-            {/* <SearchButton onClick={props.onClickAddressSearch}> */}
             <SearchButton onClick={() => props.setIsModalVisible(true)}>
               우편번호 검색
             </SearchButton>
