@@ -8,12 +8,20 @@ import {
   ProductRemark,
   ProductPrice,
   ErrorMessage,
+  ZipcodeWrapper,
+  Zipcode,
+  SearchButton,
+  Address,
+  Youtube,
+  ImageWrapper,
+  Uploads01,
 } from "./MarketWrite.styles";
 import dynamic from "next/dynamic";
 import "react-quill/dist/quill.snow.css";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup/dist/yup";
 import { schema } from "./MarketWrite.validations";
+import { v4 as uuidv4 } from "uuid";
 
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
@@ -77,6 +85,58 @@ export default function MarketWritePresenter(props) {
           />
           <ErrorMessage>{formState.errors.productPrice?.message}</ErrorMessage>
         </InputWrapper>
+        <InputWrapper>
+          <Label>주소</Label>
+          <ZipcodeWrapper>
+            <Zipcode
+              placeholder="07250"
+              readOnly
+              value={
+                props.zipcode ||
+                props.data?.fetchBoard.boardAddress?.zipcode ||
+                ""
+              }
+            />
+            <SearchButton onClick={() => props.setIsModalVisible(true)}>
+              우편번호 검색
+            </SearchButton>
+          </ZipcodeWrapper>
+          <Address
+            readOnly
+            value={
+              props.address ||
+              props.data?.fetchBoard.boardAddress?.address ||
+              ""
+            }
+          />
+          <Address
+            onChange={props.onChangeAddressDetail}
+            defaultValue={
+              props.data?.fetchBoard.boardAddress?.addressDetail || ""
+            }
+          />
+        </InputWrapper>
+        <InputWrapper>
+          <Label>유튜브</Label>
+          <Youtube
+            placeholder="링크를 복사해주세요."
+            onChange={props.onChangeMyYoutubeUrl}
+            defaultValue={props.data?.fetchBoard.youtubeUrl || ""}
+          />
+        </InputWrapper>
+        <ImageWrapper>
+          <Label>사진첨부</Label>
+          {props.fileUrls.map((el, index) => (
+            <Uploads01
+              key={uuidv4()}
+              index={index}
+              fileUrl={el}
+              defaultFileUrl={props.data?.fetchBoard.images?.[index]}
+              onChangeFileUrls={props.onChangeFileUrls}
+            />
+            // uploads01은 따로 만들고 import하는건데 일단 emotion으로 줌. 나중에 boardwrite참고
+          ))}
+        </ImageWrapper>
         <Button01
           type="submit"
           name={props.isEdit ? "수정하기" : "등록하기"}

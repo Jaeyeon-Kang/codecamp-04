@@ -66,3 +66,49 @@ export const Label = styled.div`
   font-size: 16px;
   font-weight: 500;
 `;
+
+export const ZipcodeWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
+export const Zipcode = styled.input`
+  width: 77px;
+  height: 52px;
+  padding-left: 16px;
+  border: 1px solid #bdbdbd;
+`;
+
+export const SearchButton = styled.button`
+  width: 124px;
+  height: 52px;
+  margin-left: 16px;
+  background-color: black;
+  cursor: pointer;
+  color: white;
+`;
+
+export const Address = styled.input`
+  width: 996px;
+  height: 52px;
+  margin-top: 16px;
+  padding-left: 16px;
+  border: 1px solid #bdbdbd;
+`;
+
+export const Youtube = styled.input`
+  width: 996px;
+  height: 52px;
+  padding-left: 16px;
+  border: 1px solid #bdbdbd;
+`;
+
+export const ImageWrapper = styled.div`
+  width: 996px;
+  padding-top: 40px;
+`;
+
+export const Uploads01 = styled.div`
+  width: 996px;
+  padding-top: 40px;
+`;
