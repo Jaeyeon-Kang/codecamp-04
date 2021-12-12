@@ -40,10 +40,15 @@ export default function MarketWriteContainer(props) {
       const result = await updateUseditem({
         variables: {
           useditemId: router.query.myId,
-          updateUseditemInput: {},
+          updateUseditemInput: {
+            name: data.productName,
+            contents: data.contents,
+            price: data.productPrice,
+            remarks: data.productRemark,
+          },
         },
       });
-      router.push(`/boards/${router.query.myId}`);
+      router.push(`/boards/market/${router.query.myId}`);
     } catch (error) {
       alert(error.message);
     }

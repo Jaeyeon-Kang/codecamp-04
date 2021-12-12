@@ -1,6 +1,10 @@
 import MarketDetailPresenter from "./MarketDetail.presenter";
 import { useQuery, useMutation } from "@apollo/client";
-import { FETCH_USED_ITEM, CREATE_POINT_TRANSACTION_OF_BUYING_AND_SELLING,DELETE_USED_ITEM  } from "./MarketDetail.queries";
+import {
+  FETCH_USED_ITEM,
+  CREATE_POINT_TRANSACTION_OF_BUYING_AND_SELLING,
+  DELETE_USED_ITEM,
+} from "./MarketDetail.queries";
 import { useRouter } from "next/router";
 
 import {
@@ -18,30 +22,30 @@ export default function MarketDetailContainer() {
       useditemId: router.query.myId,
     },
   });
-  const [createPointTransactionOfBuyingAndSelling] = useMutation(CREATE_POINT_TRANSACTION_OF_BUYING_AND_SELLING)
+  const [createPointTransactionOfBuyingAndSelling] = useMutation(
+    CREATE_POINT_TRANSACTION_OF_BUYING_AND_SELLING
+  );
 
-  const [deleteUseditem] = useMutation(DELETE_USED_ITEM)
-
+  const [deleteUseditem] = useMutation(DELETE_USED_ITEM);
 
   function onClickMarketList() {
     router.push("/boards/market/list");
   }
 
   const onClickPurchase = async () => {
-    try{
+    try {
       const result = await createPointTransactionOfBuyingAndSelling({
-        variables:{
-          useritemId: router.query.myId
-        }
-      }) 
-      console.log(result)
-      alert("구매에 성공하셨습니다")
-      router.push("/boards/mypage")
-    } catch(error) {
-      alert(error.message)
+        variables: {
+          useritemId: router.query.myId,
+        },
+      });
+      console.log(result);
+      alert("구매에 성공하셨습니다");
+      router.push("/boards/mypage");
+    } catch (error) {
+      alert(error.message);
     }
-  } 
-
+  };
 
   async function onClickDelete() {
     try {
@@ -55,11 +59,17 @@ export default function MarketDetailContainer() {
     }
   }
 
-
+  async function onClickMarketUpdate() {
+    router.push(`/boards/market/${router.query.myId}/edit`);
+  }
 
   return (
-    <MarketDetailPresenter data={data} onClickMarketList={onClickMarketList} 
-    onClickPurchase={onClickPurchase}
-    onClickDelete={onClickDelete}/>
+    <MarketDetailPresenter
+      data={data}
+      onClickMarketList={onClickMarketList}
+      onClickPurchase={onClickPurchase}
+      onClickDelete={onClickDelete}
+      onClickMarketUpdate={onClickMarketUpdate}
+    />
   );
 }

@@ -29,7 +29,11 @@ export default function MarketWritePresenter(props) {
 
   return (
     // <form onSubmit={handleSubmit(props.onClickRegister)}>
-    <form onSubmit={handleSubmit(props.isEdit ? props.onClickUpdate : props.onClickRegister)}>
+    <form
+      onSubmit={handleSubmit(
+        props.isEdit ? props.onClickUpdate : props.onClickRegister
+      )}
+    >
       <Wrapper>
         <Title>{props.isEdit ? "상품수정하기" : "상품등록하기"}</Title>
         <InputWrapper>
@@ -38,35 +42,46 @@ export default function MarketWritePresenter(props) {
             type="text"
             placeholder="상품명"
             {...register("productName")}
-            readOnly={Boolean(props.updateData?.fetchUseditem.name)}
-            defaultValue={props.updateData?.fetchUseditem.name || ""}
+            // onChange={props.updateData}
+            defaultValue={props.updateData?.fetchUseditem?.name || ""}
           />
           <ErrorMessage>{formState.errors.productName?.message}</ErrorMessage>
         </InputWrapper>
         <InputWrapper>
           <Label>한줄요약</Label>
-          <ProductRemark type="text" {...register("productRemark")} 
-            readOnly={Boolean(props.updateData?.fetchUseditem.remarks)}
-            defaultValue={props.updateData?.fetchUseditem.remarks || ""} 
+          <ProductRemark
+            type="text"
+            {...register("productRemark")}
+            // readOnly={Boolean(props.updateData?.fetchUseditem.remarks)}
+            defaultValue={props.updateData?.fetchUseditem.remarks || ""}
           />
           <ErrorMessage>{formState.errors.productRemark?.message}</ErrorMessage>
         </InputWrapper>
         <InputWrapper>
           <Label>상품설명</Label>
-          <ReactQuill onChange={handleChange}
+          <ReactQuill
+            onChange={handleChange}
             // readOnly={Boolean(props.updateData?.fetchUseditem.contents)}
-            // defaultValue={props.updateData?.fetchUseditem.contents || ""} />
-            />
+            defaultValue={props.updateData?.fetchUseditem.contents || ""}
+          />
+
           <ErrorMessage>{formState.errors.contents?.message}</ErrorMessage>
         </InputWrapper>
         <InputWrapper>
           <Label>가격</Label>
-          <ProductPrice type="text" {...register("productPrice")} 
-          readOnly={Boolean(props.updateData?.fetchUseditem.price)}
-          defaultValue={props.updateData?.fetchUseditem.price || ""} />
+          <ProductPrice
+            type="text"
+            {...register("productPrice")}
+            // readOnly={Boolean(props.updateData?.fetchUseditem.price)}
+            defaultValue={props.updateData?.fetchUseditem.price || ""}
+          />
           <ErrorMessage>{formState.errors.productPrice?.message}</ErrorMessage>
         </InputWrapper>
-        <Button01 type="submit" name={props.isEdit ? "수정하기" : "등록하기"} isValid={formState.isValid} />
+        <Button01
+          type="submit"
+          name={props.isEdit ? "수정하기" : "등록하기"}
+          isValid={formState.isValid}
+        />
       </Wrapper>
     </form>
   );
