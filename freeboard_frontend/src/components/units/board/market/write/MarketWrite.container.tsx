@@ -54,43 +54,43 @@ export default function MarketWriteContainer(props) {
     }
   };
 
-  function onChangeMyYoutubeUrl(event: ChangeEvent<HTMLInputElement>) {
-    setYoutubeUrl(event.target.value);
-  }
+  // function onChangeMyYoutubeUrl(event: ChangeEvent<HTMLInputElement>) {
+  //   setYoutubeUrl(event.target.value);
+  // }
 
-  function onChangeAddressDetail(event: ChangeEvent<HTMLInputElement>) {
-    setAddressDetail(event.target.value);
-  }
+  // function onChangeAddressDetail(event: ChangeEvent<HTMLInputElement>) {
+  //   setAddressDetail(event.target.value);
+  // }
 
-  function onClickAddressSearch() {
-    setIsOpen(true);
-  }
+  // function onClickAddressSearch() {
+  //   setIsOpen(true);
+  // }
 
-  function onCompleteAddressSearch(data: any) {
-    setAddress(data.address);
-    setZipcode(data.zonecode);
-    setIsOpen(false);
-    setIsModalVisible(false);
-  }
+  // function onCompleteAddressSearch(data: any) {
+  //   setAddress(data.address);
+  //   setZipcode(data.zonecode);
+  //   setIsOpen(false);
+  //   setIsModalVisible(false);
+  // }
 
-  function onChangeFileUrls(fileUrl: string, index: number) {
-    const newFileUrls = [...fileUrls];
-    newFileUrls[index] = fileUrl;
-    setFileUrls(newFileUrls);
-  }
+  // function onChangeFileUrls(fileUrl: string, index: number) {
+  //   const newFileUrls = [...fileUrls];
+  //   newFileUrls[index] = fileUrl;
+  //   setFileUrls(newFileUrls);
+  // }
 
-  useEffect(() => {
-    if (props.data?.fetchBoard.images?.length) {
-      setFileUrls([...props.data?.fetchBoard.images]);
-    }
-  }, [props.data]);
+  // useEffect(() => {
+  //   if (props.data?.fetchBoard.images?.length) {
+  //     setFileUrls([...props.data?.fetchBoard.images]);
+  //   }
+  // }, [props.data]);
 
-  const handleOk = () => {
-    setIsModalVisible(false);
-  };
-  const handleCancel = () => {
-    setIsModalVisible(false);
-  };
+  // const handleOk = () => {
+  //   setIsModalVisible(false);
+  // };
+  // const handleCancel = () => {
+  //   setIsModalVisible(false);
+  // };
 
   return (
     <MarketWritePresenter
@@ -101,21 +101,21 @@ export default function MarketWriteContainer(props) {
       onClickUpdate={onClickUpdate}
       updateData={props.updateData}
       isEdit={props.isEdit}
-      onChangeMyYoutubeUrl={onChangeMyYoutubeUrl}
-      onChangeAddressDetail={onChangeAddressDetail}
-      onClickAddressSearch={onClickAddressSearch}
-      onCompleteAddressSearch={onCompleteAddressSearch}
-      onChangeFileUrls={onChangeFileUrls}
-      isActive={isActive}
-      isOpen={isOpen}
-      zipcode={zipcode}
-      address={address}
-      addressDetail={addressDetail}
-      fileUrls={fileUrls}
-      handleOk={handleOk}
-      handleCancel={handleCancel}
-      isModalVisible={isModalVisible}
-      setIsModalVisible={setIsModalVisible}
+      // onChangeMyYoutubeUrl={onChangeMyYoutubeUrl}
+      // onChangeAddressDetail={onChangeAddressDetail}
+      // onClickAddressSearch={onClickAddressSearch}
+      // onCompleteAddressSearch={onCompleteAddressSearch}
+      // onChangeFileUrls={onChangeFileUrls}
+      // isActive={isActive}
+      // isOpen={isOpen}
+      // zipcode={zipcode}
+      // address={address}
+      // addressDetail={addressDetail}
+      // fileUrls={fileUrls}
+      // handleOk={handleOk}
+      // handleCancel={handleCancel}
+      // isModalVisible={isModalVisible}
+      // setIsModalVisible={setIsModalVisible}
     />
   );
 }

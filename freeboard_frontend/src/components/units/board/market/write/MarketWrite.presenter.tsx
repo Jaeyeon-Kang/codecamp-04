@@ -20,7 +20,7 @@ import dynamic from "next/dynamic";
 import "react-quill/dist/quill.snow.css";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup/dist/yup";
-import { schema } from "./MarketWrite.validations";
+import { schemaEdit, schemaNew } from "./MarketWrite.validations";
 import { v4 as uuidv4 } from "uuid";
 
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
@@ -28,7 +28,7 @@ const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 export default function MarketWritePresenter(props) {
   const { handleSubmit, register, setValue, trigger, formState } = useForm({
     mode: "onChange",
-    resolver: yupResolver(schema),
+    resolver: yupResolver(props.isEdit ? schemaEdit : schemaNew),
   });
   function handleChange(value: string) {
     setValue("contents", value === "<p><br></p>" ? "" : value);
@@ -126,7 +126,7 @@ export default function MarketWritePresenter(props) {
         </InputWrapper>
         <ImageWrapper>
           <Label>사진첨부</Label>
-          {props.fileUrls.map((el, index) => (
+          {/* {props.fileUrls.map((el, index) => (
             <Uploads01
               key={uuidv4()}
               index={index}
@@ -135,7 +135,7 @@ export default function MarketWritePresenter(props) {
               onChangeFileUrls={props.onChangeFileUrls}
             />
             // uploads01은 따로 만들고 import하는건데 일단 emotion으로 줌. 나중에 boardwrite참고
-          ))}
+          ))} */}
         </ImageWrapper>
         <Button01
           type="submit"
