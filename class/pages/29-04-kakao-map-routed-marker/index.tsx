@@ -24,46 +24,38 @@ export default function KakaoMapPage() {
           level: 3, //지도의 레벨(확대, 축소 정도)
         };
 
-        const map = new window.kakao.maps.Map(container, options);
+        const map = new window.kakao.maps.Map(container, options); // 지도 생성 및 객체 리턴
 
-        // // 마커가 표시될 위치입니다
-        // const markerPosition = new window.kakao.maps.LatLng(
-        //   33.450701,
-        //   126.570667
-        // );
+        // 주소-좌표 변환 객체를 생성합니다
+        const geocoder = new window.kakao.maps.services.Geocoder();
 
-        // // 마커를 생성합니다
-        // const marker = new window.kakao.maps.Marker({
-        //   position: markerPosition,
-        // });
+        // 주소로 좌표를 검색합니다
+        geocoder.addressSearch(
+          "서울 구로구 디지털로 300",
+          function (result, status) {
+            // 정상적으로 검색이 완료됐으면
+            if (status === window.kakao.maps.services.Status.OK) {
+              const coords = new window.kakao.maps.LatLng(
+                result[0].y,
+                result[0].x
+              );
 
-        // 지도를 클릭한 위치에 표출할 마커입니다
-        const  marker = new window.kakao.maps.Marker({
-          // 지도 중심좌표에 마커를 생성합니다
-          position: map.getCenter(),
-        });
-        
-        // // 지도에 마커를 표시합니다
-        // marker.setMap(map);
+              // 결과값으로 받은 위치를 마커로 표시합니다
+              const marker = new window.kakao.maps.Marker({
+                map: map,
+                position: coords,
+              });
 
-        // 마커가 지도 위에 표시되도록 설정합니다
-        marker.setMap(map);
+              // 인포윈도우로 장소에 대한 설명을 표시합니다
+              const infowindow = new window.kakao.maps.InfoWindow({
+                content:
+                  '<div style="width:150px;text-align:center;padding:6px 0;">직거래 장소</div>',
+              });
+              infowindow.open(map, marker);
 
-        window.kakao.maps.event.addListener(
-          map,
-          "click",
-          function (mouseEvent) {
-            // 클릭한 위도, 경도 정보를 가져옵니다
-            const latlng = mouseEvent.latLng;
-
-            // 마커 위치를 클릭한 위치로 옮깁니다
-            marker.setPosition(latlng);
-
-            // const message = "클릭한 위치의 위도는 " + latlng.getLat() + " 이고, ";
-            // message += "경도는 " + latlng.getLng() + " 입니다";
-
-            // const resultDiv = document.getElementById("clickLatlng");
-            // resultDiv.innerHTML = message;
+              // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+              map.setCenter(coords);
+            }
           }
         );
       });

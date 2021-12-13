@@ -12,9 +12,7 @@ import {
   Zipcode,
   SearchButton,
   Address,
-  Youtube,
   ImageWrapper,
-  Uploads01,
 } from "./MarketWrite.styles";
 import dynamic from "next/dynamic";
 import "react-quill/dist/quill.snow.css";
@@ -107,7 +105,10 @@ export default function MarketWritePresenter(props) {
                 ""
               }
             />
-            <SearchButton onClick={() => props.setIsModalVisible(true)}>
+            <SearchButton
+              type="button"
+              onClick={() => props.setIsModalVisible(true)}
+            >
               우편번호 검색
             </SearchButton>
           </ZipcodeWrapper>

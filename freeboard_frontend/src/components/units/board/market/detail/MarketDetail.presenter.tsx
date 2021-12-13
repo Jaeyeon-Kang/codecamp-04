@@ -10,14 +10,7 @@ import {
   Button,
 } from "./MarketDetail.styles";
 import Dompurify from "dompurify";
-import { Modal, Radio, Upload } from "antd";
 import Head from "next/head";
-import { useEffect, useState } from "react";
-import DaumPostcode from "react-daum-postcode";
-
-declare const window: typeof globalThis & {
-  kakao: any;
-};
 
 export default function MarketDetailPresenter(props) {
   return (
@@ -48,6 +41,22 @@ export default function MarketDetailPresenter(props) {
         ) : (
           <ProductContents />
         )}
+      </InputWrapper>
+      <InputWrapper>
+        <Label>주소</Label>
+        <Head>
+          <script
+            type="text/javascript"
+            src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c1573b07307af25f6bb7415ff47e92fc"
+          ></script>
+        </Head>
+        <div id="map" style={{ width: "500px", height: "400px" }}></div>
+
+        <div>
+          {props.data?.fetchUseditem.useditemAddress?.zipcode} <br />
+          {props.data?.fetchUseditem.useditemAddress?.address}
+          {props.data?.fetchUseditem.useditemAddress?.addressDetail}
+        </div>
       </InputWrapper>
 
       <Button onClick={props.onClickMarketList}>목록으로</Button>
