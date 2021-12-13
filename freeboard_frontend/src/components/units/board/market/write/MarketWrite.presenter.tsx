@@ -22,6 +22,8 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup/dist/yup";
 import { schemaEdit, schemaNew } from "./MarketWrite.validations";
 import { v4 as uuidv4 } from "uuid";
+import { Modal } from "antd";
+import { DaumPostcode } from "react-daum-postcode";
 
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
@@ -36,12 +38,20 @@ export default function MarketWritePresenter(props) {
   }
 
   return (
-    // <form onSubmit={handleSubmit(props.onClickRegister)}>
     <form
       onSubmit={handleSubmit(
         props.isEdit ? props.onClickUpdate : props.onClickRegister
       )}
     >
+      {props.isModalVisible && (
+        <Modal
+          visible={true}
+          onOk={props.handleOk}
+          onCancel={props.handleCancel}
+        >
+          <DaumPostcode onComplete={props.onCompleteAddressSearch} />
+        </Modal>
+      )}
       <Wrapper>
         <Title>{props.isEdit ? "상품수정하기" : "상품등록하기"}</Title>
         <InputWrapper>
@@ -116,26 +126,9 @@ export default function MarketWritePresenter(props) {
             }
           />
         </InputWrapper>
-        <InputWrapper>
-          <Label>유튜브</Label>
-          <Youtube
-            placeholder="링크를 복사해주세요."
-            onChange={props.onChangeMyYoutubeUrl}
-            defaultValue={props.data?.fetchBoard.youtubeUrl || ""}
-          />
-        </InputWrapper>
+
         <ImageWrapper>
           <Label>사진첨부</Label>
-          {/* {props.fileUrls.map((el, index) => (
-            <Uploads01
-              key={uuidv4()}
-              index={index}
-              fileUrl={el}
-              defaultFileUrl={props.data?.fetchBoard.images?.[index]}
-              onChangeFileUrls={props.onChangeFileUrls}
-            />
-            // uploads01은 따로 만들고 import하는건데 일단 emotion으로 줌. 나중에 boardwrite참고
-          ))} */}
         </ImageWrapper>
         <Button01
           type="submit"

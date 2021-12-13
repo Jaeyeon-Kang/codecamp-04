@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup/dist/yup";
 import { schema } from "./MarketWrite.validations";
 import { useRouter } from "next/router";
+import { useState } from "react";
 
 export default function MarketWriteContainer(props) {
   const router = useRouter();
@@ -26,6 +27,11 @@ export default function MarketWriteContainer(props) {
             contents: data.contents,
             price: data.productPrice,
             remarks: data.productRemark,
+            useditemAddress: {
+              zipcode: zipcode,
+              address: address,
+              addressDetail: addressDetail,
+            },
           },
         },
       });
@@ -45,6 +51,11 @@ export default function MarketWriteContainer(props) {
             contents: data.contents,
             price: data.productPrice,
             remarks: data.productRemark,
+            useditemAddress: {
+              zipcode: zipcode,
+              address: address,
+              addressDetail: addressDetail,
+            },
           },
         },
       });
@@ -54,43 +65,33 @@ export default function MarketWriteContainer(props) {
     }
   };
 
-  // function onChangeMyYoutubeUrl(event: ChangeEvent<HTMLInputElement>) {
-  //   setYoutubeUrl(event.target.value);
-  // }
+  // 주소 관련
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const handleOk = () => {
+    setIsModalVisible(false);
+  };
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
+  const [zipcode, setZipcode] = useState("");
+  const [address, setAddress] = useState("");
+  const [addressDetail, setAddressDetail] = useState("");
+  const [isOpen, setIsOpen] = useState(false);
 
-  // function onChangeAddressDetail(event: ChangeEvent<HTMLInputElement>) {
-  //   setAddressDetail(event.target.value);
-  // }
+  function onCompleteAddressSearch(data: any) {
+    setAddress(data.address);
+    setZipcode(data.zonecode);
+    setIsOpen(false);
+    setIsModalVisible(false);
+  }
 
-  // function onClickAddressSearch() {
-  //   setIsOpen(true);
-  // }
+  function onChangeAddressDetail(event: ChangeEvent<HTMLInputElement>) {
+    setAddressDetail(event.target.value);
+  }
 
-  // function onCompleteAddressSearch(data: any) {
-  //   setAddress(data.address);
-  //   setZipcode(data.zonecode);
-  //   setIsOpen(false);
-  //   setIsModalVisible(false);
-  // }
-
-  // function onChangeFileUrls(fileUrl: string, index: number) {
-  //   const newFileUrls = [...fileUrls];
-  //   newFileUrls[index] = fileUrl;
-  //   setFileUrls(newFileUrls);
-  // }
-
-  // useEffect(() => {
-  //   if (props.data?.fetchBoard.images?.length) {
-  //     setFileUrls([...props.data?.fetchBoard.images]);
-  //   }
-  // }, [props.data]);
-
-  // const handleOk = () => {
-  //   setIsModalVisible(false);
-  // };
-  // const handleCancel = () => {
-  //   setIsModalVisible(false);
-  // };
+  function onClickAddressSearch() {
+    setIsOpen(true);
+  }
 
   return (
     <MarketWritePresenter
@@ -99,23 +100,20 @@ export default function MarketWriteContainer(props) {
       formState={formState}
       onClickRegister={onClickRegister}
       onClickUpdate={onClickUpdate}
+      // 수정관련
       updateData={props.updateData}
       isEdit={props.isEdit}
-      // onChangeMyYoutubeUrl={onChangeMyYoutubeUrl}
-      // onChangeAddressDetail={onChangeAddressDetail}
-      // onClickAddressSearch={onClickAddressSearch}
-      // onCompleteAddressSearch={onCompleteAddressSearch}
-      // onChangeFileUrls={onChangeFileUrls}
-      // isActive={isActive}
-      // isOpen={isOpen}
-      // zipcode={zipcode}
-      // address={address}
-      // addressDetail={addressDetail}
-      // fileUrls={fileUrls}
-      // handleOk={handleOk}
-      // handleCancel={handleCancel}
-      // isModalVisible={isModalVisible}
-      // setIsModalVisible={setIsModalVisible}
+      // 주소관련
+      isModalVisible={isModalVisible}
+      setIsModalVisible={setIsModalVisible}
+      handleOk={handleOk}
+      handleCancel={handleCancel}
+      onCompleteAddressSearch={onCompleteAddressSearch}
+      zipcode={zipcode}
+      address={address}
+      addressDetail={addressDetail}
+      onChangeAddressDetail={onChangeAddressDetail}
+      onClickAddressSearch={onClickAddressSearch}
     />
   );
 }
