@@ -7,9 +7,10 @@ export default function MemoizationContainerPage() {
   const [countState, setCountState] = useState(0);
 
   const randomValue = useMemo(() => {
-    return Math.random();
+    return () => {
+      setCountState((prev) => prev + 1);
+    };
   }, []);
-
   console.log(randomValue);
 
   const onClickCountLet = useCallback(() => {
@@ -20,7 +21,7 @@ export default function MemoizationContainerPage() {
   const onClickCountState = useCallback(() => {
     // console.log(countState + 1);
     setCountState((prev) => prev + 1);
-  }, [countState]);
+  }, []);
   // 항상 우선시 되는 것은 유지보수다! 나 말고도 다른 사람들이 다 볼 수 있어야 함.
 
   return (
