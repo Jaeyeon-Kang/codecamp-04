@@ -112,3 +112,11 @@ export const Uploads01 = styled.div`
   width: 996px;
   padding-top: 40px;
 `;
+
+// export const AddressText = styled.input`
+//   width: 588px;
+//   height: 52px;
+//   padding-left: 16px;
+//   border: 1px solid #bdbdbd;
+//   margin-bottom: 16px;
+// `;

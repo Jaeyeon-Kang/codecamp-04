@@ -44,12 +44,12 @@ export default function MarketDetailPresenter(props) {
       </InputWrapper>
       <InputWrapper>
         <Label>주소</Label>
-        <Head>
+        {/* <Head>
           <script
             type="text/javascript"
             src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c1573b07307af25f6bb7415ff47e92fc"
           ></script>
-        </Head>
+        </Head> */}
         <div id="map" style={{ width: "500px", height: "400px" }}></div>
 
         <div>

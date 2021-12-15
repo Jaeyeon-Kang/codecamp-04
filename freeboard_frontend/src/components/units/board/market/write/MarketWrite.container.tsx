@@ -8,6 +8,10 @@ import { schema } from "./MarketWrite.validations";
 import { useRouter } from "next/router";
 import { useState } from "react";
 
+declare const window: typeof globalThis & {
+  kakao: any;
+};
+
 export default function MarketWriteContainer(props) {
   const router = useRouter();
   const [createUseditem] = useMutation(CREATE_USED_ITEM);
@@ -65,7 +69,9 @@ export default function MarketWriteContainer(props) {
     }
   };
 
-  // 주소 관련
+  //
+  // 주소 관련(다음맵)
+  //
   const [isModalVisible, setIsModalVisible] = useState(false);
   const handleOk = () => {
     setIsModalVisible(false);

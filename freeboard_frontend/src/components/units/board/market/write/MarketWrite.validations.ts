@@ -10,6 +10,6 @@ export const schemaNew = yup.object().shape({
 export const schemaEdit = yup.object().shape({
   productName: yup.string(),
   contents: yup.string(),
-  productPrice: yup.number(),
+  // productPrice: yup.number(),
   productRemark: yup.string(),
 });
