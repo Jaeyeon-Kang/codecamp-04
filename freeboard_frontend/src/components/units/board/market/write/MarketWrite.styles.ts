@@ -120,3 +120,9 @@ export const Uploads01 = styled.div`
 //   border: 1px solid #bdbdbd;
 //   margin-bottom: 16px;
 // `;
+
+export const Image = styled.input`
+  width: 996px;
+  width: 800px;
+  padding-top: 40px;
+`;

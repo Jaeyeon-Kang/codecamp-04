@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
   width: 1200px;
-  /* height: 1847px; */
+  height: 1847px;
   border: 1px solid black;
   margin: 100px;
   padding-top: 80px;
@@ -25,6 +25,7 @@ export const Title = styled.div`
 
 export const InputWrapper = styled.div`
   padding-top: 40px;
+  display: flex;
 `;
 
 export const Label = styled.div`

@@ -4,10 +4,10 @@ import {
   FETCH_USED_ITEM,
   CREATE_POINT_TRANSACTION_OF_BUYING_AND_SELLING,
   DELETE_USED_ITEM,
+  TOGGLE_USED_ITEM_PICK,
 } from "./MarketDetail.queries";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
-
 import {
   IQuery,
   IQueryFetchUseditemsArgs,
@@ -35,6 +35,7 @@ export default function MarketDetailContainer() {
   );
 
   const [deleteUseditem] = useMutation(DELETE_USED_ITEM);
+  const [toggleUseditemPick] = useMutation(TOGGLE_USED_ITEM_PICK);
 
   function onClickMarketList() {
     router.push("/boards/market/list");
@@ -69,6 +70,18 @@ export default function MarketDetailContainer() {
 
   async function onClickMarketUpdate() {
     router.push(`/boards/market/${router.query.myId}/edit`);
+  }
+
+  async function onClickWishList() {
+    try {
+      await toggleUseditemPick({
+        variables: { useditemId: String(router.query.myId) },
+      });
+      alert("찜 성공!!");
+      router.push("/boards/mypage");
+    } catch (error) {
+      alert(error.message);
+    }
   }
 
   // 카카오 주소 보이기
@@ -137,6 +150,7 @@ export default function MarketDetailContainer() {
       onClickPurchase={onClickPurchase}
       onClickDelete={onClickDelete}
       onClickMarketUpdate={onClickMarketUpdate}
+      onClickWishList={onClickWishList}
     />
   );
 }

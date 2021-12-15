@@ -7,6 +7,7 @@ import {
   ColumnHeaderBasic,
   ColumnBasic,
   Label,
+  WishList,
 } from "./MyPage.styles";
 
 export default function MyPagePresenter(props) {
@@ -33,6 +34,11 @@ export default function MyPagePresenter(props) {
       <PointButton onClick={props.onClickPointButton}>
         100 포인트 충전하기
       </PointButton>
+      <WishList>위시리스트</WishList>
+      {props.wishlistdata?.fetchUseditemsIPicked?.map((el) => (
+        <div key={el._id}>{el.name}</div>
+      ))}
+
       <Label>구매내역</Label>
       <Row>
         <ColumnHeaderBasic>번호</ColumnHeaderBasic>

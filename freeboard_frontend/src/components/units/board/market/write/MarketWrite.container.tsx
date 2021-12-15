@@ -1,6 +1,10 @@
 import { useMutation } from "@apollo/client";
 import MarketWritePresenter from "./MarketWrite.presenter";
-import { CREATE_USED_ITEM, UPDATE_USED_ITEM } from "./MarketWrite.queries";
+import {
+  CREATE_USED_ITEM,
+  UPDATE_USED_ITEM,
+  UPLOAD_FILE,
+} from "./MarketWrite.queries";
 import { FormValues } from "./MarketWrite.types";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup/dist/yup";
@@ -45,6 +49,47 @@ export default function MarketWriteContainer(props) {
     }
   };
 
+  // 이미지 관련
+  const [uploadFile] = useMutation(UPLOAD_FILE);
+  const [myFiles, setMyFiles] = useState([]);
+  const [imageUrl, setImgUrl] = useState("");
+
+  // function onChangeFile(event) {
+  //   const file = event.target.files[0];
+
+  //   // const fileReader = new FileReader();
+  //   // fileReader.readAsDataURL(file);
+  //   // fileReader.onload = (data) => {
+  //   //   console.log(data.target.result);
+  //   //   setImgUrl(data.target?.result);
+  //   //   setMyFiles((prev) => [...prev, file]);
+  //   // };
+  // }
+
+  async function onChangeFile(e) {
+    let myImageUrls = ["", "", ""];
+    const file = e.target.files[0];
+    const fileReader = new FileReader();
+    fileReader.readAsDataURL(e.target.files[0]);
+    fileReader.onload = (data) => {
+      setImgUrl(data.target?.result);
+      setMyFiles((prev) => [...prev, file]);
+    };
+    if (myFiles.length) {
+      const start = performance.now();
+      await Promise.all([
+        uploadFile({ variables: { file: myFiles[0] } }),
+        uploadFile({ variables: { file: myFiles[0] } }),
+        uploadFile({ variables: { file: myFiles[0] } }),
+        uploadFile({ variables: { file: myFiles[0] } }),
+        uploadFile({ variables: { file: myFiles[0] } }),
+      ]);
+
+      const end = performance.now();
+      console.log(end - start);
+    }
+  }
+
   const onClickUpdate = async (data: FormValues) => {
     try {
       const result = await updateUseditem({
@@ -55,6 +100,7 @@ export default function MarketWriteContainer(props) {
             contents: data.contents,
             price: data.productPrice,
             remarks: data.productRemark,
+            images: [...myImageUrls],
             useditemAddress: {
               zipcode: zipcode,
               address: address,
@@ -120,6 +166,9 @@ export default function MarketWriteContainer(props) {
       addressDetail={addressDetail}
       onChangeAddressDetail={onChangeAddressDetail}
       onClickAddressSearch={onClickAddressSearch}
+      // 이미지 관련
+      imageUrl={imageUrl}
+      onChangeFile={onChangeFile}
     />
   );
 }

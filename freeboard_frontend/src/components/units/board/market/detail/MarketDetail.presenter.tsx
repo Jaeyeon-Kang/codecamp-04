@@ -63,6 +63,7 @@ export default function MarketDetailPresenter(props) {
       <Button onClick={props.onClickMarketUpdate}>수정하기</Button>
       <Button onClick={props.onClickDelete}>삭제하기</Button>
       <Button onClick={props.onClickPurchase}>구매하기</Button>
+      <Button onClick={props.onClickWishList}>찜하기</Button>
     </Wrapper>
   );
 }

@@ -13,6 +13,7 @@ import {
   SearchButton,
   Address,
   ImageWrapper,
+  Image,
 } from "./MarketWrite.styles";
 import dynamic from "next/dynamic";
 import "react-quill/dist/quill.snow.css";
@@ -130,6 +131,8 @@ export default function MarketWritePresenter(props) {
 
         <ImageWrapper>
           <Label>사진첨부</Label>
+          <input type="file" onChange={props.onChangeFile} />
+          {/* <img src={props.imageUrl} alt="" /> */}
         </ImageWrapper>
         <Button01
           type="submit"
