@@ -21,56 +21,16 @@ export default function MarketWriteContainer(props) {
   const [createUseditem] = useMutation(CREATE_USED_ITEM);
   const [updateUseditem] = useMutation(UPDATE_USED_ITEM);
 
-  const { handleSubmit, register, formState } = useForm({
-    mode: "onChange",
-    resolver: yupResolver(schema),
-  });
-  const onClickRegister = async (data: FormValues) => {
-    console.log(data);
-    try {
-      const result = await createUseditem({
-        variables: {
-          createUseditemInput: {
-            name: data.productName,
-            contents: data.contents,
-            price: data.productPrice,
-            remarks: data.productRemark,
-            useditemAddress: {
-              zipcode: zipcode,
-              address: address,
-              addressDetail: addressDetail,
-            },
-          },
-        },
-      });
-      router.push(`/boards/market/${result.data.createUseditem._id}`);
-    } catch (error) {
-      alert(error.message);
-    }
-  };
-
   // 이미지 관련
   const [uploadFile] = useMutation(UPLOAD_FILE);
   const [myFiles, setMyFiles] = useState([]);
   const [imageUrl, setImgUrl] = useState("");
 
-  // function onChangeFile(event) {
-  //   const file = event.target.files[0];
-
-  //   // const fileReader = new FileReader();
-  //   // fileReader.readAsDataURL(file);
-  //   // fileReader.onload = (data) => {
-  //   //   console.log(data.target.result);
-  //   //   setImgUrl(data.target?.result);
-  //   //   setMyFiles((prev) => [...prev, file]);
-  //   // };
-  // }
-
-  async function onChangeFile(e) {
+  async function onChangeFile(event) {
     let myImageUrls = ["", "", ""];
-    const file = e.target.files[0];
+    const file = event.target.files[0];
     const fileReader = new FileReader();
-    fileReader.readAsDataURL(e.target.files[0]);
+    fileReader.readAsDataURL(event.target.files[0]);
     fileReader.onload = (data) => {
       setImgUrl(data.target?.result);
       setMyFiles((prev) => [...prev, file]);
@@ -90,6 +50,37 @@ export default function MarketWriteContainer(props) {
     }
   }
 
+  // createUseditem
+  const { handleSubmit, register, formState } = useForm({
+    mode: "onChange",
+    resolver: yupResolver(schema),
+  });
+  const onClickRegister = async (data: FormValues) => {
+    console.log(data);
+    try {
+      const result = await createUseditem({
+        variables: {
+          createUseditemInput: {
+            name: data.productName,
+            contents: data.contents,
+            price: data.productPrice,
+            remarks: data.productRemark,
+            images: [...myImageUrls],
+            useditemAddress: {
+              zipcode: zipcode,
+              address: address,
+              addressDetail: addressDetail,
+            },
+          },
+        },
+      });
+      router.push(`/boards/market/${result.data.createUseditem._id}`);
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+
+  // updateUseditem
   const onClickUpdate = async (data: FormValues) => {
     try {
       const result = await updateUseditem({

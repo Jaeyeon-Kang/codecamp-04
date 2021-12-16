@@ -121,8 +121,9 @@ export const Uploads01 = styled.div`
 //   margin-bottom: 16px;
 // `;
 
-export const Image = styled.input`
-  width: 996px;
-  width: 800px;
-  padding-top: 40px;
+export const ImageInput = styled.input``;
+
+export const ImagePopUp = styled.div`
+  width: 500px;
+  height: 500px;
 `;
