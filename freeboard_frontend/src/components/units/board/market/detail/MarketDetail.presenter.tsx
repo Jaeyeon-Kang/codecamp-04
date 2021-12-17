@@ -8,14 +8,32 @@ import {
   ProductContents,
   ProductPrice,
   Button,
+  SellerName,
+  PhotoWrapper,
+  ProductPhoto,
 } from "./MarketDetail.styles";
 import Dompurify from "dompurify";
 import Head from "next/head";
-
+import { Tooltip } from "antd";
 export default function MarketDetailPresenter(props) {
   return (
     <Wrapper>
       <Title>상품상세보기</Title>
+      <InputWrapper>
+        <Label>이름</Label>
+        <SellerName>{props.data?.fetchUseditem?.seller.name}</SellerName>
+        <Label>이미지</Label>
+        <PhotoWrapper>
+          {props.data?.fetchUseditem.images
+            ?.filter((el) => el)
+            .map((el) => (
+              <ProductPhoto
+                key={el}
+                src={`https://storage.googleapis.com/${el}`}
+              />
+            ))}
+        </PhotoWrapper>
+      </InputWrapper>
       <InputWrapper>
         <Label>상품명</Label>
         <ProductName>{props.data?.fetchUseditem?.name}</ProductName>

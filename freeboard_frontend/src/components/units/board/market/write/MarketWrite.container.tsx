@@ -1,16 +1,14 @@
-import { useMutation } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import MarketWritePresenter from "./MarketWrite.presenter";
-import {
-  CREATE_USED_ITEM,
-  UPDATE_USED_ITEM,
-  UPLOAD_FILE,
-} from "./MarketWrite.queries";
+import { CREATE_USED_ITEM, UPDATE_USED_ITEM } from "./MarketWrite.queries";
 import { FormValues } from "./MarketWrite.types";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup/dist/yup";
 import { schema } from "./MarketWrite.validations";
 import { useRouter } from "next/router";
 import { useState } from "react";
+import { UPLOAD_FILE } from "../../../../commons/uploads/02/Uploads02.queries";
+import { FETCH_USED_ITEM } from "../detail/MarketDetail.queries";
 
 declare const window: typeof globalThis & {
   kakao: any;
@@ -23,31 +21,17 @@ export default function MarketWriteContainer(props) {
 
   // 이미지 관련
   const [uploadFile] = useMutation(UPLOAD_FILE);
-  const [myFiles, setMyFiles] = useState([]);
-  const [imageUrl, setImgUrl] = useState("");
+  const { data } = useQuery(FETCH_USED_ITEM, {
+    variables: {
+      useditemId: router.query.number,
+    },
+  });
+  const [files, setFiles] = useState([null, null, null]);
 
-  async function onChangeFile(event) {
-    let myImageUrls = ["", "", ""];
-    const file = event.target.files[0];
-    const fileReader = new FileReader();
-    fileReader.readAsDataURL(event.target.files[0]);
-    fileReader.onload = (data) => {
-      setImgUrl(data.target?.result);
-      setMyFiles((prev) => [...prev, file]);
-    };
-    if (myFiles.length) {
-      const start = performance.now();
-      await Promise.all([
-        uploadFile({ variables: { file: myFiles[0] } }),
-        uploadFile({ variables: { file: myFiles[0] } }),
-        uploadFile({ variables: { file: myFiles[0] } }),
-        uploadFile({ variables: { file: myFiles[0] } }),
-        uploadFile({ variables: { file: myFiles[0] } }),
-      ]);
-
-      const end = performance.now();
-      console.log(end - start);
-    }
+  function onChangeFiles(file, index) {
+    const newFiles = [...files];
+    newFiles[index] = file;
+    setFiles(newFiles);
   }
 
   // createUseditem
@@ -55,8 +39,16 @@ export default function MarketWriteContainer(props) {
     mode: "onChange",
     resolver: yupResolver(schema),
   });
+
   const onClickRegister = async (data: FormValues) => {
     console.log(data);
+
+    const uploadFiles = files
+      .filter((el) => el)
+      .map((el) => uploadFile({ variables: { file: el } }));
+    const results = await Promise.all(uploadFiles);
+    const myImages = results.map((el) => el.data.uploadFile.url);
+
     try {
       const result = await createUseditem({
         variables: {
@@ -65,7 +57,7 @@ export default function MarketWriteContainer(props) {
             contents: data.contents,
             price: data.productPrice,
             remarks: data.productRemark,
-            images: [...myImageUrls],
+            images: myImages,
             useditemAddress: {
               zipcode: zipcode,
               address: address,
@@ -74,6 +66,7 @@ export default function MarketWriteContainer(props) {
           },
         },
       });
+
       router.push(`/boards/market/${result.data.createUseditem._id}`);
     } catch (error) {
       alert(error.message);
@@ -82,6 +75,12 @@ export default function MarketWriteContainer(props) {
 
   // updateUseditem
   const onClickUpdate = async (data: FormValues) => {
+    const uploadFiles = files
+      .filter((el) => el)
+      .map((el) => uploadFile({ variables: { file: el } }));
+    const results = await Promise.all(uploadFiles);
+    const myImages = results.map((el) => el.data.uploadFile.url);
+
     try {
       const result = await updateUseditem({
         variables: {
@@ -91,7 +90,7 @@ export default function MarketWriteContainer(props) {
             contents: data.contents,
             price: data.productPrice,
             remarks: data.productRemark,
-            images: [...myImageUrls],
+            images: myImages,
             useditemAddress: {
               zipcode: zipcode,
               address: address,
@@ -158,8 +157,8 @@ export default function MarketWriteContainer(props) {
       onChangeAddressDetail={onChangeAddressDetail}
       onClickAddressSearch={onClickAddressSearch}
       // 이미지 관련
-      imageUrl={imageUrl}
-      onChangeFile={onChangeFile}
+      onChangeFiles={onChangeFiles}
+      data={data}
     />
   );
 }

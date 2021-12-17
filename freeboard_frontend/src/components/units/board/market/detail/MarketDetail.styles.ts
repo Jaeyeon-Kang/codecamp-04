@@ -53,3 +53,20 @@ export const ProductPrice = styled.div`
 export const Button = styled.button`
   padding-left: 16px;
 `;
+
+export const SellerName = styled.div`
+  padding-left: 16px;
+`;
+
+export const PhotoWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px;
+`;
+export const ProductPhoto = styled.img`
+  width: 384px;
+  height: 384px;
+  margin-top: 80px;
+`;

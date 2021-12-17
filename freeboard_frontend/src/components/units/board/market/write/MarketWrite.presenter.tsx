@@ -21,7 +21,7 @@ import "react-quill/dist/quill.snow.css";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup/dist/yup";
 import { schemaEdit, schemaNew } from "./MarketWrite.validations";
-import { v4 as uuidv4 } from "uuid";
+import Uploads02 from "../../../../commons/uploads/02/Uploads02.container";
 import { Modal } from "antd";
 import { DaumPostcode } from "react-daum-postcode";
 
@@ -134,7 +134,14 @@ export default function MarketWritePresenter(props) {
           <Label>사진첨부</Label>
           <ImageInput type="file" onChange={props.onChangeFile} />
           <ImagePopUp>
-            <img src={props.imageUrl} style={{ width: "100%" }} />
+            {new Array(3).fill(1).map((el, index) => (
+              <Uploads02
+                key={`${el}_${index}`}
+                index={index}
+                onChangeFiles={props.onChangeFiles}
+                defaultFileUrl={props.data?.fetchUseditem.images?.[index]}
+              />
+            ))}
           </ImagePopUp>
         </ImageWrapper>
         <Button01

@@ -26,6 +26,7 @@ export default function MarketListPresenter(props) {
         <Row>
           <ColumnHeaderBasic>번호</ColumnHeaderBasic>
           <ColumnHeaderName>상품명</ColumnHeaderName>
+          <ColumnHeaderBasic>작성자</ColumnHeaderBasic>
           <ColumnHeaderBasic>가격</ColumnHeaderBasic>
           <ColumnHeaderBasic>날짜</ColumnHeaderBasic>
           <ColumnHeaderBasic>장바구니</ColumnHeaderBasic>
@@ -42,6 +43,7 @@ export default function MarketListPresenter(props) {
               <ColumnName id={el._id} onClick={props.onClickMarketDetail}>
                 {el.name}
               </ColumnName>
+              <ColumnBasic>{el.seller?.name}</ColumnBasic>
               <ColumnBasic>{el.price}</ColumnBasic>
               <ColumnBasic>{getDate(el.createdAt)}</ColumnBasic>
               <ColumnBasic>

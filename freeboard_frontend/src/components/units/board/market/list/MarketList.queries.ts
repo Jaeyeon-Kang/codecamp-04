@@ -9,6 +9,9 @@ export const FETCH_USED_ITEMS = gql`
       price
       createdAt
       images
+      seller {
+        name
+      }
     }
   }
 `;
