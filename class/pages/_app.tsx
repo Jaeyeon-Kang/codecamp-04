@@ -23,6 +23,7 @@ import {
 import { initializeApp } from "firebase/app";
 import { getAccessToken } from "../src/commons/libraries/getAccessToken";
 // import Head from "next/head";
+import * as Sentry from "@sentry/nextjs";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBWyb0jr4zoqZ3Z2nly7PIyLo1Wji4NHq4",
@@ -35,6 +36,10 @@ const firebaseConfig = {
 
 // Initialize Firebase
 export const firebaseApp = initializeApp(firebaseConfig);
+
+Sentry.init({
+  dsn: "https://4e8712d4bbfe496081ff1865da01facf@o1091880.ingest.sentry.io/6109512",
+});
 
 interface IGlobalContext {
   accessToken?: string;
@@ -64,8 +69,8 @@ function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
     // const accessToken = localStorage.getItem("accessToken") || "";
     // if (accessToken) setMyAccessToken(accessToken);
-    
-   if(localStorage.getItem("refreshToken")) getAccessToken(setMyAccessToken);
+
+    if (localStorage.getItem("refreshToken")) getAccessToken(setMyAccessToken);
   }, []);
 
   const errorLink = onError(({ graphQLErrors, operation, forward }) => {

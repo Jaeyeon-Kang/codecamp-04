@@ -3,6 +3,7 @@
 import { ChangeEvent, useCallback, useState } from "react";
 import { gql, useMutation } from "@apollo/client";
 import { Modal } from "antd";
+import * as Sentry from "@sentry/nextjs";
 
 const CREATE_BOARD = gql`
   mutation createBoard($createBoardInput: CreateBoardInput!) {
@@ -41,17 +42,19 @@ export default function IsSubmittingPage() {
   const onClickSubmit = async () => {
     setIsSubmitting(true);
     try {
-      const result = await createBoard({
-        variables: {
-          createBoardInput: { ...inputs },
-        },
-      });
-      console.log(result);
-      Modal.success({ content: "등록에 성공하였습니다." });
-      //   router.push 로 다이나믹 라우팅 result.data.createBoard._id
-      setIsSubmitting(false);
+      throw new Error("에러 강제로 발생시킴");
+      // const result = await createBoard({
+      //   variables: {
+      //     createBoardInput: { ...inputs },
+      //   },
+      // });
+      // console.log(result);
+      // Modal.success({ content: "등록에 성공하였습니다." });
+      // //   router.push 로 다이나믹 라우팅 result.data.createBoard._id
+      // setIsSubmitting(false);
     } catch (error) {
       if (error instanceof Error) Modal.error({ content: error.message });
+      Sentry.captureException(error);
     }
   };
 
