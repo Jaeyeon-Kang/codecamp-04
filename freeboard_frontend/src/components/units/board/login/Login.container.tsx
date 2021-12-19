@@ -5,7 +5,7 @@ import LoginPresenter from "../login/Login.presenter";
 import { useRouter } from "next/router";
 import {
   IMutation,
-  IMutationLoginUserArgs,
+  IMutationLoginUserExampleArgs,
 } from "../../../../commons/types/generated/types";
 import { LOGIN_USER } from "./Login.queries";
 
@@ -14,11 +14,11 @@ export default function LoginContainer() {
   const [myEmail, setMyEmail] = useState("");
   const [myPassword, setMyPassword] = useState("");
   const [loginUser] = useMutation<
-    Pick<IMutation, "loginUser">,
-    IMutationLoginUserArgs
+    Pick<IMutation, "loginUserExample">,
+    IMutationLoginUserExampleArgs
   >(LOGIN_USER);
 
-  const { setAccessToken } = useContext(GlobalContext);
+  const { setMyAccessToken } = useContext(GlobalContext);
 
   function onChangeMyEmail(event: ChangeEvent<HTMLInputElement>) {
     setMyEmail(event.target.value);
@@ -32,7 +32,7 @@ export default function LoginContainer() {
     router.push(`/boards/signup`);
   }
 
-  const onClickLogin = async () => {
+  async function onClickLogin() {
     try {
       const result = await loginUser({
         variables: {
@@ -40,16 +40,20 @@ export default function LoginContainer() {
           password: myPassword,
         },
       });
-      localStorage.setItem(
-        "accessToken",
-        result.data?.loginUser.accessToken || ""
-      );
-      setAccessToken(result.data?.loginUser.accessToken || "");
+      // localStorage.setItem(
+      //   "accessToken",
+      //   result.data?.loginUserExample.accessToken || ""
+      // );.
+      localStorage.setItem("refreshToken", "true");
+      setMyAccessToken?.(result.data?.loginUserExample.accessToken || "");
+      // 여기서 글로벌 스테이트에 넣을 setAccessToken 필요
+      // const result = fetchUserLoggedIn()
+      // setUserInfo(result.data?.fetchUserLoggedIn)
       router.push("/boards");
     } catch (error) {
       alert(error.message);
     }
-  };
+  }
   return (
     <LoginPresenter
       MoveToSignUpPage={MoveToSignUpPage}

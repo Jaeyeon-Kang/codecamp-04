@@ -64,10 +64,11 @@ function MyApp({ Component, pageProps }: AppProps) {
   const [myUserInfo, setMyUserInfo] = useState({});
   const myValue = {
     accessToken: myAccessToken,
-    setAccessToken: setMyAccessToken,
+    setMyAccessToken: setMyAccessToken,
     userInfo: myUserInfo,
-    setUserInfo: setMyUserInfo,
+    setMyUserInfo: setMyUserInfo,
   };
+
   console.log(myAccessToken);
 
   useEffect(() => {
@@ -94,9 +95,8 @@ function MyApp({ Component, pageProps }: AppProps) {
       }
     }
   });
-
   const uploadLink = createUploadLink({
-    uri: "http://backend04.codebootcamp.co.kr/graphql",
+    uri: "https://backend04.codebootcamp.co.kr/graphql",
     headers: {
       authorization: `Bearer ${myAccessToken}`,
     },
@@ -104,7 +104,6 @@ function MyApp({ Component, pageProps }: AppProps) {
   });
 
   const client = new ApolloClient({
-    uri: "http://backend04.codebootcamp.co.kr/graphql",
     link: ApolloLink.from([errorLink, uploadLink as any]),
     cache: new InMemoryCache(),
   });
