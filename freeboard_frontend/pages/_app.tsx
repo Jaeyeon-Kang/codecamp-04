@@ -22,7 +22,11 @@ import {
 } from "react";
 import { initializeApp } from "firebase/app";
 import { getAccessToken } from "../src/commons/libraries/getAccessToken";
+<<<<<<< HEAD
 import * as Sentry from "@sentry/nextjs";
+=======
+// import * as Sentry from "@sentry/nextjs";
+>>>>>>> 2b9243e3ff140b854cc5647a58d657dd8d4ce449
 
 // Import the functions you need from the SDKs you need
 // TODO: Add SDKs for Firebase products that you want to use
@@ -68,7 +72,10 @@ function MyApp({ Component, pageProps }: AppProps) {
     userInfo: myUserInfo,
     setMyUserInfo: setMyUserInfo,
   };
+<<<<<<< HEAD
 
+=======
+>>>>>>> 2b9243e3ff140b854cc5647a58d657dd8d4ce449
   console.log(myAccessToken);
 
   useEffect(() => {
@@ -95,8 +102,14 @@ function MyApp({ Component, pageProps }: AppProps) {
       }
     }
   });
+<<<<<<< HEAD
   const uploadLink = createUploadLink({
     uri: "https://backend04.codebootcamp.co.kr/graphql",
+=======
+
+  const uploadLink = createUploadLink({
+    uri: "http://backend04.codebootcamp.co.kr/graphql",
+>>>>>>> 2b9243e3ff140b854cc5647a58d657dd8d4ce449
     headers: {
       authorization: `Bearer ${myAccessToken}`,
     },
@@ -104,6 +117,10 @@ function MyApp({ Component, pageProps }: AppProps) {
   });
 
   const client = new ApolloClient({
+<<<<<<< HEAD
+=======
+    uri: "http://backend04.codebootcamp.co.kr/graphql",
+>>>>>>> 2b9243e3ff140b854cc5647a58d657dd8d4ce449
     link: ApolloLink.from([errorLink, uploadLink as any]),
     cache: new InMemoryCache(),
   });
