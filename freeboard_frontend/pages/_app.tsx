@@ -22,7 +22,7 @@ import {
 } from "react";
 import { initializeApp } from "firebase/app";
 import { getAccessToken } from "../src/commons/libraries/getAccessToken";
-// import * as Sentry from "@sentry/nextjs";
+import * as Sentry from "@sentry/nextjs";
 
 // Import the functions you need from the SDKs you need
 // TODO: Add SDKs for Firebase products that you want to use
