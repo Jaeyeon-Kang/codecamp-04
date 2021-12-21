@@ -5,7 +5,7 @@ import LoginPresenter from "../login/Login.presenter";
 import { useRouter } from "next/router";
 import {
   IMutation,
-  IMutationLoginUserExampleArgs,
+  IMutationLoginUserArgs,
 } from "../../../../commons/types/generated/types";
 import { LOGIN_USER } from "./Login.queries";
 
@@ -14,8 +14,8 @@ export default function LoginContainer() {
   const [myEmail, setMyEmail] = useState("");
   const [myPassword, setMyPassword] = useState("");
   const [loginUser] = useMutation<
-    Pick<IMutation, "loginUserExample">,
-    IMutationLoginUserExampleArgs
+    Pick<IMutation, "loginUser">,
+    IMutationLoginUserArgs
   >(LOGIN_USER);
 
   const { setMyAccessToken } = useContext(GlobalContext);
@@ -45,7 +45,7 @@ export default function LoginContainer() {
       //   result.data?.loginUserExample.accessToken || ""
       // );.
       localStorage.setItem("refreshToken", "true");
-      setMyAccessToken?.(result.data?.loginUserExample.accessToken || "");
+      setMyAccessToken?.(result.data?.loginUser.accessToken || "");
       // 여기서 글로벌 스테이트에 넣을 setAccessToken 필요
       // const result = fetchUserLoggedIn()
       // setUserInfo(result.data?.fetchUserLoggedIn)
