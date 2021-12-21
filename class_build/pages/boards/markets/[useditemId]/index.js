@@ -6,11 +6,11 @@ export default function BoardsPage(props) {
     <>
       <Head>
         <meta property="og:title" content={props.fetchUseditem.name} />
-        <meta property="og:url" content="jjeje.website" />
+        {/* <meta property="og:url" content="http://nanana.shop" /> */}
         <meta property="og:image" content={props.fetchUseditem.images[0]} />
         <meta property="og:description" content={props.fetchUseditem.remarks} />
       </Head>
-      <div>Good to see you here. This is Market Page. </div>;
+      <div>안녕하세요 게시판입니당</div>
     </>
   );
 }
@@ -26,23 +26,19 @@ const FETCH_USEDITEM = gql`
 `;
 
 export const getServerSideProps = async (context) => {
-  //graphql도 결국엔 restapi이므로 axios를 요청하던지, 혹은 graphql-request 라이브러리를 데리고와서 요청하든지 해야한다
-
   const result = await request(
-    "https://backend04.codebootcamp.co.kr/graphql",
+    "http://backend04.codebootcamp.co.kr/graphql",
     FETCH_USEDITEM,
-    {
-      useditemId: context.query.useditemId,
-    }
+    { useditemId: context.query.useditemId }
   );
 
   return {
     props: {
-      FETCH_USEDITEM: {},
-      // props까지는 반드시 적어줘야 하고, 이 안에는 우리 맘대로 적는거에요.
-      name: result.fetchUseditem.name,
-      remarks: result.fetchUseditem.remarks,
-      images: result.fetchUseditem.images[0],
+      fetchUseditem: {
+        name: result.fetchUseditem.name,
+        remarks: result.fetchUseditem.remarks,
+        images: result.fetchUseditem.images[0],
+      },
     },
   };
 };
