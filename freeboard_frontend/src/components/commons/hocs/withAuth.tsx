@@ -11,7 +11,7 @@ export const withAuth = (Component) => (props) => {
       alert("로그인을 먼저 진행해주세요.");
       router.push("/boards/login");
     }
-  });
+  }, []);
 
   return <Component {...props} />;
 };
