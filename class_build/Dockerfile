@@ -2,9 +2,11 @@ FROM node:16
 #  이거 한줄이면 yarn까지 설치되어 있다는 것!
 
 WORKDIR /class_build/ 
-COPY  ./package.json /class_build/
-COPY ./yarn.lock /class_build
+COPY ./package.json /class_build/
+COPY ./yarn.lock /class_build/
 RUN yarn install
+
+COPY . /class_build/
 RUN yarn build:ssr
 
 CMD yarn start
