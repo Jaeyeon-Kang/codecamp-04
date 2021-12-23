@@ -7,6 +7,12 @@ import { IBoardWriteProps, IMyUpdateBoardInput } from "./BoardWrite.types";
 
 export default function BoardWrite(props: IBoardWriteProps) {
   const router = useRouter();
+  // const [myInputs, setMyInputs] = useState({
+  //   mywriter: "",
+  //   myPassword: "",
+  //   myTitle: "",
+  //   myContents: ""
+  // })
 
   const [isModalVisible, setIsModalVisible] = useState(false);
 

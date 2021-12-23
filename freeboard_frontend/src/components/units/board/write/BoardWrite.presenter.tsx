@@ -28,12 +28,9 @@ import { DaumPostcode } from "react-daum-postcode";
 import Uploads01 from "../../../commons/uploads/01/Uploads01.container";
 import { v4 as uuidv4 } from "uuid";
 
-
 export default function BoardWriteUI(props: IBoardWriteUIProps) {
-
   return (
     <>
-
       {props.isModalVisible && (
         <Modal
           visible={true}

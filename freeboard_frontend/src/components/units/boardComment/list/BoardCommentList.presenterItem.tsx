@@ -32,11 +32,10 @@ export default function BoardCommentListUIItem(
 ) {
   const router = useRouter();
   const [isEdit, setIsEdit] = useState(false);
-  const [deleteBoardComment] =
-    useMutation<
-      Pick<IMutation, "deleteBoardComment">,
-      IMutationDeleteBoardCommentArgs
-    >(DELETE_BOARD_COMMENT);
+  const [deleteBoardComment] = useMutation<
+    Pick<IMutation, "deleteBoardComment">,
+    IMutationDeleteBoardCommentArgs
+  >(DELETE_BOARD_COMMENT);
 
   function onClickUpdate() {
     setIsEdit(true);

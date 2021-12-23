@@ -5,7 +5,7 @@ export default function Header() {
   const router = useRouter();
 
   function onClickSubmit() {
-    router.push(`/boards/login`);
+    router.push(`/login`);
   }
 
   function onClickBoard() {
@@ -13,11 +13,11 @@ export default function Header() {
   }
 
   const onClickMyPage = () => {
-    router.push(`/boards/mypage`);
+    router.push(`/mypage`);
   };
 
   const onClickMarket = () => {
-    router.push(`/boards/market/list`);
+    router.push(`/market/list`);
   };
 
   return (
