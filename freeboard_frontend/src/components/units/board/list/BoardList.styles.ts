@@ -30,7 +30,9 @@ export const BestCommentTitle = styled.div`
   font-size: 24px;
 `;
 
-export const BestCommentImage = styled.img``;
+export const BestCommentImage = styled.img`
+  cursor: pointer;
+`;
 
 export const BestCommentWriter = styled.div``;
 
