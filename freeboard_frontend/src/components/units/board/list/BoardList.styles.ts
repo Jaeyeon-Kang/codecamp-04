@@ -28,6 +28,7 @@ export const BestCommentWrapper = styled.div`
 
 export const BestCommentTitle = styled.div`
   font-size: 24px;
+  cursor: pointer;
 `;
 
 export const BestCommentImage = styled.img`

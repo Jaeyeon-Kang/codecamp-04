@@ -20,9 +20,9 @@ export default function BoardList(props) {
     FETCH_BOARDS
   );
 
-  const { data: searchData } = useQuery(FETCH_BOARDS, {
+  const { data: searchData, refetch: searchRetch } = useQuery(FETCH_BOARDS, {
     variables: {
-      search: router.query.boardId,
+      search: router.query.search,
       page: 1,
     },
   });
@@ -67,7 +67,8 @@ export default function BoardList(props) {
 
   const onClickSearch = () => {
     try {
-      router.push(`/search/${search}`);
+      router.push(router.query.searchData);
+      // 이거 이상해ㅜ
     } catch (error) {
       console.log("에러!!!");
     }
@@ -89,6 +90,7 @@ export default function BoardList(props) {
       onClickMoveToBoardDetail={onClickMoveToBoardDetail}
       onChangeSearchInput={onChangeSearchInput}
       onClickSearch={onClickSearch}
+      searchRetch={searchRetch}
     />
   );
 }

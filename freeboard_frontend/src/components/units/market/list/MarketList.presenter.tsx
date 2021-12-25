@@ -3,9 +3,13 @@ import {
   Wrapper,
   Title,
   Row,
+  ColumnHeaderCheck,
+  ColumnCheck,
   ColumnHeaderBasic,
+  ColumnHeaderNumber,
   ColumnHeaderName,
   ColumnBasic,
+  ColumnNumber,
   ColumnName,
   Basket,
   Footer,
@@ -19,12 +23,18 @@ export default function MarketListPresenter(props) {
     <>
       <Wrapper>
         <Title>상품목록</Title>
+
         <Button onClick={props.onClickMarketWrite}>
           <PencilIcon src="/images/board/list/write.png" />
           게시물 등록하기
         </Button>
         <Row>
-          <ColumnHeaderBasic>번호</ColumnHeaderBasic>
+          <ColumnHeaderCheck>
+            {" "}
+            <input type="checkbox" />
+          </ColumnHeaderCheck>
+
+          <ColumnHeaderNumber>번호</ColumnHeaderNumber>
           <ColumnHeaderName>상품명</ColumnHeaderName>
           <ColumnHeaderBasic>작성자</ColumnHeaderBasic>
           <ColumnHeaderBasic>가격</ColumnHeaderBasic>
@@ -39,7 +49,11 @@ export default function MarketListPresenter(props) {
         >
           {props.data?.fetchUseditems.map((el, index) => (
             <Row key={el._id}>
-              <ColumnBasic>{index + 1}</ColumnBasic>
+              <ColumnCheck>
+                {" "}
+                <input type="checkbox" />
+              </ColumnCheck>
+              <ColumnNumber>{index + 1}</ColumnNumber>
               <ColumnName id={el._id} onClick={props.onClickMarketDetail}>
                 {el.name}
               </ColumnName>

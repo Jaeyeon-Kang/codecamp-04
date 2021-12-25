@@ -11,7 +11,10 @@ export default function BoardListUI(props) {
         {props.bestData?.fetchBoardsOfTheBest.map((el) => (
           <S.BestCommentWrapper key={el._id}>
             <S.BestCommentImage src="/images/carousel_1.jpg" />
-            <S.BestCommentTitle id={el._id}>
+            <S.BestCommentTitle
+              id={el._id}
+              onClick={props.onClickMoveToBoardDetail}
+            >
               {el.title
                 .replaceAll(props.keyword, `@#$%{props.keyword}@#$%`)
                 .split("@#$%")

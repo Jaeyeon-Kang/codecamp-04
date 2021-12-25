@@ -1,3 +1,4 @@
+import { getDate } from "../../../../commons/libraries/utils";
 import { Tooltip } from "antd";
 import * as S from "./BoardDetail.styles";
 import { IBoardDetailUIProps } from "./BoardDetail.types";
@@ -12,7 +13,9 @@ export default function BoardDetailUI(props: IBoardDetailUIProps) {
             <S.Avatar src="/images/avatar.png" />
             <S.Info>
               <S.Writer>{props.data?.fetchBoard.writer}</S.Writer>
-              <S.CreatedAt>{props.data?.fetchBoard.createdAt}</S.CreatedAt>
+              <S.CreatedAt>
+                {getDate(props.data?.fetchBoard.createdAt)}
+              </S.CreatedAt>
             </S.Info>
           </S.AvatarWrapper>
 
@@ -30,8 +33,8 @@ export default function BoardDetailUI(props: IBoardDetailUIProps) {
           {props.data?.fetchBoard.youtubeUrl && (
             <S.Youtube
               url={props.data?.fetchBoard.youtubeUrl}
-              width="1200px"
-              height="720px"
+              width="800px"
+              // height="720px"
             />
           )}
           {props.data?.fetchBoard.images?.map((_, index) => (

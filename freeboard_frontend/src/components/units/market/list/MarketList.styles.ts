@@ -26,18 +26,37 @@ export const Row = styled.div`
   }
 `;
 
-export const ColumnHeaderBasic = styled.div`
+export const ColumnHeaderCheck = styled.div`
   width: 10%;
+  text-align: center;
+`;
+
+export const ColumnHeaderBasic = styled.div`
+  width: 20%;
+  text-align: center;
+`;
+
+export const ColumnHeaderNumber = styled.div`
+  width: 23%;
   text-align: center;
 `;
 
 export const ColumnHeaderName = styled.div`
-  width: 70%;
+  width: 65%;
+  text-align: center;
+`;
+export const ColumnCheck = styled.div`
+  width: 10%;
   text-align: center;
 `;
 
 export const ColumnBasic = styled.div`
-  width: 10%;
+  width: 20%;
+  text-align: center;
+`;
+
+export const ColumnNumber = styled.div`
+  width: 20%;
   text-align: center;
 `;
 
