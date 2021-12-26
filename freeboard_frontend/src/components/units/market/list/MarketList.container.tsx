@@ -8,12 +8,14 @@ import {
   IUseditem,
 } from "../../../../commons/types/generated/types";
 
+
 export default function MarketListContainer() {
   const router = useRouter();
   const { data, fetchMore } = useQuery<
     Pick<IQuery, "fetchUseditems">,
     IQueryFetchUseditemArgs
   >(FETCH_USED_ITEMS);
+
 
   function onClickMarketDetail(event) {
     router.push(`/market/${event.target.id}`);
