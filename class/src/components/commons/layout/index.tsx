@@ -7,12 +7,15 @@ import Footer from "./footer/Footer.container";
 import { useRouter } from "next/router";
 
 const Wrapper = styled.div``;
-const Body = styled.div``;
+const Body = styled.div`
+  font-size: 22px;
+  font-weight: 500;
+`;
 const BodyWrapper = styled.div`
   display: flex;
 `;
 const Sidebar = styled.div`
-  width: 200px;
+  width: 100px;
   height: 700px;
   background-color: turquoise;
 `;

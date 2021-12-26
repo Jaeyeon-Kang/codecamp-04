@@ -16,8 +16,7 @@ export default function LibraryStarPage() {
       <Rate tooltips={desc} onChange={handleChange} value={value} />
       {value ? <span className="ant-rate-text">{desc[value - 1]}</span> : ""}
       <br />
-      <br />
-      <br />
+
       <h1>기본 기능만 남게 정리</h1>
       <Rate onChange={handleChange} value={value} />
     </span>

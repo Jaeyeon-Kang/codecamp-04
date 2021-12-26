@@ -9,7 +9,8 @@ export const globalStyles = css`
   }
 
   @font-face {
-    font-family: "myFont";
-    src: url("/fonts/scifibit.ttf");
+    /* font-family: "myFont";
+    src: url("/fonts/scifibit.ttf"); */
+    font-family: "helvetica";
   }
 `;
