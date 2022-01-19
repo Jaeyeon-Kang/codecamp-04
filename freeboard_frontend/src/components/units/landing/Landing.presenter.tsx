@@ -8,7 +8,7 @@ const LandingPagePresenter = () => {
       </S.FirstBanner>
       <S.SecondBanner></S.SecondBanner>
       <S.ThirdBanner></S.ThirdBanner>
-      {/* <S.FourthBanner></S.FourthBanner> */}
+      <S.FourthBanner></S.FourthBanner>
     </S.Wrapper>
   );
 };

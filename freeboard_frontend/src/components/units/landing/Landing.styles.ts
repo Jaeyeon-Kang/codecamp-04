@@ -35,14 +35,14 @@ export const ThirdBanner = styled.div`
   background-image: url("/images/landing/banner03.jpg");
 `;
 
-// export const FourthBanner = styled.div`
-// width: 100%;
-// height: 110vh;
-// background-size: cover;
-//   background-position: bottom center;
-// background-image: url("/images/landing/banner04.jpg");
+export const FourthBanner = styled.div`
+width: 100%;
+height: 110vh;
+background-size: cover;
+  background-position: bottom center;
+background-image: url("/images/landing/banner04.jpg");
 
-// `
+`
 
 export const FirstTitle = styled.div`
     position: absolute;
