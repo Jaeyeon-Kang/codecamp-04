@@ -1,14 +1,21 @@
 import * as S from "./Landing.styles";
+import { ILandingProps } from "./Landing.types";
 
-const LandingPagePresenter = () => {
+const LandingPagePresenter = (props: ILandingProps ) => {
   return (
     <S.Wrapper>
       <S.FirstBanner>
         <S.FirstTitle>Be wise in trading used electronic devices</S.FirstTitle>
+        <S.LearnMoreToArrow onClick={props.goMarketPage}>
+        <S.LearnMore>Learn More</S.LearnMore>
+        <S.RightArrow src="/images/landing/rightarrow.png" />
+        </S.LearnMoreToArrow>
       </S.FirstBanner>
       <S.SecondBanner></S.SecondBanner>
+      <S.ThirdToFourthBanner>
       <S.ThirdBanner></S.ThirdBanner>
       <S.FourthBanner></S.FourthBanner>
+      </S.ThirdToFourthBanner>
     </S.Wrapper>
   );
 };

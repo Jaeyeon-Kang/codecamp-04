@@ -1,1 +1,4 @@
-export interface ILandingProps {}
+export interface ILandingProps {
+    goMarketPage: () => void
+
+}
