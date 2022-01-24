@@ -14,6 +14,7 @@ export const ImgBanner = styled.figure`
   background-size: cover;
   background-position: center center;
   position: relative;
+  
   /* top: 50px; */
 `;
 
@@ -24,15 +25,17 @@ export const Box = styled.div`
   padding-left: 29px;
   background-color: white;
   position: absolute;
-  z-index: 2;
+  z-index: 1;
   left: 60px;
-  opacity: 93%;
+  opacity: 80%;
   top: 0px;
+  
 `;
 
 export const ImageWrapper = styled.div`
   margin: 0px;
   padding: 0px;
+  
 `;
 
 export const LineOne = styled.div`
@@ -40,7 +43,9 @@ export const LineOne = styled.div`
   font-size: 20px;
   font-weight: lighter;
   color: #1c1c1c;
-  opacity: 50%;
+  opacity: 100%;
+  
+  
 `;
 
 export const LineTwo = styled.div`
@@ -49,6 +54,7 @@ export const LineTwo = styled.div`
   font-size: 33px;
   font-weight: bold;
   color: #000000;
+  
   /* opacity: 50%; */
 `;
 

@@ -16,7 +16,7 @@ export default function HeaderUI(props) {
     <>
       <HeaderWrapper>
         <LeftWrapper>
-          <LogoWrapper>
+          <LogoWrapper onClick={props.onClickMain}>
             <Rectangle>nu</Rectangle>
 
             <HeaderTium>ntium.</HeaderTium>

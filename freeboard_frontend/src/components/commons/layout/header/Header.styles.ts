@@ -17,6 +17,7 @@ export const LogoWrapper = styled.div`
   display: flex;
   flex-direction: row;
   align-items: baseline;
+  cursor: pointer;
 `;
 
 export const Rectangle = styled.div`

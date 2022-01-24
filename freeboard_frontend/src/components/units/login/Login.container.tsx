@@ -29,7 +29,7 @@ export default function LoginContainer() {
   }
 
   function MoveToSignUpPage() {
-    router.push(`/boards/signup`);
+    router.push(`/signUp`);
   }
 
   async function onClickLogin() {
