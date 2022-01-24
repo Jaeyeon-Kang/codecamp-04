@@ -38,13 +38,13 @@ export const BestCommentImage = styled.img`
   cursor: pointer;
 `;
 
-// export const BestWriterToDate = styled.div`
-// /* background: red; */
-// display: flex;
-// justify-content: flex-start;
-// padding-left: 10px;
-// font-size: 6px;
-// `
+export const BestWriterToDate = styled.div`
+/* background: red; */
+display: flex;
+justify-content: flex-start;
+padding-left: 10px;
+font-size: 6px;
+`
 export const BestCommentWriter = styled.div``;
 
 export const BestIconToCount = styled.div`
