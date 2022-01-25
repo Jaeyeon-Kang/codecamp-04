@@ -16,10 +16,11 @@ import {
   Button,
   PencilIcon,
   StoreWrapper,
-  StoreWrapperDisplay
-
+  StoreWrapperDisplay,
+  Images,
 } from "./MarketList.styles";
 import InfiniteScroll from "react-infinite-scroller";
+import { v4 as uuidv4 } from "uuid";
 
 export default function MarketListPresenter(props) {
   return (
@@ -44,34 +45,40 @@ export default function MarketListPresenter(props) {
           <ColumnHeaderBasic>날짜</ColumnHeaderBasic>
           <ColumnHeaderBasic>장바구니</ColumnHeaderBasic>
         </Row> */}
-          <StoreWrapperDisplay>
-        {/* <InfiniteScroll
+        <StoreWrapperDisplay>
+          {/* <InfiniteScroll
           pageStart={0}
           loadMore={props.onLoadMore}
           hasMore={true}
           useWindow={false}
         > */}
           {props.data?.fetchUseditems.map((el, index) => (
-            <StoreWrapper key={el._id}>
-              <ColumnCheck>
+            <StoreWrapper key={uuidv4()}>
+              {el.images?.[0] ? (
+              <Images
+                src={`https://storage.googleapis.com/${el.images?.[0]}`}
+                onClick={props.onClickMarketDetail(el)}
+              />
+              ) : (
+                <Images onClick={props.onClickMarketDetail(el)} />
+              )}
+              {/* <ColumnCheck>
                 {" "}
                 <input type="checkbox" />
               </ColumnCheck>
-              <ColumnNumber>{index + 1}</ColumnNumber>
-              <ColumnName id={el._id} onClick={props.onClickMarketDetail}>
-                {el.name}
-              </ColumnName>
-              <ColumnBasic>{el.seller?.name}</ColumnBasic>
+              <ColumnNumber>{index}</ColumnNumber> */}
+              <ColumnName id={el._id}>{el.name}</ColumnName>
+              {/* <ColumnBasic>{el.seller?.name}</ColumnBasic> */}
               <ColumnBasic>{el.price}</ColumnBasic>
-              <ColumnBasic>{getDate(el.createdAt)}</ColumnBasic>
+              {/* <ColumnBasic>{getDate(el.createdAt)}</ColumnBasic> */}
               <ColumnBasic>
                 <Basket onClick={props.onClickBasket(el)}>추가하기</Basket>
               </ColumnBasic>
             </StoreWrapper>
           ))}
           {/* <Footer></Footer> */}
-        {/* </InfiniteScroll> */}
-          </StoreWrapperDisplay>
+          {/* </InfiniteScroll> */}
+        </StoreWrapperDisplay>
       </Wrapper>
     </>
   );

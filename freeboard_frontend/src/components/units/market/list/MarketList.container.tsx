@@ -15,11 +15,13 @@ export default function MarketListContainer() {
     Pick<IQuery, "fetchUseditems">,
     IQueryFetchUseditemArgs
   >(FETCH_USED_ITEMS);
+ console.log("data", data)
 
-
-  function onClickMarketDetail(event) {
-    router.push(`/market/${event.target.id}`);
+  const onClickMarketDetail = (el: any) => () => {
+    console.log("el.id",el._id)
+    router.push(`/market/${el._id}`);
   }
+ 
 
   function onClickMarketWrite() {
     router.push(`/market/write`);

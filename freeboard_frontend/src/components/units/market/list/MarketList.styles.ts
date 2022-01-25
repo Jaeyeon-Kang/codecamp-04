@@ -30,7 +30,7 @@ export const StoreWrapperDisplay = styled.div`
  display: flex;
    width: 1920px;;
   justify-content: space-between;
-  background: yellow;
+  /* background: yellow; */
   flex-wrap: wrap;
   
 `
@@ -38,11 +38,18 @@ export const StoreWrapperDisplay = styled.div`
 export const StoreWrapper = styled.div`
 width: 300px;
 height: 300px;
-background: blue;
+/* background: blue; */
 margin-left: 100px;
 margin-top: 100px;
+border: 1px solid gray;
+border-radius: 10px;
+`
 
-
+export const Images = styled.img`
+width: 220px;
+  height: 200px;
+  border-radius: 10px;
+  /* background: red; */
 `
 
 export const ColumnHeaderCheck = styled.div`

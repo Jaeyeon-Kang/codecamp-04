@@ -15,6 +15,8 @@ import {
 import Dompurify from "dompurify";
 import Head from "next/head";
 import { Tooltip } from "antd";
+import { v4 as uuidv4 } from "uuid";
+
 export default function MarketDetailPresenter(props) {
   return (
     <Wrapper>
@@ -28,7 +30,7 @@ export default function MarketDetailPresenter(props) {
             ?.filter((el) => el)
             .map((el) => (
               <ProductPhoto
-                key={el}
+              key={uuidv4()}
                 src={`https://storage.googleapis.com/${el}`}
               />
             ))}
