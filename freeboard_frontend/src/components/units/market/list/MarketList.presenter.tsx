@@ -15,6 +15,9 @@ import {
   Footer,
   Button,
   PencilIcon,
+  StoreWrapper,
+  StoreWrapperDisplay
+
 } from "./MarketList.styles";
 import InfiniteScroll from "react-infinite-scroller";
 
@@ -28,7 +31,7 @@ export default function MarketListPresenter(props) {
           <PencilIcon src="/images/board/list/write.png" />
           게시물 등록하기
         </Button>
-        <Row>
+        {/* <Row>
           <ColumnHeaderCheck>
             {" "}
             <input type="checkbox" />
@@ -40,15 +43,16 @@ export default function MarketListPresenter(props) {
           <ColumnHeaderBasic>가격</ColumnHeaderBasic>
           <ColumnHeaderBasic>날짜</ColumnHeaderBasic>
           <ColumnHeaderBasic>장바구니</ColumnHeaderBasic>
-        </Row>
-        <InfiniteScroll
+        </Row> */}
+          <StoreWrapperDisplay>
+        {/* <InfiniteScroll
           pageStart={0}
           loadMore={props.onLoadMore}
           hasMore={true}
           useWindow={false}
-        >
+        > */}
           {props.data?.fetchUseditems.map((el, index) => (
-            <Row key={el._id}>
+            <StoreWrapper key={el._id}>
               <ColumnCheck>
                 {" "}
                 <input type="checkbox" />
@@ -63,10 +67,11 @@ export default function MarketListPresenter(props) {
               <ColumnBasic>
                 <Basket onClick={props.onClickBasket(el)}>추가하기</Basket>
               </ColumnBasic>
-            </Row>
+            </StoreWrapper>
           ))}
-          <Footer></Footer>
-        </InfiniteScroll>
+          {/* <Footer></Footer> */}
+        {/* </InfiniteScroll> */}
+          </StoreWrapperDisplay>
       </Wrapper>
     </>
   );

@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
-  width: 1200px;
+  width: 100%;
   margin: 100px;
 `;
 
@@ -25,6 +25,25 @@ export const Row = styled.div`
     color: salmon;
   }
 `;
+
+export const StoreWrapperDisplay = styled.div`
+ display: flex;
+   width: 1920px;;
+  justify-content: space-between;
+  background: yellow;
+  flex-wrap: wrap;
+  
+`
+
+export const StoreWrapper = styled.div`
+width: 300px;
+height: 300px;
+background: blue;
+margin-left: 100px;
+margin-top: 100px;
+
+
+`
 
 export const ColumnHeaderCheck = styled.div`
   width: 10%;
