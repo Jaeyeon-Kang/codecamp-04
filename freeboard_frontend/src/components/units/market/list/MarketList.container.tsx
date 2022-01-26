@@ -17,9 +17,10 @@ export default function MarketListContainer() {
   >(FETCH_USED_ITEMS);
  console.log("data", data)
 
-  const onClickMarketDetail = (el: any) => () => {
-    console.log("el.id",el._id)
-    router.push(`/market/${el._id}`);
+  const onClickMarketDetail = (event: any) => {
+    // console.log("el.id",el._id)
+    console.log("event.target", event.target)
+    router.push(`/market/${event?.target?.id}`);
   }
  
 

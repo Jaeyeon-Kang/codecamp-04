@@ -55,19 +55,22 @@ export default function MarketListPresenter(props) {
           {props.data?.fetchUseditems.map((el, index) => (
             <StoreWrapper key={uuidv4()}>
               {el.images?.[0] ? (
-              <Images
-                src={`https://storage.googleapis.com/${el.images?.[0]}`}
-                onClick={props.onClickMarketDetail(el)}
-              />
+                <Images
+                  src={`https://storage.googleapis.com/${el.images?.[0]}`}
+                  onClick={props.onClickMarketDetail}
+                  id={el._id} 
+                />
               ) : (
-                <Images onClick={props.onClickMarketDetail(el)} />
+                <Images onClick={props.onClickMarketDetail} />
               )}
               {/* <ColumnCheck>
                 {" "}
                 <input type="checkbox" />
               </ColumnCheck>
               <ColumnNumber>{index}</ColumnNumber> */}
-              <ColumnName id={el._id}>{el.name}</ColumnName>
+              <ColumnName id={el._id} onClick={props.onClickMarketDetail}>
+                {el.name}
+              </ColumnName>
               {/* <ColumnBasic>{el.seller?.name}</ColumnBasic> */}
               <ColumnBasic>{el.price}</ColumnBasic>
               {/* <ColumnBasic>{getDate(el.createdAt)}</ColumnBasic> */}

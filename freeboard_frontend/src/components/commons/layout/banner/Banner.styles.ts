@@ -9,10 +9,10 @@ export const Banner = styled.section`
 
 export const ImgBanner = styled.figure`
   width: 100%;
-  height: 600px;
-  background-image: url("/images/ArticleImage.png");
+  height: 800px;
+  background-image: url("/images/landing/banner01.png");
   background-size: cover;
-  background-position: center center;
+  background-position: bottom center;
   position: relative;
   
   /* top: 50px; */
