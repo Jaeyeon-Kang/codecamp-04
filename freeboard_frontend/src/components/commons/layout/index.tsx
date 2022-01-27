@@ -8,11 +8,11 @@ import { useRouter } from "next/router";
 
 const Wrapper = styled.div``;
 const Body = styled.div``;
-const BodyWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
+// const BodyWrapper = styled.div`
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+// `;
 // const Sidebar = styled.div`
 //   width: 200px;
 //   /* height: 700px; */
@@ -35,12 +35,12 @@ export default function Layout(props: ILayoutProps) {
     <Wrapper>
       {!isHiddenHeader && <Header />}
 
-      <Banner />
+      {/* <Banner /> */}
       {/* <Navigation /> */}
-      <BodyWrapper>
+      {/* <BodyWrapper> */}
         {/* <Sidebar>sidebar!!</Sidebar> */}
         <Body>{props.children}</Body>
-      </BodyWrapper>
+      {/* </BodyWrapper> */}
       <Footer />
     </Wrapper>
   );

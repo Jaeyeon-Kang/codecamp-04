@@ -1,10 +1,16 @@
-import * as S from "./Landing.styles"
+import * as S from "./Landing.styles";
 
 const LandingPagePresenter = () => {
+  return (
+    <S.Wrapper>
+      <S.FirstBanner>
+        <S.FirstTitle>Be wise in trading used electronic devices</S.FirstTitle>
+      </S.FirstBanner>
+      <S.SecondBanner></S.SecondBanner>
+      <S.ThirdBanner></S.ThirdBanner>
+      {/* <S.FourthBanner></S.FourthBanner> */}
+    </S.Wrapper>
+  );
+};
 
-    return(
-        <S.Wrapper> 이곳은 랜딩페이지입니다.</S.Wrapper>
-    )
-}
-
-export default LandingPagePresenter
+export default LandingPagePresenter;
