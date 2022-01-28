@@ -1,7 +1,8 @@
 import BoardListUI from "./BoardList.presenter";
-import { useState, MouseEvent } from "react";
+import { useState, MouseEvent, ChangeEvent } from "react";
 import { useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
+import _ from "lodash";
 import {
   FETCH_BOARDS,
   FETCH_BOARDS_OF_THE_BEST,
@@ -14,19 +15,13 @@ import {
 
 export default function BoardList(props) {
   const router = useRouter();
-  const [search, setSearch] = useState("");
+  const [myKeyword, setmyKeyword] = useState(" ");
   const [startPage, setStartPage] = useState(1);
-  const { data } = useQuery<Pick<IQuery, "fetchBoards">, IQueryFetchBoardsArgs>(
+  const { data, refetch } = useQuery<Pick<IQuery, "fetchBoards">, IQueryFetchBoardsArgs>(
     FETCH_BOARDS
   );
 
-  const { data: searchData, refetch: searchRetch } = useQuery(FETCH_BOARDS, {
-    variables: {
-      search: router.query.search,
-      page: 1,
-    },
-  });
-  console.log("searchData", searchData);
+
 
   const { data: dataBoardsCount } =
     useQuery<Pick<IQuery, "fetchBoardsCount">>(FETCH_BOARDS_COUNTS);
@@ -40,10 +35,21 @@ export default function BoardList(props) {
     ? Math.ceil(dataBoardsCount.fetchBoardsCount / 10)
     : 0;
 
-  const onClickPage = (event: MouseEvent<HTMLSpanElement>) => {
-    if (event.target instanceof Element)
-      refetch({ page: Number(event.target.id) });
-  };
+    function onClickPage(event: MouseEvent<HTMLSpanElement>) {
+      if (event.target instanceof Element)
+        refetch({ search: myKeyword, page: Number(event?.target.id) });
+    }
+
+
+  const getDebounce = _.debounce((data) => {
+    refetch({ search: data, page: 1 });
+    setmyKeyword(data);
+  }, 500);
+
+  function onChangeSearch(event: ChangeEvent<HTMLInputElement>) {
+    getDebounce(event.target.value);
+  }
+  
   const onClickPrevPage = () => {
     if (startPage === 1) return;
     setStartPage((prev: number) => prev - 10);
@@ -61,25 +67,15 @@ export default function BoardList(props) {
     router.push(`/boards/${e.currentTarget.id}`);
   };
 
-  const onChangeSearchInput = (e) => {
-    setSearch(e.target.value);
-  };
 
-  const onClickSearch = () => {
-    try {
-      router.push(router.query.searchData);
-      // 이거 이상해ㅜ
-    } catch (error) {
-      console.log("에러!!!");
-    }
-  };
 
   return (
     <BoardListUI
       data={data}
-      searchData={searchData}
+      // searchData={searchData}
       dataBoardsCount={dataBoardsCount}
       onClickPage={onClickPage}
+      onChangeSearch={onChangeSearch}
       onClickPrevPage={onClickPrevPage}
       onClickNextPage={onClickNextPage}
       startPage={startPage}
@@ -88,9 +84,8 @@ export default function BoardList(props) {
       isSearch={props.isSearch}
       onClickMoveToBoardNew={onClickMoveToBoardNew}
       onClickMoveToBoardDetail={onClickMoveToBoardDetail}
-      onChangeSearchInput={onChangeSearchInput}
-      onClickSearch={onClickSearch}
-      searchRetch={searchRetch}
+
+   
     />
   );
 }
