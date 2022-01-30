@@ -6,8 +6,7 @@ import Searchbars02Container from "../../../commons/searchbars/02/Searchbars02.c
 export default function BoardListUI(props) {
   return (
     <S.Wrapper>
-         검색어 입력: <input type="text" onChange={props.onChangeSearch} />
-
+      검색어 입력: <input type="text" onChange={props.onChangeSearch} />
       <S.BestCommentWrapperTop>
         {props.bestData?.fetchBoardsOfTheBest.map((el) => (
           <S.BestCommentWrapper key={el._id}>
@@ -31,8 +30,8 @@ export default function BoardListUI(props) {
             {/* <S.BestCommentDate>{getDate(el.createdAt)}</S.BestCommentDate> */}
             {/* </S.BestWriterToDate> */}
             <S.BestIconToCount>
-            <S.BestCommentLikeIcon src="/images/boardComment/list/like.png" />
-            <S.BestCommentLikeCount>{el.likeCount}</S.BestCommentLikeCount>
+              <S.BestCommentLikeIcon src="/images/boardComment/list/like.png" />
+              <S.BestCommentLikeCount>{el.likeCount}</S.BestCommentLikeCount>
             </S.BestIconToCount>
           </S.BestCommentWrapper>
         ))}
@@ -44,7 +43,6 @@ export default function BoardListUI(props) {
         <S.ColumnHeaderBasic>작성자</S.ColumnHeaderBasic>
         <S.ColumnHeaderBasic>날짜</S.ColumnHeaderBasic>
       </S.Row>
-
       {!props.isSearch && (
         <>
           {props.data?.fetchBoards.map((el, index) => (
@@ -83,11 +81,16 @@ export default function BoardListUI(props) {
       <S.PageNation>
         <S.NextPage onClick={props.onClickPrevPage}>이전페이지</S.NextPage>
 
-        {new Array(10).fill(1).map((_, index) => (
-        <span key={uuidv4()} onClick={props.onClickPage} id={String(index + 1)}>
-          {index + 1}
-        </span>
-      ))}
+        {new Array(4).fill(1).map((_, index) => (
+          <span
+            key={uuidv4()}
+            onClick={props.onClickPage}
+            id={String(index + 1)}
+            style={{ width: "1.1%" }}
+          >
+            {index + 1}
+          </span>
+        ))}
         <S.NextPage onClick={props.onClickNextPage}>다음페이지</S.NextPage>
       </S.PageNation>
       <S.Footer>

@@ -24,8 +24,13 @@ export const SecondBanner = styled.div`
   height: 110vh;
   background-size: cover;
   background-position: bottom center;
-  background-image: url("/images/landing/banner02.jpg");
+  background-image: url("/images/landing/banner02.png");
   margin-top: 2%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const ThirdToFourthBanner = styled.div`
@@ -55,7 +60,7 @@ export const FirstTitle = styled.div`
   position: absolute;
   top: 6%;
   font-size: 5em;
-  font-weight: 600;
+  font-weight: 700;
   width: 1000px;
   letter-spacing: -0.01em;
   line-height: 114%;
@@ -63,9 +68,31 @@ export const FirstTitle = styled.div`
   z-index: 0;
 `;
 
+export const SmallTitleTwo = styled.div`
+  position: absolute;
+  font-size: 2em;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  line-height: 114%;
+  text-align: center;
+  margin-top: -13%;
+  /* z-index: 1; */
+`;
+export const FirstTitleTwo = styled.div`
+  position: absolute;
+  /* top: 6%; */
+  font-size: 5em;
+  font-weight: 700;
+  width: 1000px;
+  letter-spacing: -0.01em;
+  line-height: 114%;
+  text-align: center;
+  /* z-index: 1; */
+`;
+
 export const LearnMoreToArrow = styled.div`
   position: absolute;
-  top: 20%;
+  margin-top: 15%;
   color: rgba(48, 111, 219, 1);
   display: flex;
   cursor: pointer;
@@ -89,4 +116,17 @@ export const RightArrow = styled.img`
   height: 1.7em;
   margin-top: 8px;
   margin-left: 15px;
+`;
+
+export const LearnMoreToArrowTwo = styled.div`
+  position: absolute;
+  margin-top: 15%;
+  color: rgba(48, 111, 219, 1);
+  display: flex;
+  cursor: pointer;
+  /* z-index: 1; */
+  :hover {
+    text-decoration: underline;
+    /* text-underline-position: top; */
+  }
 `;

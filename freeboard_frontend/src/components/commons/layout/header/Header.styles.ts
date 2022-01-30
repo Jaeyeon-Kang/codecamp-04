@@ -11,6 +11,7 @@ export const HeaderWrapper = styled.div`
   padding-right: 24px;
   height: 131px;
   padding-top: 31px;
+  position: sticky;
 `;
 
 export const LogoWrapper = styled.div`

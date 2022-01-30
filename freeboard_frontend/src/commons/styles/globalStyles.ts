@@ -5,12 +5,11 @@ export const globalStyles = css`
     margin: 0px;
     box-sizing: border-box;
     /* font-size: 50px; */
-    font-family: helvetica;
-
+    font-family: Roboto-Regular;
   }
-  /* 
-  @font-face {
+
+  /* @font-face {
     font-family: "myFont";
-    src: url("/fonts/scifibit.ttf");
+    src: url("/fonts/CabinMedium.ttf");
   } */
 `;
