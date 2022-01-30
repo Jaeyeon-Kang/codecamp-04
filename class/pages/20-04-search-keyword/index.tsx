@@ -66,7 +66,7 @@ export default function SearchKeywordPage() {
           <span style={{ paddingRight: "50px" }}>{el.createdAt}</span>
         </div>
       ))}
-      {new Array(10).fill(1).map((_, index) => (
+      {new Array(2).fill(1).map((_, index) => (
         <span key={uuidv4()} onClick={onClickPage} id={String(index + 1)}>
           {index + 1}
         </span>
