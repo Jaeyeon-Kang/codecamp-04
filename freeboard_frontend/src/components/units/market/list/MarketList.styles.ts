@@ -1,8 +1,13 @@
 import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
-  width: 100%;
+  /* width: 100%; */
   margin: 100px;
+  /* background: yellow; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
 `;
 
 export const Title = styled.div`
@@ -29,7 +34,7 @@ export const Row = styled.div`
 export const StoreWrapperDisplay = styled.div`
  display: flex;
    width: 1920px;;
-  justify-content: space-between;
+  justify-content: flex-start;
   /* background: yellow; */
   flex-wrap: wrap;
   
@@ -41,14 +46,15 @@ height: 300px;
 /* background: blue; */
 margin-left: 100px;
 margin-top: 100px;
-border: 1px solid gray;
-border-radius: 10px;
+
 `
 
 export const Images = styled.img`
-width: 220px;
-  height: 200px;
+width: 100%;
+  height: 100%;
   border-radius: 10px;
+  object-fit: cover;
+  /* border: 2px solid black; */
   /* background: red; */
 `
 
@@ -103,6 +109,8 @@ export const Basket = styled.button`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  position: absolute;
+
 `;
 
 export const Footer = styled.div`
@@ -129,3 +137,10 @@ export const Button = styled.button`
     background-color: #f5f2fc;
   }
 `;
+
+export const ButtonWrapper = styled.div`
+/* background: yellow; */
+display: flex;
+justify-content: flex-end;
+`
+

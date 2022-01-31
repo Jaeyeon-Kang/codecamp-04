@@ -18,6 +18,7 @@ import {
   StoreWrapper,
   StoreWrapperDisplay,
   Images,
+  ButtonWrapper,
 } from "./MarketList.styles";
 import InfiniteScroll from "react-infinite-scroller";
 import { v4 as uuidv4 } from "uuid";
@@ -27,11 +28,12 @@ export default function MarketListPresenter(props) {
     <>
       <Wrapper>
         <Title>상품목록</Title>
-
-        <Button onClick={props.onClickMarketWrite}>
-          <PencilIcon src="/images/board/list/write.png" />
-          게시물 등록하기
-        </Button>
+        <ButtonWrapper>
+          <Button onClick={props.onClickMarketWrite}>
+            <PencilIcon src="/images/board/list/write.png" />
+            게시물 등록하기
+          </Button>
+        </ButtonWrapper>
         {/* <Row>
           <ColumnHeaderCheck>
             {" "}
@@ -58,25 +60,19 @@ export default function MarketListPresenter(props) {
                 <Images
                   src={`https://storage.googleapis.com/${el.images?.[0]}`}
                   onClick={props.onClickMarketDetail}
-                  id={el._id} 
+                  id={el._id}
                 />
               ) : (
                 <Images onClick={props.onClickMarketDetail} />
               )}
-              {/* <ColumnCheck>
-                {" "}
-                <input type="checkbox" />
-              </ColumnCheck>
-              <ColumnNumber>{index}</ColumnNumber> */}
+
+              <Basket onClick={props.onClickBasket(el)}>추가하기</Basket>
               <ColumnName id={el._id} onClick={props.onClickMarketDetail}>
                 {el.name}
               </ColumnName>
               {/* <ColumnBasic>{el.seller?.name}</ColumnBasic> */}
               <ColumnBasic>{el.price}</ColumnBasic>
               {/* <ColumnBasic>{getDate(el.createdAt)}</ColumnBasic> */}
-              <ColumnBasic>
-                <Basket onClick={props.onClickBasket(el)}>추가하기</Basket>
-              </ColumnBasic>
             </StoreWrapper>
           ))}
           {/* <Footer></Footer> */}
