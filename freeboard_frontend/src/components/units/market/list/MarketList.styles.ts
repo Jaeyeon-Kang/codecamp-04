@@ -2,12 +2,12 @@ import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
   /* width: 100%; */
-  margin: 100px;
+  /* margin: 100px; */
   /* background: yellow; */
+  /* height: 2000px; */
   display: flex;
   flex-direction: column;
   justify-content: center;
-
 `;
 
 export const Title = styled.div`
@@ -25,38 +25,36 @@ export const Row = styled.div`
   height: 52px;
   line-height: 52px;
   border-bottom: 1px solid gray;
-
   :hover {
     color: salmon;
   }
 `;
 
 export const StoreWrapperDisplay = styled.div`
- display: flex;
-   width: 1920px;;
+  display: flex;
+  /* width: 1920px; */
   justify-content: flex-start;
   /* background: yellow; */
   flex-wrap: wrap;
-  
-`
+`;
 
 export const StoreWrapper = styled.div`
-width: 300px;
-height: 300px;
-/* background: blue; */
-margin-left: 100px;
-margin-top: 100px;
-
-`
+  width: 300px;
+  height: 300px;
+  background: blue;
+  margin-left: 100px;
+  margin-top: 100px;
+  position: relative;
+`;
 
 export const Images = styled.img`
-width: 100%;
+  width: 100%;
   height: 100%;
   border-radius: 10px;
   object-fit: cover;
   /* border: 2px solid black; */
   /* background: red; */
-`
+`;
 
 export const ColumnHeaderCheck = styled.div`
   width: 10%;
@@ -110,7 +108,11 @@ export const Basket = styled.button`
   align-items: center;
   justify-content: center;
   position: absolute;
-
+  top: 5%;
+  right: 5%;
+  /* color: red; */
+  color: ${(props)  => (props.isEdit ? "red" : "black")};
+}
 `;
 
 export const Footer = styled.div`
@@ -139,8 +141,7 @@ export const Button = styled.button`
 `;
 
 export const ButtonWrapper = styled.div`
-/* background: yellow; */
-display: flex;
-justify-content: flex-end;
-`
-
+  /* background: yellow; */
+  display: flex;
+  justify-content: flex-end;
+`;

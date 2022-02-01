@@ -21,9 +21,13 @@ import {
   ButtonWrapper,
 } from "./MarketList.styles";
 import InfiniteScroll from "react-infinite-scroller";
+// import { v4 as uuidv4 } from "uuid";
+import { MarketListProps } from "./MarketList.types";
+import ItemWrapperContainer from "../../../commons/ItemWrapper/ItemWrapper.container";
 import { v4 as uuidv4 } from "uuid";
+import Heart from "react-heart";
 
-export default function MarketListPresenter(props) {
+export default function MarketListPresenter(props: MarketListProps) {
   return (
     <>
       <Wrapper>
@@ -66,12 +70,18 @@ export default function MarketListPresenter(props) {
                 <Images onClick={props.onClickMarketDetail} />
               )}
 
-              <Basket onClick={props.onClickBasket(el)}>추가하기</Basket>
+              <Basket
+                isEdit={props.isEdit}
+                id={el._id}
+                onClick={props.onClickBasket(el)}
+              >
+                추가하기
+              </Basket>
               <ColumnName id={el._id} onClick={props.onClickMarketDetail}>
                 {el.name}
               </ColumnName>
               {/* <ColumnBasic>{el.seller?.name}</ColumnBasic> */}
-              <ColumnBasic>{el.price}</ColumnBasic>
+              <ColumnBasic>{el.price} 원</ColumnBasic>
               {/* <ColumnBasic>{getDate(el.createdAt)}</ColumnBasic> */}
             </StoreWrapper>
           ))}

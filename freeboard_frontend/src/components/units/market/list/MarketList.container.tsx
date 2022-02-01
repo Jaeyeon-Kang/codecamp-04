@@ -7,22 +7,24 @@ import {
   IQueryFetchUseditemArgs,
   IUseditem,
 } from "../../../../commons/types/generated/types";
-
+import { isDefinitionNode } from "graphql";
+import { useState } from "react";
 
 export default function MarketListContainer() {
   const router = useRouter();
+  const [isEdit, setIsEdit] = useState(false);
+
   const { data, fetchMore } = useQuery<
     Pick<IQuery, "fetchUseditems">,
     IQueryFetchUseditemArgs
   >(FETCH_USED_ITEMS);
- console.log("data", data)
+  console.log("data", data);
 
   const onClickMarketDetail = (event: any) => {
     // console.log("el.id",el._id)
-    console.log("event.target", event.target)
+    console.log("event.target", event.target);
     router.push(`/market/${event?.target?.id}`);
-  }
- 
+  };
 
   function onClickMarketWrite() {
     router.push(`/market/write`);
@@ -51,21 +53,26 @@ export default function MarketListContainer() {
 
   const onClickBasket = (el: IUseditem) => () => {
     const baskets = JSON.parse(localStorage.getItem("basket") || "[]");
-
     let isExists = false;
     baskets.forEach((basketEl: IUseditem) => {
       if (el._id === basketEl._id) isExists = true;
     });
     if (isExists) {
+      setIsEdit(el);
       alert("이미 장바구니에 담으셨습니다");
+    
       return;
     }
     const { __typename, ...newEl } = el;
     baskets.push(newEl);
     // baskets.push(el);
     localStorage.setItem("basket", JSON.stringify(baskets));
-    router.push(`/market/basket`);
+    setIsEdit(el);
+    alert("장바구니에 성공적으로 담았습니다");
+    // router.push(`/market/basket`);
   };
+
+  
 
   return (
     <MarketListPresenter
@@ -74,6 +81,7 @@ export default function MarketListContainer() {
       onClickBasket={onClickBasket}
       onClickMarketWrite={onClickMarketWrite}
       onLoadMore={onLoadMore}
+      isEdit={isEdit}
     />
   );
 }
