@@ -52,19 +52,19 @@ export default function BoardList(props) {
   
   const onClickPrevPage = () => {
     if (startPage === 1) return;
-    setStartPage((prev: number) => prev - 10);
+    setStartPage((prev: number) => prev - 5);
   };
   const onClickNextPage = () => {
-    if (startPage + 10 > lastPage) return;
-    setStartPage((prev: number) => prev + 10);
+    if (startPage + 5 > lastPage) return;
+    setStartPage((prev: number) => prev + 5);
   };
 
   const onClickMoveToBoardNew = () => {
     router.push("/boards/new");
   };
 
-  const onClickMoveToBoardDetail = (e) => {
-    router.push(`/boards/${e.currentTarget.id}`);
+  const onClickMoveToBoardDetail = (event: any) => {
+    router.push(`/boards/${event.currentTarget.id}`);
   };
 
 

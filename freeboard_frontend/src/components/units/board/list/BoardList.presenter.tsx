@@ -35,56 +35,62 @@ export default function BoardListUI(props: IBoardListUIProps) {
   };
 
   const settings = {
-    dots: true,
+    dots: false,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
-    autoplay: true,
+    autoplay: false,
     infinite: true,
-    slidesToShow:3,
+    slidesToShow: 3,
     slidesToScroll: 1,
   };
 
   return (
     <S.Wrapper>
       검색어 입력: <input type="text" onChange={props.onChangeSearch} />
-      <S.BestCommentWrapperTop>
-        <S.SliderWrapper>
-          <Slider {...settings}>
-            {props.bestData?.fetchBoardsOfTheBest.map((el) => (
-              <S.BestCommentWrapper key={el._id}>
-                <S.BestCommentImage  />
-                <S.BestCommentTitle
-                  id={el._id}
-                  onClick={props.onClickMoveToBoardDetail}
-                >
-                  {el.title
-                    .replaceAll(props.keyword, `@#$%{props.keyword}@#$%`)
-                    .split("@#$%")
-                    .map((el: any) => (
-                      <S.TextToken
-                        key={uuidv4()}
-                        isMatched={props.keyword === el}
-                      >
-                        {el}
-                      </S.TextToken>
-                    ))}
-                </S.BestCommentTitle>
-                <S.BestCommentImageIcon></S.BestCommentImageIcon>
-                {/* <S.BestWriterToDate> */}
-                {/* <S.BestCommentWriter>{el.writer}</S.BestCommentWriter> */}
-                {/* <S.BestCommentDate>{getDate(el.createdAt)}</S.BestCommentDate> */}
-                {/* </S.BestWriterToDate> */}
-                <S.BestIconToCount>
-                  <S.BestCommentLikeIcon src="/images/boardComment/list/like.png" />
-                  <S.BestCommentLikeCount>
-                    {el.likeCount}
-                  </S.BestCommentLikeCount>
-                </S.BestIconToCount>
-              </S.BestCommentWrapper>
-            ))}
-          </Slider>
-        </S.SliderWrapper>
-      </S.BestCommentWrapperTop>
+      {/* <S.BestCommentWrapperTop> */}
+      <S.SliderWrapper>
+        <Slider {...settings}>
+          {props.bestData?.fetchBoardsOfTheBest.map((el) => (
+            <S.BestCommentWrapper key={el._id}>
+               {el.images?.[0] ? (
+              <S.BestCommentImage 
+              src={`https://storage.googleapis.com/${el.images?.[0]}`}
+              onClick={props.onClickMoveToBoardDetail}
+              id={el._id}
+              />
+              ) : (
+                <S.BestCommentImage2 onClick={props.onClickMoveToBoardDetail} />
+              )}
+              <S.BestCommentTitle
+                id={el._id}
+              >
+                {el.title
+                  .replaceAll(props.keyword, `@#$%{props.keyword}@#$%`)
+                  .split("@#$%")
+                  .map((el: any) => (
+                    <S.TextToken
+                      key={uuidv4()}
+                      isMatched={props.keyword === el}
+                    >
+                      {el}
+                    </S.TextToken>
+                  ))}
+              </S.BestCommentTitle>
+              <S.BestCommentImageIcon></S.BestCommentImageIcon>
+
+              <S.BestIconToCount>
+                <S.BestCommentLikeIcon src="/images/boardComment/list/like.png" />
+                <S.BestCommentLikeCount>{el.likeCount}</S.BestCommentLikeCount>
+              </S.BestIconToCount>
+            </S.BestCommentWrapper>
+          ))}
+
+          {/* {new Array(5).fill(1).map((el) => (
+            <S.BestCommentImage key={uuidv4()} src="/images/landing/banner01.png" />
+          ))} */}
+        </Slider>
+      </S.SliderWrapper>
+      {/* </S.BestCommentWrapperTop> */}
       <S.TableTop />
       <S.Row>
         <S.ColumnHeaderBasic>번호</S.ColumnHeaderBasic>
@@ -130,7 +136,7 @@ export default function BoardListUI(props: IBoardListUIProps) {
       <S.PageNation>
         <S.NextPage onClick={props.onClickPrevPage}>이전페이지</S.NextPage>
 
-        {new Array(4).fill(1).map((_, index) => (
+        {new Array(10).fill(1).map((_, index) => (
           <span
             key={uuidv4()}
             onClick={props.onClickPage}

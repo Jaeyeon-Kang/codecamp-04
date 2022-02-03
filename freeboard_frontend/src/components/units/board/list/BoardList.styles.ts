@@ -1,30 +1,51 @@
 import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
-  /* width: 1200px; */
   margin: 100px;
 `;
 
 export const BestCommentWrapperTop = styled.div`
-  /* width: 100%; */
   /* background-color: blue; */
   display: flex;
-  flex-direction: row;
+
+  justify-content: space-between;
+  height: 300px;
+`;
+
+export const SliderWrapper = styled.div`
+  .slick-next-arrow {
+    font-size: 20px;
+    position: absolute;
+    width: 35px;
+    height: 35px;
+    top: 219px;
+    right: -45px;
+    background-image: url("/images/landing/rightarrow1.png");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    overflow: hidden;
+  }
+
+  .slick-before-arrow {
+    font-size: 20px;
+    position: absolute;
+    width: 35px;
+    height: 35px;
+    top: 219px;
+    left: -30px;
+    background-image: url("/images/landing/leftarrow1.png");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    overflow: hidden;
+  }
 `;
 
 export const BestCommentWrapper = styled.div`
-  /* width: 182px; */
-
-  background-color: black;
-  box-shadow: 5px 5px 10px gray;
-  border: 0px solid gray;
-  border-radius: 30px;
-  display: flex;
+  /* background-color: black; */
   flex-direction: column;
-  /* margin-left: 30px; */
   overflow: hidden;
-  width: 290px;
-  height: 180px;
+  padding: 20px;
+  border: 0px solid gray;
 `;
 
 export const BestCommentTitle = styled.div`
@@ -34,9 +55,25 @@ export const BestCommentTitle = styled.div`
   padding: 5px 0px 0px 10px;
 `;
 
-export const BestCommentImage = styled.div`
+export const BestCommentImage = styled.img`
   cursor: pointer;
-  background: pink;
+    height: 450px;
+  overflow: hidden;
+  object-fit: cover;
+  object-position: center center;
+  
+  /* box-shadow: 5px 5px 10px gray; */
+`;
+
+export const BestCommentImage2 = styled.div`
+  cursor: pointer;
+  background: gray;
+  height: 450px;
+  overflow: hidden;
+  object-fit: cover;
+  object-position: center center;
+  
+  /* box-shadow: 5px 5px 10px gray; */
 `;
 
 export const BestWriterToDate = styled.div`
@@ -157,36 +194,4 @@ export const NextPage = styled.div`
   /* :hover {
     color: blueviolet;
   } */
-`;
-
-export const SliderWrapper = styled.div`
-  width: 100%;
-  /* height: 1200px; */
-  background: yellow;
-
-  .slick-next-arrow {
-    font-size: 20px;
-    position: absolute;
-    width: 23px;
-    height: 23px;
-    top: 116px;
-    right: -18px;
-    background-image: url("/images/landing/rightarrow1.png");
-    background-size: 100%;
-    background-repeat: no-repeat;
-    overflow: hidden;
-  }
-
-  .slick-before-arrow {
-    font-size: 20px;
-    position: absolute;
-    width: 23px;
-    height: 23px;
-    top: 116px;
-    left: -53px;
-    background-image: url("/images/landing/leftarrow1.png");
-    background-size: 100%;
-    background-repeat: no-repeat;
-    overflow: hidden;
-  }
 `;
