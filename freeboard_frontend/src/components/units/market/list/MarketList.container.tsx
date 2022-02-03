@@ -51,26 +51,26 @@ export default function MarketListContainer() {
     });
   }
 
-  const onClickBasket = (el: IUseditem) => () => {
-    const baskets = JSON.parse(localStorage.getItem("basket") || "[]");
-    let isExists = false;
-    baskets.forEach((basketEl: IUseditem) => {
-      if (el._id === basketEl._id) isExists = true;
-    });
-    if (isExists) {
-      setIsEdit(el);
-      alert("이미 장바구니에 담으셨습니다");
+  // const onClickBasket = (el: IUseditem) => () => {
+  //   const baskets = JSON.parse(localStorage.getItem("basket") || "[]");
+  //   let isExists = false;
+  //   baskets.forEach((basketEl: IUseditem) => {
+  //     if (el._id === basketEl._id) isExists = true;
+  //   });
+  //   if (isExists) {
+  //     setIsEdit(el);
+  //     alert("이미 장바구니에 담으셨습니다");
     
-      return;
-    }
-    const { __typename, ...newEl } = el;
-    baskets.push(newEl);
-    // baskets.push(el);
-    localStorage.setItem("basket", JSON.stringify(baskets));
-    setIsEdit(el);
-    alert("장바구니에 성공적으로 담았습니다");
-    // router.push(`/market/basket`);
-  };
+  //     return;
+  //   }
+  //   const { __typename, ...newEl } = el;
+  //   baskets.push(newEl);
+  //   // baskets.push(el);
+  //   localStorage.setItem("basket", JSON.stringify(baskets));
+  //   setIsEdit(el);
+  //   alert("장바구니에 성공적으로 담았습니다");
+  //   // router.push(`/market/basket`);
+  // };
 
   
 
@@ -78,7 +78,7 @@ export default function MarketListContainer() {
     <MarketListPresenter
       data={data}
       onClickMarketDetail={onClickMarketDetail}
-      onClickBasket={onClickBasket}
+      // onClickBasket={onClickBasket}
       onClickMarketWrite={onClickMarketWrite}
       onLoadMore={onLoadMore}
       isEdit={isEdit}

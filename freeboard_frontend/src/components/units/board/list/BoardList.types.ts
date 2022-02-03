@@ -1,5 +1,5 @@
 import { ApolloQueryResult } from "@apollo/client";
-import { Dispatch, MouseEvent, SetStateAction } from "react";
+import { ChangeEventHandler, Dispatch, MouseEvent, SetStateAction } from "react";
 import {
   IQuery,
   IQueryFetchBoardsArgs,
@@ -7,6 +7,8 @@ import {
 } from "../../../../commons/types/generated/types";
 
 export interface IBoardListUIProps {
+  onChangeSearch: ChangeEventHandler<HTMLInputElement> | undefined;
+  bestData: any;
   data?: Pick<IQuery, "fetchBoards">;
   onClickMoveToBoardNew: () => void;
   onClickMoveToBoardDetail: (event: MouseEvent<HTMLDivElement>) => void;
@@ -21,8 +23,6 @@ export interface IBoardListUIProps {
   setStartPage: Dispatch<SetStateAction<number>>;
   keyword: string;
   onChangeKeyword: (value: string) => void;
-}
-
-export interface ITextTokenProps {
   isMatched: boolean;
+
 }

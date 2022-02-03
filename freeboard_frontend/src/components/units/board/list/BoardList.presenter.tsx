@@ -1,40 +1,89 @@
 import { getDate } from "../../../../commons/libraries/utils";
 import * as S from "./BoardList.styles";
 import { v4 as uuidv4 } from "uuid";
-import Searchbars02Container from "../../../commons/searchbars/02/Searchbars02.container";
+// import Searchbars02Container from "../../../commons/searchbars/02/Searchbars02.container";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import { IBoardListUIProps } from "./BoardList.types";
 
-export default function BoardListUI(props) {
+export default function BoardListUI(props: IBoardListUIProps) {
+  const SampleNextArrow = (props: any) => {
+    const { className, style, onClick } = props;
+    return (
+      <div
+        className="slick-next-arrow"
+        style={{ ...style, display: "block" }}
+        onClick={onClick}
+      />
+    );
+  };
+
+  const SamplePrevArrow = (props: any) => {
+    const { currentSlide, style, onClick } = props;
+    if (currentSlide === 0) {
+      return null;
+    } else {
+      return (
+        <div
+          className="slick-before-arrow"
+          style={{ ...style, display: "block" }}
+          onClick={onClick}
+        />
+      );
+    }
+  };
+
+  const settings = {
+    dots: true,
+    nextArrow: <SampleNextArrow />,
+    prevArrow: <SamplePrevArrow />,
+    autoplay: true,
+    infinite: true,
+    slidesToShow:3,
+    slidesToScroll: 1,
+  };
+
   return (
     <S.Wrapper>
       검색어 입력: <input type="text" onChange={props.onChangeSearch} />
       <S.BestCommentWrapperTop>
-        {props.bestData?.fetchBoardsOfTheBest.map((el) => (
-          <S.BestCommentWrapper key={el._id}>
-            <S.BestCommentImage src="/images/carousel_1.jpg" />
-            <S.BestCommentTitle
-              id={el._id}
-              onClick={props.onClickMoveToBoardDetail}
-            >
-              {el.title
-                .replaceAll(props.keyword, `@#$%{props.keyword}@#$%`)
-                .split("@#$%")
-                .map((el: any) => (
-                  <S.TextToken key={uuidv4()} isMatched={props.keyword === el}>
-                    {el}
-                  </S.TextToken>
-                ))}
-            </S.BestCommentTitle>
-            <S.BestCommentImageIcon></S.BestCommentImageIcon>
-            {/* <S.BestWriterToDate> */}
-            {/* <S.BestCommentWriter>{el.writer}</S.BestCommentWriter> */}
-            {/* <S.BestCommentDate>{getDate(el.createdAt)}</S.BestCommentDate> */}
-            {/* </S.BestWriterToDate> */}
-            <S.BestIconToCount>
-              <S.BestCommentLikeIcon src="/images/boardComment/list/like.png" />
-              <S.BestCommentLikeCount>{el.likeCount}</S.BestCommentLikeCount>
-            </S.BestIconToCount>
-          </S.BestCommentWrapper>
-        ))}
+        <S.SliderWrapper>
+          <Slider {...settings}>
+            {props.bestData?.fetchBoardsOfTheBest.map((el) => (
+              <S.BestCommentWrapper key={el._id}>
+                <S.BestCommentImage  />
+                <S.BestCommentTitle
+                  id={el._id}
+                  onClick={props.onClickMoveToBoardDetail}
+                >
+                  {el.title
+                    .replaceAll(props.keyword, `@#$%{props.keyword}@#$%`)
+                    .split("@#$%")
+                    .map((el: any) => (
+                      <S.TextToken
+                        key={uuidv4()}
+                        isMatched={props.keyword === el}
+                      >
+                        {el}
+                      </S.TextToken>
+                    ))}
+                </S.BestCommentTitle>
+                <S.BestCommentImageIcon></S.BestCommentImageIcon>
+                {/* <S.BestWriterToDate> */}
+                {/* <S.BestCommentWriter>{el.writer}</S.BestCommentWriter> */}
+                {/* <S.BestCommentDate>{getDate(el.createdAt)}</S.BestCommentDate> */}
+                {/* </S.BestWriterToDate> */}
+                <S.BestIconToCount>
+                  <S.BestCommentLikeIcon src="/images/boardComment/list/like.png" />
+                  <S.BestCommentLikeCount>
+                    {el.likeCount}
+                  </S.BestCommentLikeCount>
+                </S.BestIconToCount>
+              </S.BestCommentWrapper>
+            ))}
+          </Slider>
+        </S.SliderWrapper>
       </S.BestCommentWrapperTop>
       <S.TableTop />
       <S.Row>

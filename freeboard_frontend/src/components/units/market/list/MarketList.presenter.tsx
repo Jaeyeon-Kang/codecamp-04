@@ -70,13 +70,13 @@ export default function MarketListPresenter(props: MarketListProps) {
                 <Images onClick={props.onClickMarketDetail} />
               )}
 
-              <Basket
+              {/* <Basket
                 isEdit={props.isEdit}
                 id={el._id}
                 onClick={props.onClickBasket(el)}
               >
                 추가하기
-              </Basket>
+              </Basket> */}
               <ColumnName id={el._id} onClick={props.onClickMarketDetail}>
                 {el.name}
               </ColumnName>
