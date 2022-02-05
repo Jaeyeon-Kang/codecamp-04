@@ -8,7 +8,7 @@ const LandingPagePresenter = (props: ILandingProps) => {
         <S.FirstTitle>Be wise in trading used electronic devices</S.FirstTitle>
         <S.LearnMoreToArrow onClick={props.goMarketPage}>
           <S.LearnMore>Learn More</S.LearnMore>
-          <S.RightArrow src="/images/landing/rightarrow.png" />
+          <S.RightArrow src="/images/landing/rightarrowblue.png" />
         </S.LearnMoreToArrow>
       </S.FirstBanner>
       <S.SecondBanner>
@@ -18,7 +18,7 @@ const LandingPagePresenter = (props: ILandingProps) => {
         </S.FirstTitleTwo>
         <S.LearnMoreToArrowTwo onClick={props.goMarketPage}>
           <S.LearnMore>Learn More</S.LearnMore>
-          <S.RightArrow src="/images/landing/rightarrow.png" />
+          <S.RightArrow src="/images/landing/rightarrowblue.png" />
         </S.LearnMoreToArrowTwo>
       </S.SecondBanner>
       <S.ThirdToFourthBanner>

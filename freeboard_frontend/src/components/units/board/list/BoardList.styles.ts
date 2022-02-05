@@ -4,6 +4,75 @@ export const Wrapper = styled.div`
   margin: 100px;
 `;
 
+export const SearchWrapper = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 2%;
+  margin-right: 1%;
+`;
+export const RoundDiv = styled.div`
+  width: 280px;
+  height: 48px;
+  flex-grow: 0;
+  margin-left: 320px;
+  /* padding-bottom: 3px; */
+  border-radius: 90px;
+  /* box-shadow: 2px 2px 10px 0 rgba(0, 0, 0, 0.2); */
+  border: 1px solid gray;
+  background-color: #fafafa;
+  padding-left: 40px;
+  padding-right: 9.8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: 500ms;
+  
+`;
+
+export const RoundDivInnerText = styled.input`
+  width: 170px;
+  height: 30px;
+  flex-grow: 0;
+  font-size: 16px;
+  border: none;
+  text-align: left;
+  color: #706b68;
+  transition: 500ms;
+  background-color: #fafafa;
+  :focus {
+    /* outline: 1px solid rgba(0, 0, 0, 0.3); */
+    outline: none;
+  }
+`;
+
+export const RoundDivCircle = styled.div`
+  width: 32px;
+  height: 32px;
+  flex-grow: 0;
+  background-color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: 300ms;
+  cursor: pointer;
+`;
+
+export const RoundDivInnerIcon = styled.img`
+  width: 12.4px;
+  height: 12.4px;
+  overflow: hidden;
+  transition: 300ms;
+`;
+
+export const TitleWrapper = styled.div`
+display: flex;
+justify-content: space-between;
+font-size: 2.8em;
+font-weight: 600;
+margin-top: 4%;
+margin-bottom: 1%;
+`
 export const BestCommentWrapperTop = styled.div`
   /* background-color: blue; */
   display: flex;
@@ -57,11 +126,11 @@ export const BestCommentTitle = styled.div`
 
 export const BestCommentImage = styled.img`
   cursor: pointer;
-    height: 450px;
+  height: 450px;
   overflow: hidden;
   object-fit: cover;
   object-position: center center;
-  
+
   /* box-shadow: 5px 5px 10px gray; */
 `;
 
@@ -72,7 +141,7 @@ export const BestCommentImage2 = styled.div`
   overflow: hidden;
   object-fit: cover;
   object-position: center center;
-  
+
   /* box-shadow: 5px 5px 10px gray; */
 `;
 
@@ -105,7 +174,7 @@ export const BestCommentImageIcon = styled.div``;
 
 export const TableTop = styled.div`
   border-top: 2px solid gray;
-  margin-top: 20px;
+  
 `;
 
 export const TableBottom = styled.div`

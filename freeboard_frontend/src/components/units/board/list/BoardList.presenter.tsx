@@ -46,8 +46,10 @@ export default function BoardListUI(props: IBoardListUIProps) {
 
   return (
     <S.Wrapper>
-      검색어 입력: <input type="text" onChange={props.onChangeSearch} />
-      {/* <S.BestCommentWrapperTop> */}
+      <S.SearchWrapper>
+     
+        </S.SearchWrapper>
+        <S.TitleWrapper> Popular Posts</S.TitleWrapper>
       <S.SliderWrapper>
         <Slider {...settings}>
           {props.bestData?.fetchBoardsOfTheBest.map((el) => (
@@ -89,14 +91,31 @@ export default function BoardListUI(props: IBoardListUIProps) {
             <S.BestCommentImage key={uuidv4()} src="/images/landing/banner01.png" />
           ))} */}
         </Slider>
+
       </S.SliderWrapper>
-      {/* </S.BestCommentWrapperTop> */}
+
+      <S.TitleWrapper> All Posts
+      <S.RoundDiv>
+          <S.RoundDivInnerText
+            placeholder="search"
+            onChange={props.onChangeSearch}
+          />
+          <S.RoundDivCircle>
+            <S.RoundDivInnerIcon
+              src="/images/landing/searchicon01.png"
+              
+            />
+          </S.RoundDivCircle>
+        </S.RoundDiv>
+      </S.TitleWrapper>
+      
       <S.TableTop />
+      
       <S.Row>
-        <S.ColumnHeaderBasic>번호</S.ColumnHeaderBasic>
-        <S.ColumnHeaderTitle>제목</S.ColumnHeaderTitle>
-        <S.ColumnHeaderBasic>작성자</S.ColumnHeaderBasic>
-        <S.ColumnHeaderBasic>날짜</S.ColumnHeaderBasic>
+        <S.ColumnHeaderBasic>Number</S.ColumnHeaderBasic>
+        <S.ColumnHeaderTitle>Title</S.ColumnHeaderTitle>
+        <S.ColumnHeaderBasic>Writer</S.ColumnHeaderBasic>
+        <S.ColumnHeaderBasic>Created At</S.ColumnHeaderBasic>
       </S.Row>
       {!props.isSearch && (
         <>
