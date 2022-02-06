@@ -2,6 +2,11 @@ import ReactPlayer from "react-player";
 import styled from "@emotion/styled";
 import { LikeOutlined, DislikeOutlined } from "@ant-design/icons";
 
+export const WrapperTop = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
 export const Wrapper = styled.div`
   width: 1200px;
   margin: 100px;
@@ -16,8 +21,8 @@ export const CardWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: none;
-  box-shadow: 0px 0px 10px gray;
+  background: white;
+  /* box-shadow: 0px 0px 5px gray; */
 `;
 
 export const Header = styled.div`
@@ -54,8 +59,14 @@ export const Body = styled.div`
   min-height: 800px;
 `;
 
+export const TitleWrapper = styled.div`
+  /* background: blue; */
+  width: 100%;
+`;
+
 export const Title = styled.h1`
-  padding-top: 80px;
+font-size: 2.5em;
+font-weight: 600;
 `;
 
 export const Contents = styled.div`
@@ -71,16 +82,21 @@ export const BottomWrapper = styled.div`
 `;
 
 export const Button = styled.button`
-  width: 179px;
-  height: 45px;
   background-color: white;
-  border: 1px solid gray;
+  width: 135px;
+  height: 46px;
+  font-family: "Libre Baskerville";
+  font-weight: 500;
+  font-size: 15px;
+  border: 2px solid #1c1c1c;
+  border-radius: 0.5rem;
   margin: 0px 12px;
   cursor: pointer;
 
   :hover {
-    background-color: gold;
-    border-color: white;
+    /* background-color: rgba(48, 111, 219, 1); */
+    border-color: rgba(48, 111, 219, 1);
+    color: rgba(48, 111, 219, 1);
   }
 `;
 

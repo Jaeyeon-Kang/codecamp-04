@@ -26,7 +26,6 @@ export const RoundDiv = styled.div`
   align-items: center;
   justify-content: space-between;
   transition: 500ms;
-  
 `;
 
 export const RoundDivInnerText = styled.input`
@@ -66,13 +65,13 @@ export const RoundDivInnerIcon = styled.img`
 `;
 
 export const TitleWrapper = styled.div`
-display: flex;
-justify-content: space-between;
-font-size: 2.8em;
-font-weight: 600;
-margin-top: 4%;
-margin-bottom: 1%;
-`
+  display: flex;
+  justify-content: space-between;
+  font-size: 2.8em;
+  font-weight: 600;
+  margin-top: 4%;
+  margin-bottom: 1%;
+`;
 export const BestCommentWrapperTop = styled.div`
   /* background-color: blue; */
   display: flex;
@@ -187,10 +186,12 @@ export const Row = styled.div`
   height: 52px;
   line-height: 52px;
   border-bottom: 1px solid gray;
+  
 
+  /* 
   :hover {
     color: salmon;
-  }
+  } */
 `;
 
 export const TextToken = styled.span`
@@ -200,11 +201,17 @@ export const TextToken = styled.span`
 export const ColumnHeaderBasic = styled.div`
   width: 10%;
   text-align: center;
+  font-weight: 600;
+  font-size: 1.2em;
+  border-bottom: 1px solid gray;
 `;
 
 export const ColumnHeaderTitle = styled.div`
   width: 70%;
   text-align: center;
+  font-weight: 600;
+  font-size: 1.2em;
+  border-bottom: 1px solid gray;
 `;
 
 export const ColumnBasic = styled.div`

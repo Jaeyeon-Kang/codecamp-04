@@ -15,6 +15,7 @@ import {
   IQuery,
   IQueryFetchBoardArgs,
 } from "../../../../commons/types/generated/types";
+import { Modal } from "antd";
 
 export default function BoardDetail() {
   const router = useRouter();
@@ -50,10 +51,11 @@ export default function BoardDetail() {
       await deleteBoard({
         variables: { boardId: String(router.query.boardId) },
       });
-      alert("게시물이 삭제되었습니다.");
+      Modal.info({ content: "Post is deleted" });
+
       router.push("/boards");
     } catch (error) {
-      alert(error.message);
+      Modal.error({ content: error.message });
     }
   }
 

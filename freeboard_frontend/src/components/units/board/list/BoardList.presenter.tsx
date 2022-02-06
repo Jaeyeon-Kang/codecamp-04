@@ -52,7 +52,7 @@ export default function BoardListUI(props: IBoardListUIProps) {
         <S.TitleWrapper> Popular Posts</S.TitleWrapper>
       <S.SliderWrapper>
         <Slider {...settings}>
-          {props.bestData?.fetchBoardsOfTheBest.map((el) => (
+          {props.bestData?.fetchBoardsOfTheBest.map((el: any) => (
             <S.BestCommentWrapper key={el._id}>
                {el.images?.[0] ? (
               <S.BestCommentImage 

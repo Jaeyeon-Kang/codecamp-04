@@ -13,6 +13,7 @@ import {
   UPDATE_BOARD_COMMENT,
 } from "./BoardCommentWrite.queries";
 import { IBoardCommentWriteProps } from "./BoardCommentWrite.types";
+import { Modal } from "antd";
 
 export default function BoardCommentWrite(props: IBoardCommentWriteProps) {
   const router = useRouter();
@@ -72,11 +73,11 @@ export default function BoardCommentWrite(props: IBoardCommentWriteProps) {
 
   async function onClickUpdate() {
     if (!myContents) {
-      alert("내용이 수정되지 않았습니다.");
+      Modal.info({ content: "didn't correct your comment" });
       return;
     }
     if (!myPassword) {
-      alert("비밀번호가 입력되지 않았습니다.");
+      Modal.info({content: "didn't write down your password"});
       return;
     }
 

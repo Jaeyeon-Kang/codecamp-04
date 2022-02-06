@@ -24,8 +24,10 @@ import {
   Star,
   UpdateIcon,
   Writer,
+  ItemWrapperTop,
 } from "./BoardCommentList.styles";
 import { IBoardCommentListUIItemProps } from "./BoardCommentList.types";
+import { getDate } from "../../../../commons/libraries/utils";
 
 export default function BoardCommentListUIItem(
   props: IBoardCommentListUIItemProps
@@ -42,7 +44,7 @@ export default function BoardCommentListUIItem(
   }
 
   async function onClickDelete() {
-    const myPassword = prompt("비밀번호를 입력하세요.");
+    const myPassword = prompt("write down your password");
     try {
       await deleteBoardComment({
         variables: {
@@ -57,36 +59,38 @@ export default function BoardCommentListUIItem(
         ],
       });
     } catch (error) {
-      alert(error.message);
+      Modal.error({ content: "check your password again" });
     }
   }
 
   return (
     <>
       {!isEdit && (
-        <ItemWrapper>
-          <FlexWrapper>
-            <Avatar src="/images/avatar.png" />
-            <MainWrapper>
-              <WriterWrapper>
-                <Writer>{props.el?.writer}</Writer>
-                <Star value={props.el?.rating} disabled />
-              </WriterWrapper>
-              <Contents>{props.el?.contents}</Contents>
-            </MainWrapper>
-            <OptionWrapper>
-              <UpdateIcon
-                src="/images/boardComment/list/option_update_icon.png/"
-                onClick={onClickUpdate}
-              />
-              <DeleteIcon
-                src="/images/boardComment/list/option_delete_icon.png/"
-                onClick={onClickDelete}
-              />
-            </OptionWrapper>
-          </FlexWrapper>
-          <DateString>{props.el?.createdAt}</DateString>
-        </ItemWrapper>
+        <ItemWrapperTop>
+          <ItemWrapper>
+            <FlexWrapper>
+              <Avatar src="/images/avatar.png" />
+              <MainWrapper>
+                <WriterWrapper>
+                  <Writer>{props.el?.writer}</Writer>
+                  <Star value={props.el?.rating} disabled />
+                </WriterWrapper>
+                <Contents>{props.el?.contents}</Contents>
+              </MainWrapper>
+              <OptionWrapper>
+                <UpdateIcon
+                  src="/images/boardComment/list/option_update_icon.png/"
+                  onClick={onClickUpdate}
+                />
+                <DeleteIcon
+                  src="/images/boardComment/list/option_delete_icon.png/"
+                  onClick={onClickDelete}
+                />
+              </OptionWrapper>
+            </FlexWrapper>
+            <DateString>{getDate(props.el?.createdAt)}</DateString>
+          </ItemWrapper>
+        </ItemWrapperTop>
       )}
       {isEdit && (
         <BoardCommentWrite isEdit={true} setIsEdit={setIsEdit} el={props.el} />

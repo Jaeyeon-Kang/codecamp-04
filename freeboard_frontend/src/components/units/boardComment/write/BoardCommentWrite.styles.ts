@@ -1,9 +1,20 @@
 import styled from "@emotion/styled";
 import { Rate } from "antd";
 
+export const TopWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-bottom:2%;
+`;
+
 export const Wrapper = styled.div`
   width: 1200px;
   margin: 0px 100px;
+`;
+
+export const Title = styled.div`
+  font-size: 2.5em;
+  font-weight: 600;
 `;
 
 export const PencilIcon = styled.img``;
@@ -35,18 +46,22 @@ export const Contents = styled.textarea`
   min-height: 108px;
   padding: 20px;
   border: none;
+  margin: 0 0 -8px 0;
   border-bottom: 1px solid lightgray;
+  /* background: pink; */
 `;
 
 export const BottomWrapper = styled.div`
   display: flex;
+  height: 51px;
   flex-direction: row;
   justify-content: space-between;
+  /* background: blue; */
 `;
 
 export const ContentsLength = styled.div`
   width: 100%;
-  height: 51px;
+  /* height: 51px; */
   line-height: 51px;
   padding-left: 20px;
   color: gray;
@@ -54,7 +69,7 @@ export const ContentsLength = styled.div`
 
 export const Button = styled.button`
   width: 91px;
-  height: 51px;
+  /* height: 51px; */
   background-color: black;
   color: white;
   cursor: pointer;

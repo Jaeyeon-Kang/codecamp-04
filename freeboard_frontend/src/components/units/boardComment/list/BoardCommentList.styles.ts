@@ -1,12 +1,20 @@
 import styled from "@emotion/styled";
 import { Rate } from "antd";
 
+export const ItemWrapperTop = styled.div`
+display: flex;
+justify-content: center;
+margin-top: 2%;
+margin-bottom: 5%;
+`
+
 export const ItemWrapper = styled.div`
   width: 1200px;
   margin: 0px 100px;
   padding-top: 20px;
   height: 128px;
   border-bottom: 1px solid lightgray;
+  
 `;
 
 export const FlexWrapper = styled.div`
