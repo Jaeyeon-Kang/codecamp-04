@@ -234,6 +234,7 @@ export const Footer = styled.div`
   flex-direction: row;
   justify-content: flex-end;
   padding-top: 50px;
+  background: pink;
 `;
 
 export const PencilIcon = styled.img``;
@@ -248,6 +249,7 @@ export const Button = styled.button`
   justify-content: space-evenly;
   align-items: center;
   cursor: pointer;
+  
 
   :hover {
     background-color: #f5f2fc;
@@ -260,14 +262,14 @@ export const PageNation = styled.div`
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  /* :hover {
+  :hover {
     color: blueviolet;
-  } */
+  }
 `;
 
 export const NextPage = styled.div`
   cursor: pointer;
-  /* :hover {
+  :hover {
     color: blueviolet;
-  } */
+  }
 `;
