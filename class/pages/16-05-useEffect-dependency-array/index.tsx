@@ -3,7 +3,7 @@ import { useState } from "react";
 export default function MyLifeCyclePage() {
   console.log("렌더링시작");
   const [count, setCount] = useState(0);
- // ss 
+ // Test
   // 1번 케이스 - 최초 1번 실행(DidMount)
   // useEffect(() => {
   //   console.log("최초 한번 실행됨");
