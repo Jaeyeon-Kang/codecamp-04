@@ -3,7 +3,7 @@ import { useState } from "react";
 export default function MyLifeCyclePage() {
   console.log("렌더링시작");
   const [count, setCount] = useState(0);
-
+ // ss 
   // 1번 케이스 - 최초 1번 실행(DidMount)
   // useEffect(() => {
   //   console.log("최초 한번 실행됨");
@@ -13,6 +13,9 @@ export default function MyLifeCyclePage() {
   // useEffect(() => {
   //   console.log("count가 변경되면 재실행");
   // }, [count]);
+  // commit 
+ // commit
+ // commit
 
   // 3번케이스 - 최초렌더링 +1
   // useEffect(() => {
@@ -27,6 +30,7 @@ export default function MyLifeCyclePage() {
   function onClickCounter() {
     setCount((prev) => prev + 1);
   }
+  // test
 
   return (
     <>
