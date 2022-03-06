@@ -6,13 +6,17 @@ interface IState {
 }
 export default class MyLifecyclePage extends Component {
   inputRef = createRef<HTMLInputElement>();
+  // 태그를 변수에 담기 위해 쓴다.
+  // inputRef는 만든 이름. createRef는 import해야 함
   state = {
     count: 0,
   };
+  
 
   componentDidMount() {
     console.log("마운트됨");
     this.inputRef.current?.focus();
+    // 인풋 찾아서 포커스 깜빡거리기
   }
 
   componentDidUpdate() {
@@ -37,7 +41,8 @@ export default class MyLifecyclePage extends Component {
   render() {
     return (
       <>
-        <input type="text" ref={this.inputRef} />
+        <input type="text" ref={this.inputRef} /> 
+        {/* ref는 변수와 태그를 연결시키기 위함. */}
         <div>현재카운트: {this.state.count}</div>
         <button onClick={this.onClickCounter}>카운트 올리기</button>
         <button onClick={this.onClickMove}>페이지 이동하기!!</button>
