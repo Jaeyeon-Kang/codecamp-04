@@ -5,11 +5,14 @@ export default function OpenapiWithUseEffectPage() {
   const [dogUrl, setDogUrl] = useState("");
 
   useEffect(() => {
+    // useEffect 옆에는 async 못붙여서 function 만들어서 async 사용하기
+    // img src에 아무것도 안담겼다가 -> useEffect 되고(openapi 가져오고)-> 보여준다.
     async function fetchDog() {
       const result: any = await axios.get(
         "https://dog.ceo/api/breeds/image/random"
       );
       setDogUrl(result.data.message);
+
     }
     fetchDog();
   }, []);
